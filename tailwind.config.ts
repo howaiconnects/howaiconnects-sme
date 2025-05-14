@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom colors for HowAIConnects
+				brand: {
+					primary: "#4F46E5",    // Main purple
+					secondary: "#6366F1",  // Secondary purple
+					accent: "#818CF8",     // Light purple
+					dark: "#1E293B",       // Dark blue/slate
+					light: "#F8FAFC",      // Light background
 				}
 			},
 			borderRadius: {
