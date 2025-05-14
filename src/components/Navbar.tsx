@@ -16,28 +16,33 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <a href="/" className="flex-shrink-0 flex items-center">
+              <img 
+                src="/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png" 
+                alt="HowAIConnects Logo" 
+                className="h-8 w-auto mr-2" 
+              />
               <span className="text-brand-primary font-bold text-xl">HowAIConnects</span>
             </a>
           </div>
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-4">
-            <a href="/services" className="text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">
+            <a href="/services" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
               Services
             </a>
-            <a href="/courses" className="text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">
+            <a href="/courses" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
               Courses
             </a>
-            <a href="/resources" className="text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">
+            <a href="/resources" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
               Resources
             </a>
-            <a href="/about" className="text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">
+            <a href="/about" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
               About
             </a>
-            <a href="/contact" className="text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">
+            <a href="/contact" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
               Contact
             </a>
-            <Button className="bg-brand-primary hover:bg-brand-secondary ml-4" size="sm">
+            <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white ml-4" size="sm">
               Get Assessment <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -46,7 +51,7 @@ const Navbar = () => {
           <div className="flex md:hidden">
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-primary hover:bg-gray-100 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-accent hover:bg-gray-100 focus:outline-none"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -83,7 +88,7 @@ const Navbar = () => {
             <a href="/contact" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               Contact
             </a>
-            <Button className="bg-brand-primary hover:bg-brand-secondary w-full mt-3" size="sm">
+            <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white w-full mt-3" size="sm">
               Get Assessment <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
