@@ -1,14 +1,22 @@
+
+# HowAIConnects.com robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://howaiconnects.com/sitemap.xml
+
+# Optimize crawling
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 10
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 15
 
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
 Allow: /
