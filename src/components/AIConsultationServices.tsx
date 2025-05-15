@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ClipboardCheck, Strategy, Headphones } from "lucide-react";
+import { ArrowRight, ClipboardCheck, BarChart2, Headphones } from "lucide-react";
 
 const AIConsultationServices = () => {
   const services = [
@@ -15,7 +15,7 @@ const AIConsultationServices = () => {
     {
       title: "AI Strategy Development",
       description: "Create a customized AI adoption strategy aligned with your business goals and available resources.",
-      icon: <Strategy className="h-8 w-8 text-brand-primary" />,
+      icon: <BarChart2 className="h-8 w-8 text-brand-primary" />,
       items: ["Custom AI roadmap", "Technology selection guidance", "Budget & resource planning", "Implementation timeline"],
       link: "/services/ai-consultation/ai-strategy-development"
     },
