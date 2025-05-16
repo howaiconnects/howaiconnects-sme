@@ -31,6 +31,15 @@ import AutomationTemplatesPage from "./pages/resources/AutomationTemplatesPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 
+// New placeholder pages for course content
+import CourseDetail from "./pages/courses/CourseDetail";
+
+// New placeholder pages for template content
+import TemplateDetail from "./pages/resources/templates/TemplateDetail";
+
+// New placeholder page for resource downloads
+import ResourceDownloadPage from "./pages/resources/downloads/ResourceDownloadPage";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -62,6 +71,15 @@ const App = () => (
             <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
             <Route path="/resources/tools" element={<ToolsPage />} />
             <Route path="/resources/automation-templates" element={<AutomationTemplatesPage />} />
+            
+            {/* Course detail pages */}
+            <Route path="/courses/:courseSlug" element={<CourseDetail />} />
+            
+            {/* Template detail pages */}
+            <Route path="/resources/automation-templates/:templateSlug" element={<TemplateDetail />} />
+            
+            {/* Resource download pages */}
+            <Route path="/resources/downloads/:resourceSlug" element={<ResourceDownloadPage />} />
             
             {/* Legal pages */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

@@ -2,6 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const AutomationTemplates = () => {
   const templates = [
@@ -58,12 +59,20 @@ const AutomationTemplates = () => {
                     {template.difficulty}
                   </span>
                 </div>
-                <Button className="w-full flex items-center justify-center">
-                  <Download className="mr-2 h-4 w-4" /> Access Template
-                </Button>
+                <Link to={template.link}>
+                  <Button className="w-full flex items-center justify-center">
+                    <Download className="mr-2 h-4 w-4" /> Access Template
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        <div className="text-center mt-8">
+          <Link to="/resources/automation-templates">
+            <Button variant="outline" size="lg">Browse All Templates</Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const CoursesCatalog = () => {
   const courses = [
@@ -109,7 +110,9 @@ const CoursesCatalog = () => {
               </CardContent>
               <CardFooter className="flex justify-between items-center">
                 <span className="text-2xl font-bold text-brand-primary">{course.price}</span>
-                <Button variant="outline">View Course</Button>
+                <Link to={course.link}>
+                  <Button variant="outline">View Course</Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}
