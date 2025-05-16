@@ -2,6 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ClipboardCheck, BarChart2, Headphones } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const AIConsultationServices = () => {
   const services = [
@@ -56,9 +57,11 @@ const AIConsultationServices = () => {
                     <li key={idx} className="text-gray-600">{item}</li>
                   ))}
                 </ul>
-                <Button variant="outline" className="w-full">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to={service.link}>
+                  <Button variant="outline" className="w-full">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
