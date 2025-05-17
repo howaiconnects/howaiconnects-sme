@@ -20,6 +20,13 @@ const AIDataGemPage = () => {
         <section className="bg-brand-primary/10 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
+              <div className="flex justify-center mb-6">
+                <img 
+                  src="/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png" 
+                  alt="AI Data Gem Logo" 
+                  className="h-32 w-auto"
+                />
+              </div>
               <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
                 AIDataGem
               </h1>

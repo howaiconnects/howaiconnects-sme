@@ -45,7 +45,11 @@ const WebAppDevelopment = () => {
               {/* PathtoCanada */}
               <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
                 <div className="h-64 bg-gradient-to-r from-blue-500 to-cyan-400 p-8 flex items-center justify-center">
-                  <h3 className="text-3xl font-bold text-white text-center">PathtoCanada.ca</h3>
+                  <img 
+                    src="/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png" 
+                    alt="Path to Canada Logo" 
+                    className="h-36 w-auto"
+                  />
                 </div>
                 <div className="p-8">
                   <p className="text-gray-600 mb-6 text-lg">
@@ -86,7 +90,11 @@ const WebAppDevelopment = () => {
               {/* AIDataGem */}
               <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
                 <div className="h-64 bg-gradient-to-r from-purple-500 to-pink-500 p-8 flex items-center justify-center">
-                  <h3 className="text-3xl font-bold text-white text-center">AIDataGem.com</h3>
+                  <img 
+                    src="/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png" 
+                    alt="AI Data Gem Logo" 
+                    className="h-36 w-auto"
+                  />
                 </div>
                 <div className="p-8">
                   <p className="text-gray-600 mb-6 text-lg">

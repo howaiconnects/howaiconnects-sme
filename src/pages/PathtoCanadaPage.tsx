@@ -20,6 +20,13 @@ const PathtoCanadaPage = () => {
         <section className="bg-brand-primary/10 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
+              <div className="flex justify-center mb-6">
+                <img 
+                  src="/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png" 
+                  alt="Path to Canada Logo" 
+                  className="h-32 w-auto"
+                />
+              </div>
               <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
                 Path to Canada
               </h1>
