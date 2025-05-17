@@ -31,6 +31,12 @@ const Navbar = () => {
             <Link to="/services" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
               Services
             </Link>
+            <Link to="/web-app-development" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
+              Web App Development
+            </Link>
+            <Link to="/done-for-you-ai-agency" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
+              Done-for-You AI Agency
+            </Link>
             <Link to="/courses" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
               Courses
             </Link>
@@ -78,6 +84,12 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link to="/services" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               Services
+            </Link>
+            <Link to="/web-app-development" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              Web App Development
+            </Link>
+            <Link to="/done-for-you-ai-agency" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              Done-for-You AI Agency
             </Link>
             <Link to="/courses" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               Courses

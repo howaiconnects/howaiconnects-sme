@@ -13,6 +13,10 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
+// New service division pages
+import WebAppDevelopment from "./pages/WebAppDevelopment";
+import DoneForYouAIAgency from "./pages/DoneForYouAIAgency";
+
 // Service detail pages
 import MarketingAutomation from "./pages/services/ai-automation-solutions/MarketingAutomation";
 import WorkflowAutomation from "./pages/services/ai-automation-solutions/WorkflowAutomation";
@@ -57,6 +61,10 @@ const App = () => (
             <Route path="/resources" element={<Resources />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            
+            {/* New service division pages */}
+            <Route path="/web-app-development" element={<WebAppDevelopment />} />
+            <Route path="/done-for-you-ai-agency" element={<DoneForYouAIAgency />} />
             
             {/* Service detail pages */}
             <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />
