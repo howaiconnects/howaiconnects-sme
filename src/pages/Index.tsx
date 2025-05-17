@@ -8,6 +8,7 @@ import SuccessStories from "@/components/SuccessStories";
 import EducationalOfferings from "@/components/EducationalOfferings";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import FeaturedServices from "@/components/FeaturedServices";
 
 const Index = () => {
   return (
@@ -15,7 +16,7 @@ const Index = () => {
       <Helmet>
         <title>HowAIConnects | AI Automation & Education for Small Businesses</title>
         <meta name="description" content="HowAIConnects provides AI automation services and practical education for small businesses. Increase efficiency, reduce costs, and scale operations with AI." />
-        <meta name="keywords" content="AI for small business, AI automation, SME AI education, AI consulting, business AI solutions" />
+        <meta name="keywords" content="AI for small business, AI automation, SME AI education, AI consulting, business AI solutions, web app development, AI agency" />
         <link rel="canonical" href="https://howaiconnects.com" />
         <script type="application/ld+json">
           {`
@@ -44,6 +45,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <FeaturedServices />
         <ProblemSolution />
         <ServicesShowcase />
         <SuccessStories />

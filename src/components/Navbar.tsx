@@ -39,8 +39,53 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-2">
             <NavigationMenu>
               <NavigationMenuList>
+                {/* Featured Services */}
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-700 hover:text-brand-accent">Services</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-brand-accent">Featured Services</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1">
+                      <li className="col-span-1">
+                        <NavigationMenuLink asChild>
+                          <Link to="/web-app-development" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="flex items-center gap-2">
+                              <div className="h-8 w-8 rounded-md bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                                  <polyline points="16 18 22 12 16 6"></polyline>
+                                  <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                              </div>
+                              <div>
+                                <div className="text-sm font-medium leading-none">Web App Development</div>
+                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Custom web applications for small and medium businesses</p>
+                              </div>
+                            </div>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li className="col-span-1">
+                        <NavigationMenuLink asChild>
+                          <Link to="/done-for-you-ai-agency" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="flex items-center gap-2">
+                              <div className="h-8 w-8 rounded-md bg-gradient-to-br from-brand-accent to-brand-lightAccent flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                                  <path d="M22 2L11 13"></path>
+                                  <path d="M22 2l-7 20-4-9-9-4 20-7z"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <div className="text-sm font-medium leading-none">Done-for-You AI Agency</div>
+                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Launch your own AI agency with zero upfront cost</p>
+                              </div>
+                            </div>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-brand-accent">AI Services</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                       <li className="col-span-2">
@@ -69,14 +114,6 @@ const Navbar = () => {
                       </li>
                       <li>
                         <NavigationMenuLink asChild>
-                          <Link to="/services/ai-automation-solutions/customer-service-automation" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">Customer Service Automation</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Provide 24/7 customer support with AI</p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
                           <Link to="/services/ai-consultation/ai-readiness-assessment" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                             <div className="text-sm font-medium leading-none">AI Readiness Assessment</div>
                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Evaluate your business for AI implementation</p>
@@ -96,17 +133,9 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-700 hover:text-brand-accent">Development</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-brand-accent">Our Web Apps</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-4 w-[400px]">
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link to="/web-app-development" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">Web App Development</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Custom web applications for small and medium businesses</p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
                       <li>
                         <NavigationMenuLink asChild>
                           <Link to="/web-apps/path-to-canada" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
@@ -168,12 +197,6 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link to="/done-for-you-ai-agency" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
-                    AI Agency
-                  </Link>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
                   <Link to="/about" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
                     About
                   </Link>
@@ -220,18 +243,30 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link to="/services" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
-              Services
-            </Link>
-            <Link to="/web-app-development" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
-              Web App Development
-            </Link>
-            <Link to="/done-for-you-ai-agency" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
-              Done-for-You AI Agency
-            </Link>
-            <Link to="/courses" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
-              Courses
-            </Link>
+            <div className="py-2 border-b border-gray-100">
+              <h3 className="text-xs font-semibold text-gray-500 px-3 py-1">FEATURED SERVICES</h3>
+              <Link to="/web-app-development" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                Web App Development
+              </Link>
+              <Link to="/done-for-you-ai-agency" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                Done-for-You AI Agency
+              </Link>
+            </div>
+            <div className="py-2 border-b border-gray-100">
+              <h3 className="text-xs font-semibold text-gray-500 px-3 py-1">WEB APPS</h3>
+              <Link to="/web-apps/path-to-canada" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                PathtoCanada.ca
+              </Link>
+              <Link to="/web-apps/ai-data-gem" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                AIDataGem.com
+              </Link>
+            </div>
+            <div className="py-2 border-b border-gray-100">
+              <h3 className="text-xs font-semibold text-gray-500 px-3 py-1">AI SERVICES</h3>
+              <Link to="/services" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                All Services
+              </Link>
+            </div>
             <Link to="/resources" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               Resources
             </Link>
