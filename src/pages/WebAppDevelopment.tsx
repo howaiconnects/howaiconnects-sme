@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
@@ -31,44 +31,96 @@ const WebAppDevelopment = () => {
           </div>
         </section>
 
-        {/* Featured Web Apps */}
+        {/* Featured Web Apps with enhanced styling */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-              Featured Web Apps
+              Featured Web Applications
             </h2>
             <p className="text-lg text-center text-gray-600 mb-12">
-              We've helped bring innovative web applications to life, including:
+              Explore our flagship web applications that demonstrate our expertise in building powerful digital solutions:
             </p>
             
-            <div className="grid md:grid-cols-2 gap-8 mt-8">
-              <div className="bg-white rounded-lg shadow-md p-8 border border-gray-100 hover:shadow-lg transition-shadow">
-                <h3 className="text-2xl font-bold text-brand-primary mb-4">PathtoCanada.ca</h3>
-                <p className="text-gray-600 mb-6">
-                  A comprehensive platform designed to guide individuals through the Canadian immigration process, providing resources, tools, and information to simplify their journey.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="https://pathtocanada.ca" target="_blank" rel="noopener noreferrer" className="text-brand-accent font-medium hover:underline flex items-center">
-                    Visit Website <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                  <Link to="/web-apps/path-to-canada" className="text-brand-primary font-medium hover:underline flex items-center">
-                    View Case Study <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+            <div className="grid md:grid-cols-2 gap-12 mt-12">
+              {/* PathtoCanada */}
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
+                <div className="h-64 bg-gradient-to-r from-blue-500 to-cyan-400 p-8 flex items-center justify-center">
+                  <h3 className="text-3xl font-bold text-white text-center">PathtoCanada.ca</h3>
+                </div>
+                <div className="p-8">
+                  <p className="text-gray-600 mb-6 text-lg">
+                    A comprehensive platform designed to guide individuals through the Canadian immigration process, providing resources, tools, and information to simplify their journey.
+                  </p>
+                  <div className="mb-6">
+                    <h4 className="font-bold text-gray-900 mb-3">Key Features:</h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                        <span>Immigration pathway assessment tools</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                        <span>Document checklist generators</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                        <span>Step-by-step application guides</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                        <span>Community forum for applicants</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a href="https://pathtocanada.ca" target="_blank" rel="noopener noreferrer" className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors inline-flex items-center justify-center">
+                      Visit Website <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                    <Link to="/web-apps/path-to-canada" className="border border-blue-500 text-blue-500 px-6 py-3 rounded-md hover:bg-blue-50 transition-colors inline-flex items-center justify-center">
+                      View Case Study <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg shadow-md p-8 border border-gray-100 hover:shadow-lg transition-shadow">
-                <h3 className="text-2xl font-bold text-brand-primary mb-4">AIDataGem.com</h3>
-                <p className="text-gray-600 mb-6">
-                  An AI-powered application focused on data analysis and insights, helping businesses unlock the value hidden within their data to make informed decisions.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="https://aidatagem.com" target="_blank" rel="noopener noreferrer" className="text-brand-accent font-medium hover:underline flex items-center">
-                    Visit Website <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                  <Link to="/web-apps/ai-data-gem" className="text-brand-primary font-medium hover:underline flex items-center">
-                    View Case Study <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+              {/* AIDataGem */}
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
+                <div className="h-64 bg-gradient-to-r from-purple-500 to-pink-500 p-8 flex items-center justify-center">
+                  <h3 className="text-3xl font-bold text-white text-center">AIDataGem.com</h3>
+                </div>
+                <div className="p-8">
+                  <p className="text-gray-600 mb-6 text-lg">
+                    An AI-powered application focused on data analysis and insights, helping businesses unlock the value hidden within their data to make informed decisions.
+                  </p>
+                  <div className="mb-6">
+                    <h4 className="font-bold text-gray-900 mb-3">Key Features:</h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                        <span>AI-driven data analysis dashboards</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                        <span>Automated trend identification</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                        <span>Custom report generation</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                        <span>Data visualization tools</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a href="https://aidatagem.com" target="_blank" rel="noopener noreferrer" className="bg-purple-500 text-white px-6 py-3 rounded-md hover:bg-purple-600 transition-colors inline-flex items-center justify-center">
+                      Visit Website <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                    <Link to="/web-apps/ai-data-gem" className="border border-purple-500 text-purple-500 px-6 py-3 rounded-md hover:bg-purple-50 transition-colors inline-flex items-center justify-center">
+                      View Case Study <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
