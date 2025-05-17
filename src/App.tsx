@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 // New service division pages
 import WebAppDevelopment from "./pages/WebAppDevelopment";
 import DoneForYouAIAgency from "./pages/DoneForYouAIAgency";
+import PathtoCanadaPage from "./pages/PathtoCanadaPage";
+import AIDataGemPage from "./pages/AIDataGemPage";
 
 // Service detail pages
 import MarketingAutomation from "./pages/services/ai-automation-solutions/MarketingAutomation";
@@ -65,6 +67,8 @@ const App = () => (
             {/* New service division pages */}
             <Route path="/web-app-development" element={<WebAppDevelopment />} />
             <Route path="/done-for-you-ai-agency" element={<DoneForYouAIAgency />} />
+            <Route path="/web-apps/path-to-canada" element={<PathtoCanadaPage />} />
+            <Route path="/web-apps/ai-data-gem" element={<AIDataGemPage />} />
             
             {/* Service detail pages */}
             <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />

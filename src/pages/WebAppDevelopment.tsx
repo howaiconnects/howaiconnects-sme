@@ -47,9 +47,14 @@ const WebAppDevelopment = () => {
                 <p className="text-gray-600 mb-6">
                   A comprehensive platform designed to guide individuals through the Canadian immigration process, providing resources, tools, and information to simplify their journey.
                 </p>
-                <a href="https://pathtocanada.ca" target="_blank" rel="noopener noreferrer" className="text-brand-accent font-medium hover:underline flex items-center">
-                  Visit Website <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href="https://pathtocanada.ca" target="_blank" rel="noopener noreferrer" className="text-brand-accent font-medium hover:underline flex items-center">
+                    Visit Website <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                  <Link to="/web-apps/path-to-canada" className="text-brand-primary font-medium hover:underline flex items-center">
+                    View Case Study <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
               </div>
 
               <div className="bg-white rounded-lg shadow-md p-8 border border-gray-100 hover:shadow-lg transition-shadow">
@@ -57,9 +62,14 @@ const WebAppDevelopment = () => {
                 <p className="text-gray-600 mb-6">
                   An AI-powered application focused on data analysis and insights, helping businesses unlock the value hidden within their data to make informed decisions.
                 </p>
-                <a href="https://aidatagem.com" target="_blank" rel="noopener noreferrer" className="text-brand-accent font-medium hover:underline flex items-center">
-                  Visit Website <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href="https://aidatagem.com" target="_blank" rel="noopener noreferrer" className="text-brand-accent font-medium hover:underline flex items-center">
+                    Visit Website <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                  <Link to="/web-apps/ai-data-gem" className="text-brand-primary font-medium hover:underline flex items-center">
+                    View Case Study <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
