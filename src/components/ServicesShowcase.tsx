@@ -2,6 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ServicesShowcase = () => {
   const automationServices = [
@@ -46,6 +47,22 @@ const ServicesShowcase = () => {
     }
   ];
 
+  // New service divisions
+  const additionalDivisions = [
+    {
+      title: "Web App Development",
+      description: "Custom web applications designed and built for small and medium businesses, from concept to launch.",
+      items: ["Custom business tools", "User-centric design", "Scalable architecture", "End-to-end service"],
+      link: "/web-app-development"
+    },
+    {
+      title: "Done-for-You AI Agency",
+      description: "Launch your own AI agency with zero upfront cost through our unique business model and turnkey solutions.",
+      items: ["No upfront costs", "Vendor integrations", "Business guidance", "Revenue-ready foundation"],
+      link: "/done-for-you-ai-agency"
+    }
+  ];
+
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,9 +91,11 @@ const ServicesShowcase = () => {
                       <li key={idx} className="text-gray-600">{item}</li>
                     ))}
                   </ul>
-                  <Button variant="outline" className="w-full">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link to={service.link}>
+                    <Button variant="outline" className="w-full">
+                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -99,9 +118,38 @@ const ServicesShowcase = () => {
                       <li key={idx} className="text-gray-600">{item}</li>
                     ))}
                   </ul>
-                  <Button variant="outline" className="w-full">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link to={service.link}>
+                    <Button variant="outline" className="w-full">
+                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Additional Service Divisions */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">Additional Service Divisions</h3>
+          <div className="grid gap-8 lg:grid-cols-2">
+            {additionalDivisions.map((service, index) => (
+              <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <CardHeader>
+                  <CardTitle>{service.title}</CardTitle>
+                  <CardDescription>{service.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="list-disc pl-5 space-y-2 mb-6">
+                    {service.items.map((item, idx) => (
+                      <li key={idx} className="text-gray-600">{item}</li>
+                    ))}
+                  </ul>
+                  <Link to={service.link}>
+                    <Button variant="outline" className="w-full">
+                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
