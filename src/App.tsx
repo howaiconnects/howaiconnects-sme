@@ -12,6 +12,8 @@ import Resources from "./pages/Resources";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import AIDataGemPage from "./pages/AIDataGemPage";
+import PathtoCanadaPage from "./pages/PathtoCanadaPage";
 
 // Service detail pages
 import MarketingAutomation from "./pages/services/ai-automation-solutions/MarketingAutomation";
@@ -57,6 +59,8 @@ const App = () => (
             <Route path="/resources" element={<Resources />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/ai-data-gem" element={<AIDataGemPage />} />
+            <Route path="/path-to-canada" element={<PathtoCanadaPage />} />
             
             {/* Service detail pages */}
             <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />

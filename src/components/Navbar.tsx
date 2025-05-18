@@ -43,6 +43,12 @@ const Navbar = () => {
             <Link to="/contact" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
               Contact
             </Link>
+            <Link to="/ai-data-gem" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
+              AI Data Gem
+            </Link>
+            <Link to="/path-to-canada" className="text-gray-700 hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium">
+              Path to Canada
+            </Link>
             <Link to="/services/ai-consultation/ai-readiness-assessment">
               <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white ml-4" size="sm">
                 Get Assessment <ArrowRight className="ml-2 h-4 w-4" />
@@ -90,6 +96,12 @@ const Navbar = () => {
             </Link>
             <Link to="/contact" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               Contact
+            </Link>
+            <Link to="/ai-data-gem" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              AI Data Gem
+            </Link>
+            <Link to="/path-to-canada" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              Path to Canada
             </Link>
             <Link to="/services/ai-consultation/ai-readiness-assessment" className="block mt-3">
               <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white w-full" size="sm">
