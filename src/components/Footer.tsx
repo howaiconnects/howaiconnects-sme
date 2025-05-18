@@ -1,10 +1,31 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      toast({
+        title: "Subscription successful",
+        description: "Thank you for subscribing to our newsletter!",
+      });
+      setEmail("");
+    } else {
+      toast({
+        title: "Please enter an email address",
+        description: "A valid email address is required to subscribe.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
-    <footer className="bg-brand-primary text-white">
+    <footer className="bg-gradient-to-b from-brand-primary to-brand-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
@@ -44,9 +65,20 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Navigation */}
+          {/* Featured Services */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Services</h3>
+            <h3 className="text-white font-semibold mb-4 text-lg">Featured Services</h3>
+            <ul className="space-y-2">
+              <li><Link to="/web-app-development" className="text-gray-300 hover:text-brand-lightAccent">Web App Development</Link></li>
+              <li><Link to="/done-for-you-ai-agency" className="text-gray-300 hover:text-brand-lightAccent">Done-for-You AI Agency</Link></li>
+              <li><Link to="/web-apps/path-to-canada" className="text-gray-300 hover:text-brand-lightAccent">PathtoCanada.ca</Link></li>
+              <li><Link to="/web-apps/ai-data-gem" className="text-gray-300 hover:text-brand-lightAccent">AIDataGem.com</Link></li>
+            </ul>
+          </div>
+          
+          {/* AI Services */}
+          <div>
+            <h3 className="text-white font-semibold mb-4 text-lg">AI Services</h3>
             <ul className="space-y-2">
               <li><Link to="/services/ai-automation-solutions/marketing-automation" className="text-gray-300 hover:text-brand-lightAccent">Marketing Automation</Link></li>
               <li><Link to="/services/ai-automation-solutions/workflow-automation" className="text-gray-300 hover:text-brand-lightAccent">Workflow Automation</Link></li>
@@ -57,25 +89,14 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-white font-semibold mb-4">Resources</h3>
+            <h3 className="text-white font-semibold mb-4 text-lg">Company</h3>
             <ul className="space-y-2">
+              <li><Link to="/about" className="text-gray-300 hover:text-brand-lightAccent">About Us</Link></li>
+              <li><Link to="/contact" className="text-gray-300 hover:text-brand-lightAccent">Contact</Link></li>
               <li><Link to="/courses" className="text-gray-300 hover:text-brand-lightAccent">Courses</Link></li>
               <li><Link to="/resources/blog" className="text-gray-300 hover:text-brand-lightAccent">Blog</Link></li>
               <li><Link to="/resources/case-studies" className="text-gray-300 hover:text-brand-lightAccent">Case Studies</Link></li>
               <li><Link to="/resources/tools" className="text-gray-300 hover:text-brand-lightAccent">Tools</Link></li>
-              <li><Link to="/resources/automation-templates" className="text-gray-300 hover:text-brand-lightAccent">Automation Templates</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li><Link to="/about" className="text-gray-300 hover:text-brand-lightAccent">About Us</Link></li>
-              <li><Link to="/contact" className="text-gray-300 hover:text-brand-lightAccent">Contact</Link></li>
-              <li><Link to="/ai-data-gem" className="text-gray-300 hover:text-brand-lightAccent">AI Data Gem</Link></li>
-              <li><Link to="/path-to-canada" className="text-gray-300 hover:text-brand-lightAccent">Path to Canada</Link></li>
-              <li><Link to="/privacy-policy" className="text-gray-300 hover:text-brand-lightAccent">Privacy Policy</Link></li>
-              <li><Link to="/terms-of-service" className="text-gray-300 hover:text-brand-lightAccent">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
@@ -83,18 +104,20 @@ const Footer = () => {
         {/* Newsletter */}
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="max-w-md">
-            <h3 className="text-white font-semibold mb-4">Subscribe to our newsletter</h3>
+            <h3 className="text-white font-semibold mb-4 text-lg">Subscribe to our newsletter</h3>
             <p className="text-gray-300 mb-4">Get the latest news and articles on AI automation for SMEs</p>
-            <div className="flex">
+            <form onSubmit={handleSubscribe} className="flex">
               <input
                 type="email"
                 placeholder="Your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-grow px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-brand-accent"
               />
-              <Button className="rounded-l-none bg-brand-accent hover:bg-brand-lightAccent">
+              <Button type="submit" className="rounded-l-none bg-brand-accent hover:bg-brand-lightAccent">
                 Subscribe
               </Button>
-            </div>
+            </form>
           </div>
         </div>
         
@@ -103,9 +126,10 @@ const Footer = () => {
           <p className="text-gray-300">
             &copy; {new Date().getFullYear()} HowAIConnects. All rights reserved.
           </p>
-          <p className="text-gray-300 mt-4 md:mt-0">
-            Designed and built with AI and human expertise
-          </p>
+          <div className="text-gray-300 mt-4 md:mt-0 flex gap-4">
+            <Link to="/privacy-policy" className="hover:text-brand-lightAccent">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-brand-lightAccent">Terms of Service</Link>
+          </div>
         </div>
       </div>
     </footer>
