@@ -32,6 +32,7 @@ import Blog from "./pages/resources/Blog";
 import CaseStudiesPage from "./pages/resources/CaseStudiesPage";
 import ToolsPage from "./pages/resources/ToolsPage";
 import AutomationTemplatesPage from "./pages/resources/AutomationTemplatesPage";
+import ResourcesPage from "./pages/resources/ResourcesPage";
 
 // Legal pages
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -85,6 +86,7 @@ const App = () => (
             <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
             <Route path="/resources/tools" element={<ToolsPage />} />
             <Route path="/resources/automation-templates" element={<AutomationTemplatesPage />} />
+            <Route path="/resources/library" element={<ResourcesPage />} />
             
             {/* Course detail pages */}
             <Route path="/courses/:courseSlug" element={<CourseDetail />} />
