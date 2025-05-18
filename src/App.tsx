@@ -18,8 +18,6 @@ import PathtoCanadaPage from "./pages/PathtoCanadaPage";
 // New service division pages
 import WebAppDevelopment from "./pages/WebAppDevelopment";
 import DoneForYouAIAgency from "./pages/DoneForYouAIAgency";
-import PathtoCanadaPage from "./pages/PathtoCanadaPage";
-import AIDataGemPage from "./pages/AIDataGemPage";
 
 // Service detail pages
 import MarketingAutomation from "./pages/services/ai-automation-solutions/MarketingAutomation";

@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-const AIDataGemPage: React.FC = () => {
-  return (
-    <div>
-      <h1>AI Data Gem</h1>
-      <p>This is the placeholder page for AI Data Gem.</p>
-    </div>
-  );
-};
-
-export default AIDataGemPage;
-=======
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -178,4 +164,3 @@ const AIDataGemPage = () => {
 };
 
 export default AIDataGemPage;
->>>>>>> 4cc45a42ef6811ea6f52f8c4d444c2588af3c886
