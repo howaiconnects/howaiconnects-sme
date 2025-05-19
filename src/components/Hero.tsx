@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -28,14 +29,18 @@ const Hero = () => {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
-                  <Button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-accent hover:bg-brand-lightAccent md:py-4 md:text-lg md:px-10">
-                    Get Your Free AI Readiness Assessment <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  <Link to="/contact">
+                    <Button className="w-full flex items-center justify-center px-8 py-3 text-base font-medium rounded-md text-white bg-brand-accent hover:bg-brand-lightAccent md:py-4 md:text-lg md:px-10">
+                      Get Your Free AI Readiness Assessment <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <Button variant="outline" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-brand-primary bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                    Explore Our SME AI Courses
-                  </Button>
+                  <Link to="/courses">
+                    <Button variant="outline" className="w-full flex items-center justify-center px-8 py-3 text-base font-medium rounded-md text-brand-primary bg-white hover:bg-gray-50 border border-gray-300 md:py-4 md:text-lg md:px-10">
+                      Explore Our SME AI Courses
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
