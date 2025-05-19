@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AIDataGemPage from "./pages/AIDataGemPage";
 import PathtoCanadaPage from "./pages/PathtoCanadaPage";
+import AdLandingPage from "./pages/AdLandingPage";
 
 // New service division pages
 import WebAppDevelopment from "./pages/WebAppDevelopment";
@@ -66,6 +67,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/ai-data-gem" element={<AIDataGemPage />} />
             <Route path="/path-to-canada" element={<PathtoCanadaPage />} />
+            <Route path="/special-offer" element={<AdLandingPage />} />
             
             {/* New service division pages */}
             <Route path="/web-app-development" element={<WebAppDevelopment />} />
