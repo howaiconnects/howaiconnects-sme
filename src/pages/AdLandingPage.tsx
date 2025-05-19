@@ -86,36 +86,36 @@ const AdLandingPage = () => {
       </Helmet>
 
       {/* Hero Section with Limited Time Offer */}
-      <section className="bg-gradient-to-r from-purple-600 to-indigo-700 py-16 text-white">
+      <section className="bg-gradient-to-r from-brand-primary to-brand-secondary py-16 text-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-3/5 mb-10 md:mb-0">
-              <span className="inline-block bg-red-500 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">LAUNCH SPECIAL • LIMITED TIME OFFER</span>
+              <span className="inline-block bg-brand-accent text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">LAUNCH SPECIAL • LIMITED TIME OFFER</span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Transform Your Business Operations at <span className="line-through">$5,000</span> <span className="text-yellow-300">$997</span></h1>
               <p className="text-xl mb-8">Get enterprise-grade AI automation with zero infrastructure costs for a full year. Our launch package includes everything small businesses need to reduce costs and boost efficiency.</p>
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-green-300" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-brand-lightAccent" />
                   <span>Premium cloud hosting included</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-green-300" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-brand-lightAccent" />
                   <span>No technical skills required</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-green-300" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-brand-lightAccent" />
                   <span>Implementation support</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-green-300" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-brand-lightAccent" />
                   <span>80% savings on infrastructure</span>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-4">
                 <a href="#pricing">
-                  <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg text-lg">
+                  <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white font-bold py-3 px-6 rounded-lg text-lg">
                     Claim Your Offer Now
                   </Button>
                 </a>
@@ -171,35 +171,35 @@ const AdLandingPage = () => {
       </section>
 
       {/* Automation Workflows Section */}
-      <section id="workflows" className="py-20 bg-gray-50">
+      <section id="workflows" className="py-20 bg-brand-light">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Cost-Saving Automation Workflows</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-brand-dark">Cost-Saving Automation Workflows</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">Select from our library of proven automation workflows designed specifically for small and medium businesses.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Workflow 1 */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-xl">
-              <div className="p-1 bg-gradient-to-r from-purple-600 to-indigo-700"></div>
+              <div className="p-1 bg-gradient-to-r from-brand-primary to-brand-secondary"></div>
               <div className="p-6">
-                <div className="bg-purple-100 p-3 inline-flex rounded-lg mb-4">
-                  <TrendingUp className="h-8 w-8 text-purple-700" />
+                <div className="bg-brand-primary/10 p-3 inline-flex rounded-lg mb-4">
+                  <TrendingUp className="h-8 w-8 text-brand-primary" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Sales Lead Automation</h3>
                 <p className="text-gray-600 mb-4">Automatically qualify, score, and route leads to your sales team. Stop losing potential customers with manual processes.</p>
                 <div className="mb-4">
                   <div className="text-sm font-semibold text-gray-700 mb-2">Typical Results:</div>
                   <div className="flex items-center text-sm text-gray-600 mb-1">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>25-40% reduction in lead response time</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600 mb-1">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>15-30% increase in conversion rates</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>Saves 15+ hours/week in manual work</span>
                   </div>
                 </div>
@@ -207,32 +207,32 @@ const AdLandingPage = () => {
               <div className="bg-gray-50 p-4 border-t border-gray-100">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-500">Perfect for: Sales Teams</span>
-                  <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-medium">Most Popular</span>
+                  <span className="bg-brand-primary/10 text-brand-primary text-xs px-2 py-1 rounded-full font-medium">Most Popular</span>
                 </div>
               </div>
             </div>
 
             {/* Workflow 2 */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-xl">
-              <div className="p-1 bg-gradient-to-r from-purple-600 to-indigo-700"></div>
+              <div className="p-1 bg-gradient-to-r from-brand-primary to-brand-secondary"></div>
               <div className="p-6">
-                <div className="bg-blue-100 p-3 inline-flex rounded-lg mb-4">
-                  <DollarSign className="h-8 w-8 text-blue-700" />
+                <div className="bg-brand-secondary/10 p-3 inline-flex rounded-lg mb-4">
+                  <DollarSign className="h-8 w-8 text-brand-secondary" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Expense Processing</h3>
                 <p className="text-gray-600 mb-4">Automate receipt collection, expense categorization, and approval workflows. Save hours of accounting work each month.</p>
                 <div className="mb-4">
                   <div className="text-sm font-semibold text-gray-700 mb-2">Typical Results:</div>
                   <div className="flex items-center text-sm text-gray-600 mb-1">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>80% faster expense processing</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600 mb-1">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>50% reduction in accounting errors</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>Saves $1,500+/month in labor costs</span>
                   </div>
                 </div>
@@ -247,25 +247,25 @@ const AdLandingPage = () => {
 
             {/* Workflow 3 */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-xl">
-              <div className="p-1 bg-gradient-to-r from-purple-600 to-indigo-700"></div>
+              <div className="p-1 bg-gradient-to-r from-brand-primary to-brand-secondary"></div>
               <div className="p-6">
-                <div className="bg-green-100 p-3 inline-flex rounded-lg mb-4">
-                  <Clock className="h-8 w-8 text-green-700" />
+                <div className="bg-brand-accent/10 p-3 inline-flex rounded-lg mb-4">
+                  <Clock className="h-8 w-8 text-brand-accent" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Customer Support AI</h3>
                 <p className="text-gray-600 mb-4">Implement AI-powered customer support that answers questions 24/7, routes complex issues, and follows up automatically.</p>
                 <div className="mb-4">
                   <div className="text-sm font-semibold text-gray-700 mb-2">Typical Results:</div>
                   <div className="flex items-center text-sm text-gray-600 mb-1">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>65% reduction in response time</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600 mb-1">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>Handle 3x more customer inquiries</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-brand-accent" />
                     <span>40% improvement in customer satisfaction</span>
                   </div>
                 </div>
@@ -282,7 +282,7 @@ const AdLandingPage = () => {
           <div className="mt-12 text-center">
             <p className="text-lg text-gray-600 mb-6">Not seeing what you need? Our package includes custom automation solutions tailored to your specific business needs.</p>
             <a href="#custom-solution">
-              <Button variant="outline" className="border-purple-600 text-purple-700 hover:bg-purple-50">
+              <Button variant="outline" className="border-brand-primary text-brand-primary hover:bg-brand-primary/10">
                 Explore Custom Solutions
               </Button>
             </a>
@@ -294,21 +294,21 @@ const AdLandingPage = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">The ROI of Business Automation</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-brand-dark">The ROI of Business Automation</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">See how our clients are achieving massive returns with our automation solutions.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center">
-              <div className="text-5xl font-bold text-blue-700 mb-2">78%</div>
+              <div className="text-5xl font-bold text-brand-primary mb-2">78%</div>
               <p className="text-gray-700">Average reduction in time spent on repetitive tasks</p>
             </div>
             <div className="bg-green-50 border border-green-100 rounded-xl p-8 text-center">
-              <div className="text-5xl font-bold text-green-700 mb-2">$3,800</div>
+              <div className="text-5xl font-bold text-brand-accent mb-2">$3,800</div>
               <p className="text-gray-700">Average monthly labor cost savings per workflow</p>
             </div>
             <div className="bg-purple-50 border border-purple-100 rounded-xl p-8 text-center">
-              <div className="text-5xl font-bold text-purple-700 mb-2">412%</div>
+              <div className="text-5xl font-bold text-brand-secondary mb-2">412%</div>
               <p className="text-gray-700">Average ROI within the first year</p>
             </div>
           </div>
@@ -316,13 +316,13 @@ const AdLandingPage = () => {
           <div className="bg-gray-100 rounded-2xl p-8 md:p-12">
             <div className="flex flex-col md:flex-row gap-10">
               <div className="md:w-1/2">
-                <h3 className="text-2xl font-bold mb-4">Why This Launch Offer Is Different</h3>
+                <h3 className="text-2xl font-bold mb-4 text-brand-dark">Why This Launch Offer Is Different</h3>
                 <p className="text-gray-700 mb-6">Unlike typical automation services that require expensive infrastructure, our launch package eliminates all those costs for an entire year.</p>
                 
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <div className="bg-white p-2 rounded-full shadow mr-4 mt-1">
-                      <Rocket className="h-5 w-5 text-purple-700" />
+                      <Rocket className="h-5 w-5 text-brand-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">Enterprise-Grade Infrastructure</h4>
@@ -332,7 +332,7 @@ const AdLandingPage = () => {
                   
                   <div className="flex items-start">
                     <div className="bg-white p-2 rounded-full shadow mr-4 mt-1">
-                      <Zap className="h-5 w-5 text-purple-700" />
+                      <Zap className="h-5 w-5 text-brand-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">Implementation & Training</h4>
@@ -342,7 +342,7 @@ const AdLandingPage = () => {
                   
                   <div className="flex items-start">
                     <div className="bg-white p-2 rounded-full shadow mr-4 mt-1">
-                      <Users className="h-5 w-5 text-purple-700" />
+                      <Users className="h-5 w-5 text-brand-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">Customized To Your Business</h4>
@@ -354,7 +354,7 @@ const AdLandingPage = () => {
               
               <div className="md:w-1/2">
                 <div className="bg-white rounded-xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-center">Why Act Now?</h3>
+                  <h3 className="text-2xl font-bold mb-6 text-center text-brand-dark">Why Act Now?</h3>
                   
                   <div className="space-y-6">
                     <div className="flex items-center">
@@ -389,10 +389,10 @@ const AdLandingPage = () => {
                     
                     <div className="mt-8 text-center">
                       <div className="text-sm font-semibold text-gray-500 mb-3">Regular Price: <span className="line-through">$5,997</span></div>
-                      <div className="text-3xl font-bold text-purple-700 mb-1">Launch Price: $997</div>
+                      <div className="text-3xl font-bold text-brand-primary mb-1">Launch Price: $997</div>
                       <div className="text-sm text-gray-500 mb-6">(One-time payment • 83% discount)</div>
                       <a href="#pricing">
-                        <Button className="bg-purple-700 hover:bg-purple-800 text-white w-full py-3">
+                        <Button className="bg-brand-primary hover:bg-brand-secondary text-white w-full py-3">
                           Secure Your Automation Package
                         </Button>
                       </a>
@@ -406,17 +406,17 @@ const AdLandingPage = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-gray-50">
+      <section id="pricing" className="py-20 bg-brand-light">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <span className="inline-block bg-purple-100 text-purple-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">LAUNCH SPECIAL</span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Business Automation Launch Package</h2>
+              <span className="inline-block bg-brand-primary/10 text-brand-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">LAUNCH SPECIAL</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-brand-dark">Business Automation Launch Package</h2>
               <p className="text-xl text-gray-600">Everything you need to transform your business operations at an unbeatable price.</p>
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-              <div className="p-8 bg-gradient-to-r from-purple-600 to-indigo-700 text-white text-center">
+              <div className="p-8 bg-gradient-to-r from-brand-primary to-brand-secondary text-white text-center">
                 <h3 className="text-2xl font-bold mb-2">Complete Business Automation Package</h3>
                 <div className="text-lg opacity-90 mb-4">Limited Time Launch Offer</div>
                 <div className="flex items-center justify-center">
@@ -431,7 +431,7 @@ const AdLandingPage = () => {
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-brand-accent mr-3 mt-0.5 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">Enterprise-Grade Cloud Infrastructure</span>
                       <p className="text-sm text-gray-600">Full year of premium cloud hosting with unlimited requests ($5,000 value)</p>
@@ -439,7 +439,7 @@ const AdLandingPage = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-brand-accent mr-3 mt-0.5 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">3 Custom Automation Workflows</span>
                       <p className="text-sm text-gray-600">Tailored to your specific business processes ($3,000 value)</p>
@@ -447,7 +447,7 @@ const AdLandingPage = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-brand-accent mr-3 mt-0.5 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">Professional Implementation</span>
                       <p className="text-sm text-gray-600">Our experts handle all the technical setup ($1,500 value)</p>
@@ -455,7 +455,7 @@ const AdLandingPage = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-brand-accent mr-3 mt-0.5 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">Team Training & Onboarding</span>
                       <p className="text-sm text-gray-600">For up to 5 team members ($997 value)</p>
@@ -463,7 +463,7 @@ const AdLandingPage = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-brand-accent mr-3 mt-0.5 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">Business Process Analysis</span>
                       <p className="text-sm text-gray-600">Expert review to identify optimal automation opportunities ($1,200 value)</p>
@@ -471,7 +471,7 @@ const AdLandingPage = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-brand-accent mr-3 mt-0.5 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">Complete Resource Library Access</span>
                       <p className="text-sm text-gray-600">All our premium guides, templates, and tools ($499 value)</p>
@@ -484,14 +484,14 @@ const AdLandingPage = () => {
                     <span className="font-semibold">Total Value:</span>
                     <span className="font-semibold">$12,196</span>
                   </div>
-                  <div className="flex justify-between text-lg font-bold text-purple-700">
+                  <div className="flex justify-between text-lg font-bold text-brand-primary">
                     <span>Your Price:</span>
                     <span>$997</span>
                   </div>
                   <div className="text-right text-sm text-gray-500">Total Savings: $11,199 (92% off)</div>
                 </div>
                 
-                <Button className="w-full bg-purple-700 hover:bg-purple-800 text-white text-lg py-4 rounded-lg">
+                <Button className="w-full bg-brand-primary hover:bg-brand-secondary text-white text-lg py-4 rounded-lg">
                   Secure Your Automation Package
                 </Button>
                 
@@ -509,7 +509,7 @@ const AdLandingPage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Have Questions? We're Here to Help</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-brand-dark">Have Questions? We're Here to Help</h2>
               <p className="text-xl text-gray-600">Fill out the form below and one of our automation experts will contact you within 24 hours.</p>
             </div>
             
@@ -588,7 +588,7 @@ const AdLandingPage = () => {
                 
                 <Button 
                   type="submit"
-                  className="w-full bg-purple-700 hover:bg-purple-800 text-white py-3"
+                  className="w-full bg-brand-primary hover:bg-brand-secondary text-white py-3"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
