@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
@@ -81,7 +80,7 @@ const AdLandingPage = () => {
   return (
     <>
       <Helmet>
-        <title>Limited Time Offer | AI Business Automation Package | HowAIConnects</title>
+        <title>Exclusive AI Automation Package | 80% OFF Limited Time Offer | HowAIConnects</title>
         <meta name="description" content="Launch special: Complete automation package for SMEs - save thousands on infrastructure costs, increase efficiency and reduce labor costs with our business automation workflows." />
       </Helmet>
 
@@ -90,7 +89,7 @@ const AdLandingPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-3/5 mb-10 md:mb-0">
-              <span className="inline-block bg-brand-accent text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">LAUNCH SPECIAL • LIMITED TIME OFFER</span>
+              <span className="inline-block bg-brand-accent text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">EXCLUSIVE LAUNCH OFFER • LIMITED TIME ONLY</span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Transform Your Business Operations at <span className="line-through">$5,000</span> <span className="text-yellow-300">$997</span></h1>
               <p className="text-xl mb-8">Get enterprise-grade AI automation with zero infrastructure costs for a full year. Our launch package includes everything small businesses need to reduce costs and boost efficiency.</p>
               
