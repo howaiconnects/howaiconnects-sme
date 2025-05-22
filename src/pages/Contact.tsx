@@ -7,9 +7,47 @@ import ContactInfo from "@/components/ContactInfo";
 import Map from "@/components/Map";
 import BookAssessment from "@/components/BookAssessment";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Building, Mail, MapPin, Phone } from "lucide-react";
+import { Building, Mail, MapPin, Phone, LifeBuoy } from "lucide-react";
+import { useEffect } from "react";
 
 const Contact = () => {
+  // Initialize Zendesk widget when component mounts
+  useEffect(() => {
+    // This function will be called when the Zendesk script is loaded
+    window.zESettings = {
+      webWidget: {
+        color: { 
+          theme: '#6366f1' // Use brand-primary color
+        },
+        launcher: {
+          chatLabel: {
+            'en-US': 'Need help?'
+          }
+        },
+        contactForm: {
+          title: {
+            'en-US': 'Contact HowAIConnects'
+          }
+        }
+      }
+    };
+    
+    // Add Zendesk script - NOTE: You'll need to replace 'yoursubdomain' with your actual Zendesk subdomain
+    const script = document.createElement('script');
+    script.id = 'ze-snippet';
+    script.src = 'https://static.zdassets.com/ekr/snippet.js?key=yoursubdomain';
+    script.async = true;
+    document.head.appendChild(script);
+    
+    return () => {
+      // Clean up on unmount
+      const zendeskScript = document.getElementById('ze-snippet');
+      if (zendeskScript) {
+        zendeskScript.remove();
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Helmet>
@@ -34,7 +72,7 @@ const Contact = () => {
         
         <div className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Information Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
               <div className="mx-auto bg-brand-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                 <Phone className="h-8 w-8 text-brand-primary" />
@@ -72,13 +110,31 @@ const Contact = () => {
               <p className="text-gray-600">Remote services available worldwide</p>
               <p className="text-gray-600">In-person consultations in GTA</p>
             </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="mx-auto bg-brand-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                <LifeBuoy className="h-8 w-8 text-brand-primary" />
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">Support</h3>
+              <p className="text-gray-600">24/7 Customer Support</p>
+              <button 
+                onClick={() => {
+                  // @ts-ignore - Zendesk widget global function
+                  if (window.zE) window.zE('webWidget', 'open');
+                }}
+                className="mt-2 text-brand-primary hover:text-brand-accent"
+              >
+                Open Support Chat
+              </button>
+            </div>
           </div>
           
           {/* Tabs for different contact methods */}
           <Tabs defaultValue="contact" className="max-w-4xl mx-auto">
-            <TabsList className="grid grid-cols-2 mb-8">
+            <TabsList className="grid grid-cols-3 mb-8">
               <TabsTrigger value="contact">Send a Message</TabsTrigger>
               <TabsTrigger value="assessment">Book Assessment</TabsTrigger>
+              <TabsTrigger value="support">Customer Support</TabsTrigger>
             </TabsList>
             
             <TabsContent value="contact">
@@ -87,6 +143,28 @@ const Contact = () => {
             
             <TabsContent value="assessment">
               <BookAssessment />
+            </TabsContent>
+            
+            <TabsContent value="support">
+              <div className="bg-white p-8 rounded-lg shadow-md text-center">
+                <div className="mx-auto bg-brand-primary/10 w-20 h-20 rounded-full flex items-center justify-center mb-6">
+                  <LifeBuoy className="h-10 w-10 text-brand-primary" />
+                </div>
+                <h3 className="text-2xl font-medium text-gray-900 mb-4">Customer Support</h3>
+                <p className="text-gray-600 mb-6 max-w-lg mx-auto">
+                  Our support team is available to help you with any questions or issues you may have.
+                  Click below to start a conversation with our support team.
+                </p>
+                <button 
+                  onClick={() => {
+                    // @ts-ignore - Zendesk widget global function
+                    if (window.zE) window.zE('webWidget', 'open');
+                  }}
+                  className="px-6 py-3 bg-brand-primary text-white font-medium rounded-lg hover:bg-brand-accent transition duration-200"
+                >
+                  Launch Support Chat
+                </button>
+              </div>
             </TabsContent>
           </Tabs>
           
@@ -109,5 +187,19 @@ const Contact = () => {
     </div>
   );
 };
+
+// Add TypeScript interface for Zendesk global object
+declare global {
+  interface Window {
+    zE?: any;
+    zESettings?: {
+      webWidget: {
+        color: { theme: string };
+        launcher: { chatLabel: Record<string, string> };
+        contactForm: { title: Record<string, string> };
+      };
+    };
+  }
+}
 
 export default Contact;
