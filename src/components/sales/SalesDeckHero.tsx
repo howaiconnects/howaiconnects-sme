@@ -2,13 +2,14 @@
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi
 } from "@/components/ui/carousel";
 
 interface SalesDeckHeroProps {
@@ -21,6 +22,8 @@ interface SalesDeckHeroProps {
 
 const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+  const [webAppCarouselApi, setWebAppCarouselApi] = useState<CarouselApi | null>(null);
   
   // Auto-rotate through divisions every 5 seconds
   useEffect(() => {
@@ -30,6 +33,24 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
     
     return () => clearInterval(interval);
   }, [businessDivisions.length]);
+
+  // Connect activeIndex to carousel position
+  useEffect(() => {
+    if (carouselApi) {
+      carouselApi.scrollTo(activeIndex);
+    }
+  }, [activeIndex, carouselApi]);
+  
+  // Auto-rotate web app logos every 3 seconds
+  useEffect(() => {
+    if (!webAppCarouselApi) return;
+    
+    const interval = setInterval(() => {
+      webAppCarouselApi.scrollNext();
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [webAppCarouselApi]);
 
   // Images for each business division
   const divisionImages = [
@@ -91,12 +112,7 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
             <Carousel 
               className="w-full max-w-md mx-auto"
               opts={{ loop: true }}
-              setApi={(api) => {
-                // When active index changes from the timer, move carousel
-                useEffect(() => {
-                  if (api) api.scrollTo(activeIndex);
-                }, [activeIndex, api]);
-              }}
+              setApi={setCarouselApi}
             >
               <CarouselContent>
                 {businessDivisions.map((division, index) => (
@@ -155,7 +171,7 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
                 <Carousel
                   className="w-full"
                   opts={{ loop: true, align: "start" }}
-                  autoPlay={true}
+                  setApi={setWebAppCarouselApi}
                 >
                   <CarouselContent>
                     {webAppLogos.map((logo, idx) => (
@@ -178,7 +194,7 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
                   </CarouselContent>
                 </Carousel>
                 <div className="mt-2 text-center text-sm text-gray-500">
-                  {activeIndex === 2 && <span>Including Path to Canada web application</span>}
+                  <span>Including Path to Canada web application</span>
                 </div>
               </div>
             )}
