@@ -3,9 +3,8 @@ import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DeckSection from "@/components/sales/DeckSection";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Check } from "lucide-react";
-import { Link } from "react-router-dom";
+import SalesDeckHero from "@/components/sales/SalesDeckHero";
+import SalesDeckCTA from "@/components/sales/SalesDeckCTA";
 
 const SalesDeck = () => {
   // Data for each business division
@@ -105,6 +104,25 @@ const SalesDeck = () => {
     imageAlt: "Web App Development Illustration"
   };
 
+  // Business division summaries for the hero section
+  const businessDivisions = [
+    {
+      title: "AI Services",
+      description: "Transform your business with AI automation and expert consultation.",
+      linkFragment: "ai-services"
+    },
+    {
+      title: "AI Agency Building",
+      description: "Launch your own AI agency with zero upfront costs.",
+      linkFragment: "ai-agency"
+    },
+    {
+      title: "Web App Development",
+      description: "Custom web applications designed for your unique business needs.",
+      linkFragment: "web-app-dev"
+    }
+  ];
+
   return (
     <>
       <Helmet>
@@ -119,43 +137,7 @@ const SalesDeck = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-brand-primary/20 to-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-              <span className="block">Complete</span>
-              <span className="block gradient-text">Business Solutions</span>
-            </h1>
-            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-600">
-              Discover our comprehensive suite of business divisions designed to power your digital transformation journey.
-            </p>
-            
-            <div className="mt-12 grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-xl transition-shadow">
-                <h2 className="text-xl font-bold text-brand-primary mb-2">AI Services</h2>
-                <p className="text-gray-600 mb-4">Transform your business with AI automation and expert consultation.</p>
-                <Link to="#ai-services" className="text-brand-primary flex items-center font-medium">
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-xl transition-shadow">
-                <h2 className="text-xl font-bold text-brand-primary mb-2">AI Agency Building</h2>
-                <p className="text-gray-600 mb-4">Launch your own AI agency with zero upfront costs.</p>
-                <Link to="#ai-agency" className="text-brand-primary flex items-center font-medium">
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-xl transition-shadow">
-                <h2 className="text-xl font-bold text-brand-primary mb-2">Web App Development</h2>
-                <p className="text-gray-600 mb-4">Custom web applications designed for your unique business needs.</p>
-                <Link to="#web-app-dev" className="text-brand-primary flex items-center font-medium">
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <SalesDeckHero businessDivisions={businessDivisions} />
 
         {/* Business Divisions */}
         <div id="ai-services">
@@ -171,26 +153,7 @@ const SalesDeck = () => {
         </div>
 
         {/* Call to Action */}
-        <section className="py-16 bg-brand-primary text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Business?</h2>
-            <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Whether you need AI automation, want to start your own AI agency, or require custom web application development, we have the expertise to help you succeed.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact">
-                <Button size="lg" className="bg-white text-brand-primary hover:bg-gray-100">
-                  Schedule a Consultation <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/services">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                  Browse All Services
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
+        <SalesDeckCTA />
       </main>
 
       <Footer />
