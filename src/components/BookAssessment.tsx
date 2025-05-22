@@ -1,27 +1,41 @@
-
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { CalendarIcon, Calendar as CalendarCheck } from "lucide-react";
 import DateSelector from "./booking/DateSelector";
 import TimeSlotSelector from "./booking/TimeSlotSelector";
 import ContactInfoForm from "./booking/ContactInfoForm";
+import { Form } from "@/components/ui/form";
 import { generateCalendarLinks, generateCalendarOptionsHtml } from "@/utils/bookingUtils";
 import { sendBookingEmail } from "@/services/emailService";
+import { sendToZapier } from "@/utils/formUtils";
+import { sendToN8n } from "@/utils/webhookUtils";
+import { emailjsConfig, zapierConfig, n8nConfig } from "@/config/integrationConfig";
+
+interface BookingFormValues {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+}
 
 const BookAssessment = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!date || !selectedTime || !name || !email) {
+  const form = useForm<BookingFormValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      company: ""
+    }
+  });
+
+  const handleSubmit = async (data: BookingFormValues) => {
+    if (!date || !selectedTime || !data.name || !data.email) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields",
@@ -38,18 +52,43 @@ const BookAssessment = () => {
         eventDetails, 
         googleCalendarUrl, 
         outlookCalendarUrl 
-      } = generateCalendarLinks(date, selectedTime, name, company);
+      } = generateCalendarLinks(date, selectedTime, data.name, data.company);
+      
+      // Prepare booking data
+      const bookingData = {
+        ...data,
+        appointmentDate: date.toISOString(),
+        appointmentTime: selectedTime,
+        formType: "assessment_booking",
+        calendarLinks: {
+          google: googleCalendarUrl,
+          outlook: outlookCalendarUrl
+        }
+      };
       
       // Send booking notification via EmailJS
       await sendBookingEmail({
-        name,
-        email,
-        phone,
-        company,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
         appointmentDate: startTime,
         appointmentTime: selectedTime,
         appointmentDetails: eventDetails
       });
+      
+      // Send to n8n for automation workflows
+      const n8nSuccess = await sendToN8n(
+        n8nConfig.assessmentBookingWebhook,
+        bookingData
+      );
+      
+      // Also send to Zapier as a fallback or additional integration
+      await sendToZapier(
+        zapierConfig.assessmentBookingWebhook,
+        bookingData,
+        "assessment_booking"
+      );
       
       toast({
         title: "Assessment call scheduled!",
@@ -70,12 +109,9 @@ const BookAssessment = () => {
       }
       
       // Reset form
+      form.reset();
       setDate(undefined);
       setSelectedTime(null);
-      setName("");
-      setEmail("");
-      setPhone("");
-      setCompany("");
     } catch (error) {
       console.error("Booking error:", error);
       toast({
@@ -105,14 +141,14 @@ const BookAssessment = () => {
         <TimeSlotSelector selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
         
         <ContactInfoForm 
-          name={name}
-          setName={setName}
-          email={email}
-          setEmail={setEmail}
-          phone={phone}
-          setPhone={setPhone}
-          company={company}
-          setCompany={setCompany}
+          name={form.watch("name")}
+          setName={form.register("name")}
+          email={form.watch("email")}
+          setEmail={form.register("email")}
+          phone={form.watch("phone")}
+          setPhone={form.register("phone")}
+          company={form.watch("company")}
+          setCompany={form.register("company")}
         />
         
         <Button 

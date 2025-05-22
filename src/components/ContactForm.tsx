@@ -1,23 +1,37 @@
-
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Mail } from "lucide-react";
 import emailjs from '@emailjs/browser';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { sendToZapier } from "@/utils/formUtils";
+import { emailjsConfig, zapierConfig, n8nConfig } from "@/config/integrationConfig";
+import { sendToN8n } from "@/utils/webhookUtils";
+
+interface ContactFormValues {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
 
 const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const form = useForm<ContactFormValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: ""
+    }
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!name || !email || !message) {
+  const handleSubmit = async (data: ContactFormValues) => {
+    if (!data.name || !data.email || !data.message) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields",
@@ -30,35 +44,49 @@ const ContactForm = () => {
     
     try {
       // Configure EmailJS with your SMTP settings
-      // Note: EmailJS will handle the SMTP connection details
-      // SMTP Host: smtp.hostinger.com
-      // Port: 465
-      // TLS/SSL: Required
       const templateParams = {
-        from_name: name,
-        from_email: email,
-        phone: phone || "Not provided",
-        message: message,
+        from_name: data.name,
+        from_email: data.email,
+        phone: data.phone || "Not provided",
+        message: data.message,
         to_email: "connect@howaiconnects.com"
       };
       
+      // Send email notification
       await emailjs.send(
-        'YOUR_SERVICE_ID',  // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        emailjsConfig.serviceId,
+        emailjsConfig.contactTemplateId,
         templateParams,
-        'YOUR_PUBLIC_KEY'   // Replace with your EmailJS public key
+        emailjsConfig.publicKey
       );
       
+      // Send to n8n for automation workflows
+      const n8nSuccess = await sendToN8n(
+        n8nConfig.contactFormWebhook,
+        {
+          ...data,
+          formType: "contact"
+        }
+      );
+      
+      // Also send to Zapier as a fallback or additional integration
+      await sendToZapier(
+        zapierConfig.contactFormWebhook,
+        {
+          ...data,
+          formType: "contact"
+        },
+        "contact_form"
+      );
+      
+      // Show success message
       toast({
         title: "Message sent!",
         description: "We'll get back to you as soon as possible.",
       });
       
       // Reset form
-      setName("");
-      setEmail("");
-      setPhone("");
-      setMessage("");
+      form.reset();
     } catch (error) {
       console.error("Send error:", error);
       toast({
@@ -86,8 +114,8 @@ const ContactForm = () => {
             </label>
             <Input
               id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={form.watch("name")}
+              onChange={(e) => form.setValue("name", e.target.value)}
               className="mt-1"
               required
             />
@@ -100,8 +128,8 @@ const ContactForm = () => {
             <Input
               id="email"
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={form.watch("email")}
+              onChange={(e) => form.setValue("email", e.target.value)}
               className="mt-1"
               required
             />
@@ -114,8 +142,8 @@ const ContactForm = () => {
           </label>
           <Input
             id="phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={form.watch("phone")}
+            onChange={(e) => form.setValue("phone", e.target.value)}
             className="mt-1"
           />
         </div>
@@ -126,8 +154,8 @@ const ContactForm = () => {
           </label>
           <Textarea
             id="message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={form.watch("message")}
+            onChange={(e) => form.setValue("message", e.target.value)}
             className="mt-1"
             rows={5}
             required
