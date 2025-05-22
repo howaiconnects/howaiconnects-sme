@@ -6,6 +6,7 @@ import BookAssessment from "@/components/BookAssessment";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Building, Mail, MapPin, Phone, LifeBuoy } from "lucide-react";
 import { useEffect } from "react";
+import Map from "@/components/Map"; // Import the Map component
 
 const Contact = () => {
   // Initialize Zendesk widget when component mounts
