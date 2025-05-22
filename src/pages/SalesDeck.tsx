@@ -5,8 +5,23 @@ import Footer from "@/components/Footer";
 import DeckSection from "@/components/sales/DeckSection";
 import SalesDeckHero from "@/components/sales/SalesDeckHero";
 import SalesDeckCTA from "@/components/sales/SalesDeckCTA";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState, useEffect } from "react";
 
 const SalesDeck = () => {
+  // State to track the active tab
+  const [activeTab, setActiveTab] = useState("overview");
+  
+  // Update URL hash when tab changes
+  useEffect(() => {
+    if (activeTab !== "overview") {
+      const element = document.getElementById(activeTab);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [activeTab]);
+  
   // Data for each business division
   const dedicatedAIServices = {
     subtitle: "Business Division 1",
@@ -126,29 +141,48 @@ const SalesDeck = () => {
   return (
     <>
       <Helmet>
-        <title>Sales Deck | HowAIConnects Business Divisions</title>
+        <title>Investor Deck | HowAIConnects Business Solutions</title>
         <meta 
           name="description" 
-          content="Explore HowAIConnects' three specialized business divisions: AI Services, Done-for-You AI Agency Building, and Custom Web App Development."
+          content="Explore HowAIConnects' innovative business solutions: AI Services, Done-for-You AI Agency Building, and Custom Web App Development - driving digital transformation and growth."
         />
       </Helmet>
 
       <Navbar />
 
-      <main>
+      <main className="overflow-hidden">
         {/* Hero Section */}
         <SalesDeckHero businessDivisions={businessDivisions} />
-
+        
+        {/* Solutions Navigation Tabs */}
+        <div id="solutions" className="bg-white py-8 sticky top-0 z-30 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Tabs 
+              defaultValue="overview" 
+              value={activeTab} 
+              onValueChange={setActiveTab}
+              className="w-full"
+            >
+              <TabsList className="grid grid-cols-4 w-full max-w-2xl mx-auto">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="ai-services">AI Services</TabsTrigger>
+                <TabsTrigger value="ai-agency">AI Agency</TabsTrigger>
+                <TabsTrigger value="web-app-dev">Web Apps</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+        </div>
+        
         {/* Business Divisions */}
-        <div id="ai-services">
+        <div id="ai-services" className="scroll-mt-20">
           <DeckSection {...dedicatedAIServices} />
         </div>
         
-        <div id="ai-agency">
+        <div id="ai-agency" className="scroll-mt-20">
           <DeckSection {...doneForYouAgency} />
         </div>
         
-        <div id="web-app-dev">
+        <div id="web-app-dev" className="scroll-mt-20">
           <DeckSection {...webAppDevelopment} />
         </div>
 
