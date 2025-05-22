@@ -19,6 +19,7 @@ import AdLandingPage from "./pages/AdLandingPage";
 // New service division pages
 import WebAppDevelopment from "./pages/WebAppDevelopment";
 import DoneForYouAIAgency from "./pages/DoneForYouAIAgency";
+import SalesDeck from "./pages/SalesDeck"; // New Sales Deck page
 
 // Service detail pages
 import MarketingAutomation from "./pages/services/ai-automation-solutions/MarketingAutomation";
@@ -68,6 +69,7 @@ const App = () => (
             <Route path="/ai-data-gem" element={<AIDataGemPage />} />
             <Route path="/path-to-canada" element={<PathtoCanadaPage />} />
             <Route path="/special-offer" element={<AdLandingPage />} />
+            <Route path="/sales-deck" element={<SalesDeck />} /> {/* New Sales Deck route */}
             
             {/* New service division pages */}
             <Route path="/web-app-development" element={<WebAppDevelopment />} />
