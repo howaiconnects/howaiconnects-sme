@@ -38,6 +38,12 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
     "/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png", // Web App Development
   ];
 
+  // Web App Development project logos
+  const webAppLogos = [
+    "/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png", // Web App Development main logo
+    "/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png", // Path to Canada logo
+  ];
+
   return (
     <section className="relative bg-gradient-to-br from-gray-100 to-white py-20 md:py-28 overflow-hidden">
       {/* Abstract shapes for visual interest */}
@@ -102,6 +108,10 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
                             src={divisionImages[index]} 
                             alt={division.title}
                             className="h-32 w-auto object-contain"
+                            onError={(e) => {
+                              console.error(`Failed to load image: ${divisionImages[index]}`);
+                              e.currentTarget.src = "/placeholder.svg";
+                            }}
                           />
                         </div>
                         <div className="p-6">
@@ -137,6 +147,41 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
                 />
               ))}
             </div>
+            
+            {/* Web App Development Projects Carousel */}
+            {activeIndex === 2 && (
+              <div className="mt-8 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md" data-aos="fade-up">
+                <h4 className="text-lg font-bold text-gray-800 mb-3">Featured Web App Projects</h4>
+                <Carousel
+                  className="w-full"
+                  opts={{ loop: true, align: "start" }}
+                  autoPlay={true}
+                >
+                  <CarouselContent>
+                    {webAppLogos.map((logo, idx) => (
+                      <CarouselItem key={idx} className="basis-1/2 md:basis-1/3">
+                        <div className="p-1">
+                          <div className="bg-white rounded-lg p-4 flex items-center justify-center h-24 border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                            <img
+                              src={logo}
+                              alt={idx === 1 ? "Path to Canada" : "Web App Development"}
+                              className="h-16 w-auto object-contain"
+                              onError={(e) => {
+                                console.error(`Failed to load logo: ${logo}`);
+                                e.currentTarget.src = "/placeholder.svg";
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+                <div className="mt-2 text-center text-sm text-gray-500">
+                  {activeIndex === 2 && <span>Including Path to Canada web application</span>}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
