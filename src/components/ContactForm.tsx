@@ -5,71 +5,80 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+// Define form schema with validation
+const formSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().optional(),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().optional(),
+  company: z.string().optional(),
+  interest: z.string().optional(),
+  message: z.string().min(10, "Please provide a message of at least 10 characters")
+});
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    company: "",
-    interest: "",
-    message: ""
-  });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
   
-  const handleSelectChange = (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      interest: value
-    }));
-  };
+  // Initialize form with zod resolver
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      company: "",
+      interest: "",
+      message: ""
+    }
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     
-    // Basic validation
-    if (!formData.firstName || !formData.email || !formData.message) {
-      toast({
-        title: "Please complete all required fields",
-        description: "First name, email, and message are required.",
-        variant: "destructive"
-      });
-      setIsSubmitting(false);
-      return;
-    }
-    
     try {
-      // Here you would normally send the form to a backend API
-      // For now, let's simulate a successful submission with a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Create email service URL using Email.js or similar service
+      // Replace with your actual email service endpoint
+      const emailServiceUrl = "https://api.emailjs.com/api/v1.0/email/send";
       
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for contacting us. We'll be in touch soon."
+      const response = await fetch(emailServiceUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          service_id: "your_service_id", // Replace with your Email.js service ID
+          template_id: "your_template_id", // Replace with your Email.js template ID
+          user_id: "your_user_id", // Replace with your Email.js user ID
+          template_params: {
+            from_name: `${data.firstName} ${data.lastName || ""}`,
+            from_email: data.email,
+            phone: data.phone || "Not provided",
+            company: data.company || "Not provided",
+            interest: data.interest || "Not specified",
+            message: data.message
+          }
+        })
       });
       
-      // Reset the form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        company: "",
-        interest: "",
-        message: ""
-      });
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for contacting us. We'll be in touch soon."
+        });
+        
+        // Reset the form
+        form.reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
     } catch (error) {
+      console.error("Error sending message:", error);
       toast({
         title: "Something went wrong",
         description: "Please try again later or contact us directly via email.",
@@ -84,130 +93,171 @@ const ContactForm = () => {
     <div className="bg-white rounded-lg shadow-lg p-8">
       <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
       
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <div>
-            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-              First name <span className="text-red-500">*</span>
-            </label>
-            <Input
-              id="firstName"
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <FormField
+              control={form.control}
               name="firstName"
-              type="text"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="mt-1 w-full"
-              required
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="block text-sm font-medium text-gray-700">
+                    First name <span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input 
+                      {...field}
+                      className="mt-1 w-full" 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="block text-sm font-medium text-gray-700">
+                    Last name
+                  </FormLabel>
+                  <FormControl>
+                    <Input 
+                      {...field}
+                      className="mt-1 w-full" 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
           
-          <div>
-            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-              Last name
-            </label>
-            <Input
-              id="lastName"
-              name="lastName"
-              type="text"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="mt-1 w-full"
-            />
-          </div>
-        </div>
-        
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-            Email <span className="text-red-500">*</span>
-          </label>
-          <Input
-            id="email"
+          <FormField
+            control={form.control}
             name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="mt-1 w-full"
-            required
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="block text-sm font-medium text-gray-700">
+                  Email <span className="text-red-500">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Input 
+                    {...field}
+                    type="email"
+                    className="mt-1 w-full" 
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-            Phone number
-          </label>
-          <Input
-            id="phone"
+          
+          <FormField
+            control={form.control}
             name="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={handleChange}
-            className="mt-1 w-full"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="block text-sm font-medium text-gray-700">
+                  Phone number
+                </FormLabel>
+                <FormControl>
+                  <Input 
+                    {...field}
+                    type="tel"
+                    className="mt-1 w-full" 
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <div>
-          <label htmlFor="company" className="block text-sm font-medium text-gray-700">
-            Company
-          </label>
-          <Input
-            id="company"
+          
+          <FormField
+            control={form.control}
             name="company"
-            type="text"
-            value={formData.company}
-            onChange={handleChange}
-            className="mt-1 w-full"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="block text-sm font-medium text-gray-700">
+                  Company
+                </FormLabel>
+                <FormControl>
+                  <Input 
+                    {...field}
+                    className="mt-1 w-full" 
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <div>
-          <label htmlFor="interest" className="block text-sm font-medium text-gray-700">
-            I'm interested in
-          </label>
-          <Select onValueChange={handleSelectChange} value={formData.interest}>
-            <SelectTrigger className="w-full mt-1">
-              <SelectValue placeholder="Select your interest" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="marketing-automation">Marketing Automation</SelectItem>
-              <SelectItem value="workflow-automation">Workflow Automation</SelectItem>
-              <SelectItem value="customer-service-automation">Customer Service Automation</SelectItem>
-              <SelectItem value="ai-readiness-assessment">AI Readiness Assessment</SelectItem>
-              <SelectItem value="ai-strategy-development">AI Strategy Development</SelectItem>
-              <SelectItem value="implementation-support">Implementation Support</SelectItem>
-              <SelectItem value="web-app-development">Web App Development</SelectItem>
-              <SelectItem value="done-for-you-ai-agency">Done-for-You AI Agency</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-            Message <span className="text-red-500">*</span>
-          </label>
-          <Textarea
-            id="message"
+          
+          <FormField
+            control={form.control}
+            name="interest"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="block text-sm font-medium text-gray-700">
+                  I'm interested in
+                </FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="w-full mt-1">
+                      <SelectValue placeholder="Select your interest" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="marketing-automation">Marketing Automation</SelectItem>
+                    <SelectItem value="workflow-automation">Workflow Automation</SelectItem>
+                    <SelectItem value="customer-service-automation">Customer Service Automation</SelectItem>
+                    <SelectItem value="ai-readiness-assessment">AI Readiness Assessment</SelectItem>
+                    <SelectItem value="ai-strategy-development">AI Strategy Development</SelectItem>
+                    <SelectItem value="implementation-support">Implementation Support</SelectItem>
+                    <SelectItem value="web-app-development">Web App Development</SelectItem>
+                    <SelectItem value="done-for-you-ai-agency">Done-for-You AI Agency</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
             name="message"
-            value={formData.message}
-            onChange={handleChange}
-            rows={5}
-            className="mt-1 w-full"
-            required
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="block text-sm font-medium text-gray-700">
+                  Message <span className="text-red-500">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Textarea 
+                    {...field}
+                    rows={5}
+                    className="mt-1 w-full" 
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <Button 
-          type="submit" 
-          className="w-full bg-brand-primary hover:bg-brand-secondary text-white"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Sending..." : "Send Message"}
-        </Button>
-        
-        <p className="text-sm text-gray-500 mt-4">
-          By submitting this form, you agree to our <a href="/privacy-policy" className="text-brand-accent hover:underline">Privacy Policy</a>.
-        </p>
-      </form>
+          
+          <Button 
+            type="submit" 
+            className="w-full bg-brand-primary hover:bg-brand-secondary text-white"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </Button>
+          
+          <p className="text-sm text-gray-500 mt-4">
+            By submitting this form, you agree to our <a href="/privacy-policy" className="text-brand-accent hover:underline">Privacy Policy</a>.
+          </p>
+        </form>
+      </Form>
     </div>
   );
 };

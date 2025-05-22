@@ -32,10 +32,10 @@ const Contact = () => {
       }
     };
     
-    // Add Zendesk script - NOTE: You'll need to replace 'yoursubdomain' with your actual Zendesk subdomain
+    // Add Zendesk script with your actual subdomain
     const script = document.createElement('script');
     script.id = 'ze-snippet';
-    script.src = 'https://static.zdassets.com/ekr/snippet.js?key=yoursubdomain';
+    script.src = 'https://static.zdassets.com/ekr/snippet.js?key=yourZendeskKey';
     script.async = true;
     document.head.appendChild(script);
     
