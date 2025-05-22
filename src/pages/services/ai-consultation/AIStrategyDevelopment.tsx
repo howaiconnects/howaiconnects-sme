@@ -4,58 +4,58 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceDetails from "@/components/ServiceDetails";
 import ContactSection from "@/components/ContactSection";
-import { LayoutList, Settings, DollarSign, Calendar } from "lucide-react";
+import { Map, Settings, ClipboardList, Clock } from "lucide-react";
 
 const AIStrategyDevelopment = () => {
   const features = [
     {
       title: "Custom AI Roadmap",
-      description: "Develop a comprehensive, multi-phase plan for implementing AI that aligns with your business objectives and growth targets.",
-      icon: <LayoutList className="h-8 w-8 text-brand-primary" />
+      description: "A tailored strategic plan that outlines the optimal path for AI integration into your unique business environment.",
+      icon: <Map className="h-8 w-8 text-brand-accent" />
     },
     {
       title: "Technology Selection Guidance",
-      description: "Expert recommendations on the specific AI technologies, platforms, and tools best suited to your business needs and budget.",
-      icon: <Settings className="h-8 w-8 text-brand-primary" />
+      description: "Expert recommendations on the most suitable AI tools and platforms for your specific business needs and goals.",
+      icon: <Settings className="h-8 w-8 text-brand-accent" />
     },
     {
       title: "Budget & Resource Planning",
-      description: "Detailed financial projections and resource allocation plans to ensure your AI initiatives are properly funded and staffed.",
-      icon: <DollarSign className="h-8 w-8 text-brand-primary" />
+      description: "Detailed financial and resource allocation plans that ensure efficient implementation without overextension.",
+      icon: <ClipboardList className="h-8 w-8 text-brand-accent" />
     },
     {
       title: "Implementation Timeline",
-      description: "Realistic, milestone-based schedule for AI adoption that minimizes business disruption while maximizing value delivery.",
-      icon: <Calendar className="h-8 w-8 text-brand-primary" />
+      description: "Realistic, phase-based scheduling that balances quick wins with long-term transformational objectives.",
+      icon: <Clock className="h-8 w-8 text-brand-accent" />
     }
   ];
 
   const benefits = [
     {
-      title: "Strategic Alignment",
-      description: "Ensure that all AI initiatives directly support your business goals and deliver measurable outcomes."
+      title: "Align AI with Business Goals",
+      description: "Ensure your AI initiatives directly support and enhance your core business objectives and values."
     },
     {
-      title: "Budget Efficiency",
-      description: "Avoid costly mistakes and technology mismatches by planning your AI investments strategically."
+      title: "Maximize Investment Value",
+      description: "Get the best possible return by strategically selecting and implementing the right AI tools for your needs."
     },
     {
-      title: "Competitive Advantage",
-      description: "Get ahead of your competition with a coherent, forward-thinking AI strategy tailored to your market position."
+      title: "Reduce Implementation Risks",
+      description: "Navigate potential challenges with a well-planned strategy that anticipates obstacles and includes contingencies."
     },
     {
-      title: "Future-Proofing",
-      description: "Build a flexible AI foundation that can adapt to emerging technologies and changing business needs."
+      title: "Create Sustainable Change",
+      description: "Build a foundation for lasting transformation rather than implementing temporary technological fixes."
     }
   ];
 
   const useCases = [
-    "Enterprise-wide AI transformation planning",
+    "Comprehensive company-wide AI adoption planning",
     "Department-specific AI implementation strategies",
-    "Data strategy development for AI readiness",
-    "AI vendor selection and integration planning",
-    "Phased implementation scheduling and prioritization",
-    "Team restructuring and upskilling strategies for AI adoption"
+    "Digital transformation initiatives requiring AI components",
+    "Customer experience enhancement strategies",
+    "Operational efficiency improvement planning",
+    "Competitive differentiation through AI capabilities"
   ];
 
   const relatedServices = [
@@ -68,18 +68,18 @@ const AIStrategyDevelopment = () => {
       link: "/services/ai-consultation/implementation-support"
     },
     {
-      title: "Workflow Automation",
-      link: "/services/ai-automation-solutions/workflow-automation"
+      title: "Marketing Automation",
+      link: "/services/ai-automation-solutions/marketing-automation"
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>AI Strategy Development | Custom Roadmaps & Technology Selection | HowAIConnects</title>
+        <title>AI Strategy Development | Custom AI Roadmap & Technology Selection | HowAIConnects</title>
         <meta 
           name="description" 
-          content="Create a customized AI adoption strategy aligned with your business goals and resources. Our AI Strategy Development service builds comprehensive roadmaps for successful implementation."
+          content="Create a customized AI adoption strategy aligned with your business goals. Get expert guidance on technology selection, budget planning, and implementation timelines."
         />
         <meta 
           name="keywords" 
@@ -93,12 +93,12 @@ const AIStrategyDevelopment = () => {
         <ServiceDetails
           title="AI Strategy Development"
           subtitle="AI Consultation Services"
-          description="Create a customized AI adoption strategy aligned with your business goals and available resources. Our AI Strategy Development service helps small and medium-sized businesses chart a clear path to AI implementation."
+          description="Transform your business with a customized AI strategy that aligns with your goals, capabilities, and budget. Our expert consultants create practical roadmaps that guide your AI journey from concept to implementation, ensuring you invest in the right technologies at the right time."
           features={features}
           benefits={benefits}
           useCases={useCases}
           relatedServices={relatedServices}
-          imageSrc="/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png"
+          imageSrc="/lovable-uploads/af6b0bd3-79bb-44ac-af7d-134a7e6d842a.png"
         />
         
         <ContactSection />

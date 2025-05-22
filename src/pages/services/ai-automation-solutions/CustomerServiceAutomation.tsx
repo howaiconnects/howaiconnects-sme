@@ -4,86 +4,86 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceDetails from "@/components/ServiceDetails";
 import ContactSection from "@/components/ContactSection";
-import { MessageSquare, PhoneIncoming, HelpCircle, BarChart2 } from "lucide-react";
+import { MessageSquare, BarChart2, FileText } from "lucide-react";
 
 const CustomerServiceAutomation = () => {
   const features = [
     {
       title: "AI Chatbots",
-      description: "Implement conversational AI to handle common customer inquiries, provide 24/7 support, and escalate complex issues to human agents.",
+      description: "Deploy intelligent chatbots that handle common customer inquiries 24/7, freeing up your team for complex issues.",
       icon: <MessageSquare className="h-8 w-8 text-brand-primary" />
     },
     {
       title: "Ticket Routing & Prioritization",
-      description: "Automatically categorize and route customer issues to the right department based on content analysis and urgency detection.",
-      icon: <PhoneIncoming className="h-8 w-8 text-brand-primary" />
+      description: "Automatically categorize and direct customer inquiries to the right department based on content and urgency.",
+      icon: <FileText className="h-8 w-8 text-brand-primary" />
     },
     {
       title: "Self-Learning FAQ Systems",
-      description: "Deploy knowledge bases that continuously improve by learning from customer interactions and identifying information gaps.",
-      icon: <HelpCircle className="h-8 w-8 text-brand-primary" />
+      description: "Implement knowledge bases that continuously improve by learning from customer interactions and common questions.",
+      icon: <FileText className="h-8 w-8 text-brand-primary" />
     },
     {
       title: "Customer Insight Analysis",
-      description: "Extract valuable trends and sentiment data from support interactions to improve products and service delivery.",
+      description: "Extract valuable trends and feedback patterns from customer interactions to improve products and services.",
       icon: <BarChart2 className="h-8 w-8 text-brand-primary" />
     }
   ];
 
   const benefits = [
     {
-      title: "24/7 Customer Support",
-      description: "Provide round-the-clock assistance without the cost of maintaining night shifts or international support teams."
+      title: "Provide 24/7 Support",
+      description: "Offer instant responses to customer queries at any time, enhancing satisfaction and engagement."
     },
     {
-      title: "Faster Resolution Times",
-      description: "Reduce average resolution time by up to 70% through instant responses and efficient routing."
+      title: "Reduce Support Costs",
+      description: "Handle a higher volume of inquiries without proportionally increasing your support team size."
     },
     {
-      title: "Handle Higher Volume",
-      description: "Scale your support capabilities to handle peak periods without service degradation or additional hiring."
+      title: "Improve Response Times",
+      description: "Dramatically decrease wait times for customers with immediate automated responses to common questions."
     },
     {
-      title: "Improve Customer Satisfaction",
-      description: "Deliver consistent, accurate responses that solve customer problems quickly, leading to higher satisfaction scores."
+      title: "Enhance Customer Experience",
+      description: "Create consistent, helpful interactions across all support channels to boost customer loyalty."
     }
   ];
 
   const useCases = [
-    "24/7 website and social media customer support",
+    "Website chatbots for immediate customer assistance",
     "Automated order status and tracking information",
-    "Product recommendation and troubleshooting",
-    "Appointment scheduling and management",
-    "Return and refund processing automation",
-    "Customer feedback collection and analysis"
+    "Product recommendation based on customer preferences",
+    "Appointment scheduling and reminder systems",
+    "Customer onboarding and setup guidance",
+    "Post-purchase follow-up and satisfaction monitoring"
   ];
 
   const relatedServices = [
-    {
-      title: "Marketing Automation",
-      link: "/services/ai-automation-solutions/marketing-automation"
-    },
     {
       title: "Workflow Automation",
       link: "/services/ai-automation-solutions/workflow-automation"
     },
     {
-      title: "Implementation Support",
-      link: "/services/ai-consultation/implementation-support"
+      title: "Marketing Automation",
+      link: "/services/ai-automation-solutions/marketing-automation"
+    },
+    {
+      title: "AI Readiness Assessment",
+      link: "/services/ai-consultation/ai-readiness-assessment"
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Customer Service Automation Solutions | AI Chatbots & Support Systems | HowAIConnects</title>
+        <title>Customer Service Automation | AI Chatbots & Support Solutions | HowAIConnects</title>
         <meta 
           name="description" 
-          content="Enhance your customer support with AI-powered automation. Deploy intelligent chatbots, automated ticket routing, self-learning FAQ systems, and gain valuable customer insights."
+          content="Provide exceptional 24/7 customer support with AI chatbots, automated ticket routing, and intelligent FAQ systems that learn from every interaction."
         />
         <meta 
           name="keywords" 
-          content="customer service automation, AI chatbots, ticket routing, self-learning FAQ systems, customer insight analysis"
+          content="customer service automation, AI chatbots, ticket routing, FAQ systems, customer insights"
         />
       </Helmet>
 
@@ -93,12 +93,12 @@ const CustomerServiceAutomation = () => {
         <ServiceDetails
           title="Customer Service Automation"
           subtitle="AI Automation Solutions"
-          description="Provide 24/7 customer support, automate ticket routing, and build intelligent FAQ systems that learn from interactions. Our customer service automation solutions help small and medium-sized businesses deliver exceptional support experiences efficiently."
+          description="Revolutionize your customer support with intelligent automation that helps you respond faster, solve problems more efficiently, and understand customer needs better. Our solutions help small and medium-sized businesses provide enterprise-quality service without the enterprise headcount."
           features={features}
           benefits={benefits}
           useCases={useCases}
           relatedServices={relatedServices}
-          imageSrc="/lovable-uploads/af6b0bd3-79bb-44ac-af7d-134a7e6d842a.png"
+          imageSrc="/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png"
         />
         
         <ContactSection />
