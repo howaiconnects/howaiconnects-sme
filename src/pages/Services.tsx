@@ -3,8 +3,7 @@ import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServicesBanner from "@/components/ServicesBanner";
-import AIAutomationServices from "@/components/AIAutomationServices";
-import AIConsultationServices from "@/components/AIConsultationServices";
+import ServicesShowcase from "@/components/ServicesShowcase";
 import ContactSection from "@/components/ContactSection";
 
 const Services = () => {
@@ -44,8 +43,7 @@ const Services = () => {
       <Navbar />
       <main className="flex-grow">
         <ServicesBanner />
-        <AIAutomationServices />
-        <AIConsultationServices />
+        <ServicesShowcase />
         <ContactSection />
       </main>
       <Footer />
