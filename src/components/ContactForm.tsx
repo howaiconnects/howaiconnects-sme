@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import emailjs from '@emailjs/browser';
 
 // Define form schema with validation
 const formSchema = z.object({
@@ -42,41 +42,30 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Create email service URL using Email.js or similar service
-      // Replace with your actual email service endpoint
-      const emailServiceUrl = "https://api.emailjs.com/api/v1.0/email/send";
+      // Use EmailJS to send the form data
+      const templateParams = {
+        from_name: `${data.firstName} ${data.lastName || ""}`,
+        from_email: data.email,
+        phone: data.phone || "Not provided",
+        company: data.company || "Not provided",
+        interest: data.interest || "Not specified",
+        message: data.message
+      };
       
-      const response = await fetch(emailServiceUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          service_id: "your_service_id", // Replace with your Email.js service ID
-          template_id: "your_template_id", // Replace with your Email.js template ID
-          user_id: "your_user_id", // Replace with your Email.js user ID
-          template_params: {
-            from_name: `${data.firstName} ${data.lastName || ""}`,
-            from_email: data.email,
-            phone: data.phone || "Not provided",
-            company: data.company || "Not provided",
-            interest: data.interest || "Not specified",
-            message: data.message
-          }
-        })
+      await emailjs.send(
+        'YOUR_SERVICE_ID',  // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        templateParams,
+        'YOUR_PUBLIC_KEY'   // Replace with your EmailJS public key
+      );
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for contacting us. We'll be in touch soon."
       });
       
-      if (response.ok) {
-        toast({
-          title: "Message sent successfully!",
-          description: "Thank you for contacting us. We'll be in touch soon."
-        });
-        
-        // Reset the form
-        form.reset();
-      } else {
-        throw new Error("Failed to send message");
-      }
+      // Reset the form
+      form.reset();
     } catch (error) {
       console.error("Error sending message:", error);
       toast({

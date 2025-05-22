@@ -8,6 +8,7 @@ import { toast } from "@/components/ui/use-toast";
 import { format, addMinutes } from "date-fns";
 import { CalendarIcon, Calendar as CalendarCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
+import emailjs from '@emailjs/browser';
 
 const timeSlots = [
   "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", 
@@ -67,22 +68,23 @@ const BookAssessment = () => {
       // Create Outlook Calendar link
       const outlookCalendarUrl = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(eventTitle)}&startdt=${startTime.toISOString()}&enddt=${endTime.toISOString()}&body=${encodeURIComponent(eventDetails)}&location=${encodeURIComponent(location)}`;
       
-      // Send booking information to your backend or email service
-      // Replace with your actual booking API endpoint
-      await fetch("https://api.yourbookingservice.com/schedule", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          phone: phone || undefined,
-          company: company || undefined,
-          date: startTime.toISOString(),
-          duration: 30 // minutes
-        })
-      });
+      // Send booking notification via EmailJS
+      const templateParams = {
+        name,
+        email,
+        phone: phone || "Not provided",
+        company: company || "Not provided",
+        appointment_date: format(startTime, "PPP"),
+        appointment_time: selectedTime,
+        appointment_details: eventDetails
+      };
+      
+      await emailjs.send(
+        'YOUR_SERVICE_ID',  // Replace with your EmailJS service ID
+        'YOUR_BOOKING_TEMPLATE_ID', // Replace with your EmailJS template ID for bookings
+        templateParams,
+        'YOUR_PUBLIC_KEY'   // Replace with your EmailJS public key
+      );
       
       toast({
         title: "Assessment call scheduled!",

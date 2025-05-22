@@ -1,10 +1,7 @@
-
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import ContactInfo from "@/components/ContactInfo";
-import Map from "@/components/Map";
 import BookAssessment from "@/components/BookAssessment";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Building, Mail, MapPin, Phone, LifeBuoy } from "lucide-react";
@@ -32,10 +29,10 @@ const Contact = () => {
       }
     };
     
-    // Add Zendesk script with your actual subdomain
+    // Add Zendesk script with your actual Zendesk key
     const script = document.createElement('script');
     script.id = 'ze-snippet';
-    script.src = 'https://static.zdassets.com/ekr/snippet.js?key=yourZendeskKey';
+    script.src = 'https://static.zdassets.com/ekr/snippet.js?key=your-zendesk-key'; // Replace with your actual Zendesk key
     script.async = true;
     document.head.appendChild(script);
     
