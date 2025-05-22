@@ -8,6 +8,11 @@ import ResourcesList from "@/components/ResourcesList";
 import { ResourceItem } from "@/types/resources";
 import { useToast } from "@/components/ui/use-toast";
 import ResourcesFilter from "@/components/ResourcesFilter";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Download, Calculator, FileText, CheckSquare, BookOpen } from "lucide-react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const ResourcesPage = () => {
   const [resources, setResources] = useState<ResourceItem[]>([]);
@@ -53,6 +58,28 @@ const ResourcesPage = () => {
     }
   };
 
+  // Quick access resources for the featured section
+  const quickAccessResources = [
+    {
+      title: "AI Automation Templates",
+      description: "Ready-to-use templates for common small business automation needs",
+      icon: <FileText className="h-8 w-8 text-blue-500" />,
+      link: "/resources/automation-templates"
+    },
+    {
+      title: "ROI Calculator",
+      description: "Calculate the potential return on investment for AI implementation in your business",
+      icon: <Calculator className="h-8 w-8 text-green-500" />,
+      link: "/resources/tools/roi-calculator"
+    },
+    {
+      title: "AI Readiness Quiz",
+      description: "Find out if your business is ready to implement AI automation solutions",
+      icon: <CheckSquare className="h-8 w-8 text-purple-500" />,
+      link: "/resources/tools/ai-readiness-quiz"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Helmet>
@@ -61,24 +88,177 @@ const ResourcesPage = () => {
           name="description" 
           content="Access our comprehensive library of free AI resources to help your small business implement and leverage AI technologies effectively." 
         />
-        <link rel="canonical" href="https://howaiconnects.com/resources" />
+        <link rel="canonical" href="https://howaiconnects.com/resources/library" />
       </Helmet>
       
       <Navbar />
       <main className="flex-grow">
         <ResourcesBanner />
+        
+        {/* Featured Resources Section */}
+        <section className="py-12 bg-gradient-to-r from-brand-primary/5 to-brand-accent/5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900">
+                Quick Access Resources
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                Our most popular tools and templates to get you started with AI implementation
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {quickAccessResources.map((resource, index) => (
+                <Card 
+                  key={index} 
+                  className="hover:shadow-lg transition-shadow duration-300 bg-white border border-gray-200 h-full flex flex-col"
+                >
+                  <CardHeader>
+                    <div className="mb-4">{resource.icon}</div>
+                    <CardTitle>{resource.title}</CardTitle>
+                    <CardDescription>{resource.description}</CardDescription>
+                  </CardHeader>
+                  <CardFooter className="mt-auto pt-0">
+                    <Link to={resource.link} className="w-full">
+                      <Button 
+                        variant="default" 
+                        className="w-full bg-brand-primary hover:bg-brand-accent transition-colors"
+                      >
+                        Access Now
+                      </Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+            <div className="text-center mt-10">
+              <Link to="/resources/library">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="flex items-center gap-2"
+                >
+                  <BookOpen className="h-5 w-5" />
+                  Explore All Educational Resources
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+        
+        {/* Resource Library Tabs */}
         <div className="py-12 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
-              Our Free Resource Library
+              Resource Library
             </h2>
-            <p className="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-              Browse our collection of guides, templates, and tools designed to help small businesses 
-              implement AI solutions effectively.
-            </p>
             
-            <ResourcesFilter activeFilter={activeFilter} onFilterChange={handleFilterChange} />
-            <ResourcesList resources={filteredResources} isLoading={isLoading} />
+            <Tabs defaultValue="downloadable" className="w-full">
+              <TabsList className="grid grid-cols-4 mb-8">
+                <TabsTrigger value="downloadable">Downloadable Resources</TabsTrigger>
+                <TabsTrigger value="tools">Tools</TabsTrigger>
+                <TabsTrigger value="templates">Templates</TabsTrigger>
+                <TabsTrigger value="guides">Guides</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="downloadable" className="mt-6">
+                <ResourcesFilter activeFilter={activeFilter} onFilterChange={handleFilterChange} />
+                <ResourcesList resources={filteredResources} isLoading={isLoading} />
+              </TabsContent>
+              
+              <TabsContent value="tools" className="mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {resources
+                    .filter(resource => resource.type === 'tool')
+                    .map((tool) => (
+                      <Card key={tool.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <div className="h-48 w-full overflow-hidden">
+                          <img 
+                            src={tool.image} 
+                            alt={tool.title}
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+                          />
+                        </div>
+                        <CardHeader>
+                          <CardTitle className="text-xl">{tool.title}</CardTitle>
+                          <CardDescription>{tool.description}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                          <div className="text-sm text-gray-500 flex justify-between">
+                            <span>{tool.fileType}</span>
+                            <span>{tool.fileSize}</span>
+                          </div>
+                        </CardContent>
+                        <CardFooter className="pt-0 pb-4">
+                          <Link to={tool.downloadUrl} className="w-full">
+                            <Button className="w-full flex items-center justify-center">
+                              <Download className="mr-2 h-4 w-4" /> Access Tool
+                            </Button>
+                          </Link>
+                        </CardFooter>
+                      </Card>
+                    ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="templates" className="mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {resources
+                    .filter(resource => resource.type === 'template')
+                    .map((template) => (
+                      <Card key={template.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <div className="h-48 w-full overflow-hidden">
+                          <img 
+                            src={template.image} 
+                            alt={template.title}
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+                          />
+                        </div>
+                        <CardHeader>
+                          <CardTitle className="text-xl">{template.title}</CardTitle>
+                          <CardDescription>{template.description}</CardDescription>
+                        </CardHeader>
+                        <CardFooter className="pt-4">
+                          <Link to={template.downloadUrl} className="w-full">
+                            <Button className="w-full flex items-center justify-center bg-brand-primary hover:bg-brand-accent">
+                              <Download className="mr-2 h-4 w-4" /> Get Template
+                            </Button>
+                          </Link>
+                        </CardFooter>
+                      </Card>
+                    ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="guides" className="mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {resources
+                    .filter(resource => resource.type === 'guide')
+                    .map((guide) => (
+                      <Card key={guide.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <div className="h-48 w-full overflow-hidden">
+                          <img 
+                            src={guide.image} 
+                            alt={guide.title}
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+                          />
+                        </div>
+                        <CardHeader>
+                          <CardTitle className="text-xl">{guide.title}</CardTitle>
+                          <CardDescription>{guide.description}</CardDescription>
+                        </CardHeader>
+                        <CardFooter className="pt-4">
+                          <Link to={guide.downloadUrl} className="w-full">
+                            <Button className="w-full flex items-center justify-center">
+                              <Download className="mr-2 h-4 w-4" /> Download Guide
+                            </Button>
+                          </Link>
+                        </CardFooter>
+                      </Card>
+                    ))}
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
       </main>
