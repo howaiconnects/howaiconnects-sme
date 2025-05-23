@@ -1,8 +1,7 @@
-
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import DeckSection from "@/components/sales/DeckSection";
+import DeckSection from "@/components/sales/deck-section";
 import SalesDeckHero from "@/components/sales/SalesDeckHero";
 import SalesDeckCTA from "@/components/sales/SalesDeckCTA";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
