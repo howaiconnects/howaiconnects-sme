@@ -2,7 +2,7 @@
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -23,7 +23,6 @@ interface SalesDeckHeroProps {
 const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
-  const [webAppCarouselApi, setWebAppCarouselApi] = useState<CarouselApi | null>(null);
   
   // Auto-rotate through divisions every 5 seconds
   useEffect(() => {
@@ -40,29 +39,12 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
       carouselApi.scrollTo(activeIndex);
     }
   }, [activeIndex, carouselApi]);
-  
-  // Auto-rotate web app logos every 3 seconds
-  useEffect(() => {
-    if (!webAppCarouselApi) return;
-    
-    const interval = setInterval(() => {
-      webAppCarouselApi.scrollNext();
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, [webAppCarouselApi]);
 
   // Images for each business division
   const divisionImages = [
     "/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png", // AI Services - Using Path to Canada logo as AI Services image
     "/lovable-uploads/af6b0bd3-79bb-44ac-af7d-134a7e6d842a.png", // AI Agency Building - Distinct from AI Services
     "/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png", // Web App Development
-  ];
-
-  // Web App Development project logos
-  const webAppLogos = [
-    "/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png", // Web App Development main logo
-    "/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png", // Path to Canada logo
   ];
 
   return (
@@ -164,51 +146,33 @@ const SalesDeckHero = ({ businessDivisions }: SalesDeckHeroProps) => {
               ))}
             </div>
             
-            {/* Featured Web App Projects Carousel - Always visible for presentations */}
-            <div className="mt-8 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md print:mt-4 print:shadow-sm" data-aos="fade-up">
-              <h4 className="text-lg font-bold text-gray-800 mb-3">Featured Web App Projects</h4>
-              <Carousel
-                className="w-full"
-                opts={{ loop: true, align: "start" }}
-                setApi={setWebAppCarouselApi}
-              >
-                <CarouselContent>
-                  <CarouselItem className="basis-1/2 md:basis-1/3">
-                    <div className="p-1">
-                      <div className="bg-white rounded-lg p-4 flex items-center justify-center h-24 border border-gray-100 shadow-sm hover:shadow-md transition-all print:hover:shadow-none">
-                        <img
-                          src="/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png"
-                          alt="Path to Canada"
-                          className="h-16 w-auto object-contain"
-                          onError={(e) => {
-                            console.error(`Failed to load logo: Path to Canada`);
-                            e.currentTarget.src = "/placeholder.svg";
-                          }}
-                        />
-                      </div>
-                      <p className="text-center text-sm mt-2 font-medium">Path to Canada</p>
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem className="basis-1/2 md:basis-1/3">
-                    <div className="p-1">
-                      <div className="bg-white rounded-lg p-4 flex items-center justify-center h-24 border border-gray-100 shadow-sm hover:shadow-md transition-all print:hover:shadow-none">
-                        <img
-                          src="/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png"
-                          alt="AI Data Gem"
-                          className="h-16 w-auto object-contain"
-                          onError={(e) => {
-                            console.error(`Failed to load logo: AI Data Gem`);
-                            e.currentTarget.src = "/placeholder.svg";
-                          }}
-                        />
-                      </div>
-                      <p className="text-center text-sm mt-2 font-medium">AI Data Gem</p>
-                    </div>
-                  </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious className="left-0 top-1/2 -translate-y-1/2 h-8 w-8 print:hidden" />
-                <CarouselNext className="right-0 top-1/2 -translate-y-1/2 h-8 w-8 print:hidden" />
-              </Carousel>
+            {/* Web App Showcase Section - Replaced featured robot projects */}
+            <div className="mt-8 bg-white p-6 rounded-xl shadow-md print:mt-4 print:shadow-sm" data-aos="fade-up">
+              <h4 className="text-lg font-bold text-gray-800 mb-4">Our Web Applications</h4>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div className="bg-gradient-to-r from-brand-primary/5 to-brand-accent/10 rounded-lg p-4 h-56 flex items-center justify-center overflow-hidden">
+                    <img
+                      src="/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png"
+                      alt="Path to Canada Web App"
+                      className="h-40 w-auto object-contain"
+                    />
+                  </div>
+                  <p className="text-center text-sm mt-2 font-medium">Path to Canada</p>
+                  <p className="text-center text-xs text-gray-500">Immigration Guidance App</p>
+                </div>
+                <div>
+                  <div className="bg-gradient-to-r from-brand-accent/5 to-brand-primary/10 rounded-lg p-4 h-56 flex items-center justify-center overflow-hidden">
+                    <img
+                      src="/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png"
+                      alt="AI Data Gem Web App"
+                      className="h-40 w-auto object-contain"
+                    />
+                  </div>
+                  <p className="text-center text-sm mt-2 font-medium">AI Data Gem</p>
+                  <p className="text-center text-xs text-gray-500">Data Analytics Platform</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
