@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -10,8 +11,7 @@ import { Form } from "@/components/ui/form";
 import { generateCalendarLinks, generateCalendarOptionsHtml } from "@/utils/bookingUtils";
 import { sendBookingEmail } from "@/services/emailService";
 import { sendToZapier } from "@/utils/formUtils";
-import { sendToN8n } from "@/utils/webhookUtils";
-import { emailjsConfig, zapierConfig, n8nConfig } from "@/config/integrationConfig";
+import { emailjsConfig, zapierConfig } from "@/config/integrationConfig";
 
 interface BookingFormValues {
   name: string;
@@ -34,7 +34,7 @@ const BookAssessment = () => {
     }
   });
 
-  const handleSubmit = async (data: BookingFormValues) => {
+  const onSubmit = async (data: BookingFormValues) => {
     if (!date || !selectedTime || !data.name || !data.email) {
       toast({
         title: "Missing information",
@@ -54,18 +54,6 @@ const BookAssessment = () => {
         outlookCalendarUrl 
       } = generateCalendarLinks(date, selectedTime, data.name, data.company);
       
-      // Prepare booking data
-      const bookingData = {
-        ...data,
-        appointmentDate: date.toISOString(),
-        appointmentTime: selectedTime,
-        formType: "assessment_booking",
-        calendarLinks: {
-          google: googleCalendarUrl,
-          outlook: outlookCalendarUrl
-        }
-      };
-      
       // Send booking notification via EmailJS
       await sendBookingEmail({
         name: data.name,
@@ -77,16 +65,15 @@ const BookAssessment = () => {
         appointmentDetails: eventDetails
       });
       
-      // Send to n8n for automation workflows
-      const n8nSuccess = await sendToN8n(
-        n8nConfig.assessmentBookingWebhook,
-        bookingData
-      );
-      
-      // Also send to Zapier as a fallback or additional integration
+      // Send to Zapier for automation workflows
       await sendToZapier(
         zapierConfig.assessmentBookingWebhook,
-        bookingData,
+        {
+          ...data,
+          appointmentDate: date.toISOString(),
+          appointmentTime: selectedTime,
+          formType: "assessment_booking"
+        },
         "assessment_booking"
       );
       
@@ -135,37 +122,30 @@ const BookAssessment = () => {
         Schedule a complimentary 30-minute call with one of our AI experts to discuss your business needs and explore how AI can help you achieve your goals.
       </p>
       
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <DateSelector date={date} setDate={setDate} />
-        
-        <TimeSlotSelector selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
-        
-        <ContactInfoForm 
-          name={form.watch("name")}
-          setName={form.register("name")}
-          email={form.watch("email")}
-          setEmail={form.register("email")}
-          phone={form.watch("phone")}
-          setPhone={form.register("phone")}
-          company={form.watch("company")}
-          setCompany={form.register("company")}
-        />
-        
-        <Button 
-          type="submit" 
-          className="w-full bg-brand-primary hover:bg-brand-accent"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Booking..." : "Schedule Assessment Call"}
-        </Button>
-        
-        <div className="flex items-center gap-2 text-sm text-gray-500 mt-2">
-          <CalendarIcon className="h-4 w-4" />
-          <p>
-            Our team will confirm your booking and send you a calendar invitation.
-          </p>
-        </div>
-      </form>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <DateSelector date={date} setDate={setDate} />
+          
+          <TimeSlotSelector selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
+          
+          <ContactInfoForm form={form} />
+          
+          <Button 
+            type="submit" 
+            className="w-full bg-brand-primary hover:bg-brand-accent"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Booking..." : "Schedule Assessment Call"}
+          </Button>
+          
+          <div className="flex items-center gap-2 text-sm text-gray-500 mt-2">
+            <CalendarIcon className="h-4 w-4" />
+            <p>
+              Our team will confirm your booking and send you a calendar invitation.
+            </p>
+          </div>
+        </form>
+      </Form>
     </div>
   );
 };

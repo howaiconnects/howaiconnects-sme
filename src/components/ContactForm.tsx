@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -8,8 +9,7 @@ import { Mail } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { sendToZapier } from "@/utils/formUtils";
-import { emailjsConfig, zapierConfig, n8nConfig } from "@/config/integrationConfig";
-import { sendToN8n } from "@/utils/webhookUtils";
+import { emailjsConfig, zapierConfig } from "@/config/integrationConfig";
 
 interface ContactFormValues {
   name: string;
@@ -30,7 +30,7 @@ const ContactForm = () => {
     }
   });
 
-  const handleSubmit = async (data: ContactFormValues) => {
+  const onSubmit = async (data: ContactFormValues) => {
     if (!data.name || !data.email || !data.message) {
       toast({
         title: "Missing information",
@@ -60,16 +60,7 @@ const ContactForm = () => {
         emailjsConfig.publicKey
       );
       
-      // Send to n8n for automation workflows
-      const n8nSuccess = await sendToN8n(
-        n8nConfig.contactFormWebhook,
-        {
-          ...data,
-          formType: "contact"
-        }
-      );
-      
-      // Also send to Zapier as a fallback or additional integration
+      // Send to Zapier for automation workflows
       await sendToZapier(
         zapierConfig.contactFormWebhook,
         {
@@ -79,7 +70,6 @@ const ContactForm = () => {
         "contact_form"
       );
       
-      // Show success message
       toast({
         title: "Message sent!",
         description: "We'll get back to you as soon as possible.",
@@ -106,74 +96,79 @@ const ContactForm = () => {
         <h3 className="text-2xl font-bold">Send Us a Message</h3>
       </div>
       
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <Input
-              id="name"
-              value={form.watch("name")}
-              onChange={(e) => form.setValue("name", e.target.value)}
-              className="mt-1"
-              required
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Full Name <span className="text-red-500">*</span></FormLabel>
+                  <FormControl>
+                    <Input {...field} className="mt-1" required />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email Address <span className="text-red-500">*</span></FormLabel>
+                  <FormControl>
+                    <Input {...field} type="email" className="mt-1" required />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
           
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <Input
-              id="email"
-              type="email"
-              value={form.watch("email")}
-              onChange={(e) => form.setValue("email", e.target.value)}
-              className="mt-1"
-              required
-            />
-          </div>
-        </div>
-        
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-            Phone Number
-          </label>
-          <Input
-            id="phone"
-            value={form.watch("phone")}
-            onChange={(e) => form.setValue("phone", e.target.value)}
-            className="mt-1"
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <FormControl>
+                  <Input {...field} className="mt-1" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-            Message <span className="text-red-500">*</span>
-          </label>
-          <Textarea
-            id="message"
-            value={form.watch("message")}
-            onChange={(e) => form.setValue("message", e.target.value)}
-            className="mt-1"
-            rows={5}
-            required
+          
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Message <span className="text-red-500">*</span></FormLabel>
+                <FormControl>
+                  <Textarea {...field} className="mt-1" rows={5} required />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <Button 
-          type="submit" 
-          className="w-full bg-brand-primary hover:bg-brand-accent"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Sending..." : "Send Message"}
-        </Button>
-        
-        <p className="text-sm text-gray-500 text-center mt-4">
-          We'll respond to your message as soon as possible, typically within 24 hours.
-        </p>
-      </form>
+          
+          <Button 
+            type="submit" 
+            className="w-full bg-brand-primary hover:bg-brand-accent"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </Button>
+          
+          <p className="text-sm text-gray-500 text-center mt-4">
+            We'll respond to your message as soon as possible, typically within 24 hours.
+          </p>
+        </form>
+      </Form>
     </div>
   );
 };
