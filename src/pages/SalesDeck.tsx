@@ -22,9 +22,9 @@ const SalesDeck = () => {
     }
   }, [activeTab]);
   
-  // Data for each business division
+  // Data for each business division - updated with more engaging subtitles
   const dedicatedAIServices = {
-    subtitle: "Business Division 1",
+    subtitle: "Transformative Solutions",
     title: "Dedicated AI Services",
     description: 
       "Transform your business operations with our comprehensive AI automation and consultation services, specifically designed for small and medium-sized businesses. Our solutions streamline processes, reduce operational costs, and elevate customer experiences.",
@@ -50,14 +50,14 @@ const SalesDeck = () => {
     ],
     linkTo: "/services",
     linkText: "Explore AI Services",
-    imageSrc: "/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png", // Changed image to be more representative
+    imageSrc: "/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png",
     imageAlt: "AI Services Illustration",
     bgColor: "bg-gradient-to-b from-gray-50 to-white",
-    expanded: true // Added expanded prop to show all content by default
+    expanded: true
   };
 
   const doneForYouAgency = {
-    subtitle: "Business Division 2",
+    subtitle: "Zero-Risk Opportunity",
     title: "Done-for-You AI Agency",
     description: 
       "Launch your own AI agency with zero upfront costs. Our turnkey solution provides everything you need to start and run a successful AI service business, leveraging our pre-negotiated deals with leading AI vendors and service providers.",
@@ -87,11 +87,11 @@ const SalesDeck = () => {
     imageAlt: "AI Agency Building Illustration",
     bgColor: "bg-brand-primary/5",
     reverse: true,
-    expanded: true // Added expanded prop to show all content by default
+    expanded: true
   };
 
   const webAppDevelopment = {
-    subtitle: "Business Division 3",
+    subtitle: "Custom Digital Solutions",
     title: "Web App Development",
     description: 
       "From concept to launch, we design and develop powerful, scalable web applications tailored to your specific business needs. Our expert team builds user-friendly digital solutions that help you streamline operations and grow your business.",
@@ -119,10 +119,10 @@ const SalesDeck = () => {
     linkText: "Discover Web App Solutions",
     imageSrc: "/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png",
     imageAlt: "Web App Development Illustration",
-    expanded: true // Added expanded prop to show all content by default
+    expanded: true
   };
 
-  // Business division summaries for the hero section
+  // Business division summaries for the hero section - updated with more captivating descriptions
   const businessDivisions = [
     {
       title: "AI Services",
@@ -144,7 +144,7 @@ const SalesDeck = () => {
   return (
     <>
       <Helmet>
-        <title>Investor Deck | HowAIConnects Business Solutions</title>
+        <title>Solution Suite | HowAIConnects Business Solutions</title>
         <meta 
           name="description" 
           content="Explore HowAIConnects' innovative business solutions: AI Services, Done-for-You AI Agency Building, and Custom Web App Development - driving digital transformation and growth."
@@ -157,7 +157,7 @@ const SalesDeck = () => {
         {/* Hero Section */}
         <SalesDeckHero businessDivisions={businessDivisions} />
         
-        {/* Solutions Navigation Tabs */}
+        {/* Solutions Navigation Tabs - Updated with more engaging labels */}
         <div id="solutions" className="bg-white py-8 sticky top-0 z-30 shadow-sm print:static print:shadow-none print:py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Tabs 
@@ -176,7 +176,7 @@ const SalesDeck = () => {
           </div>
         </div>
         
-        {/* Business Divisions - Made fully expanded by default for presentations */}
+        {/* Business Divisions */}
         <div id="ai-services" className="scroll-mt-20 print:scroll-mt-0 print:page-break-before">
           <DeckSection {...dedicatedAIServices} />
         </div>
