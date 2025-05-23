@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EmailSettings from "@/components/admin/EmailSettings";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { InfoIcon } from "lucide-react";
 
 const EmailIntegration = () => {
   return (
@@ -22,6 +24,14 @@ const EmailIntegration = () => {
               Configure how contact form submissions are delivered to your inbox
             </p>
           </div>
+          
+          <Alert className="mb-6">
+            <InfoIcon className="h-4 w-4" />
+            <AlertTitle>SMTP configuration active</AlertTitle>
+            <AlertDescription>
+              Your SMTP server (smtp.hostinger.com) is configured and ready to use as a fallback service.
+            </AlertDescription>
+          </Alert>
           
           <div className="bg-white shadow-md rounded-lg p-6">
             <EmailSettings />

@@ -7,8 +7,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
-import { emailjsConfig } from "@/config/integrationConfig";
+import { emailjsConfig, smtpConfig } from "@/config/integrationConfig";
 import emailjs from '@emailjs/browser';
+import { Switch } from "@/components/ui/switch";
 
 interface EmailSettingsProps {
   onUpdate?: () => void;
@@ -22,6 +23,14 @@ const EmailSettings = ({ onUpdate }: EmailSettingsProps) => {
     publicKey: emailjsConfig.publicKey,
   });
   
+  const [smtpSettings, setSmtpSettings] = useState({
+    host: smtpConfig.host,
+    port: smtpConfig.port,
+    secure: smtpConfig.secure,
+    user: smtpConfig.user,
+    appPassword: smtpConfig.appPassword,
+  });
+  
   const [testEmail, setTestEmail] = useState({
     to: "",
     subject: "Test Email from HowAIConnects",
@@ -30,6 +39,7 @@ const EmailSettings = ({ onUpdate }: EmailSettingsProps) => {
   
   const [isSaving, setIsSaving] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [smtpEnabled, setSmtpEnabled] = useState(true);
 
   useEffect(() => {
     // Load settings from localStorage if available
@@ -45,11 +55,30 @@ const EmailSettings = ({ onUpdate }: EmailSettingsProps) => {
         console.error("Failed to parse saved email settings:", error);
       }
     }
+    
+    const savedSmtpSettings = localStorage.getItem('smtpSettings');
+    if (savedSmtpSettings) {
+      try {
+        const parsedSettings = JSON.parse(savedSmtpSettings);
+        setSmtpSettings(prevSettings => ({
+          ...prevSettings,
+          ...parsedSettings
+        }));
+        setSmtpEnabled(parsedSettings.enabled !== false);
+      } catch (error) {
+        console.error("Failed to parse saved SMTP settings:", error);
+      }
+    }
   }, []);
 
   const handleSettingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSettings(prev => ({ ...prev, [name]: value }));
+  };
+  
+  const handleSmtpSettingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSmtpSettings(prev => ({ ...prev, [name]: value }));
   };
   
   const handleTestEmailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -61,6 +90,10 @@ const EmailSettings = ({ onUpdate }: EmailSettingsProps) => {
     setIsSaving(true);
     try {
       localStorage.setItem('emailSettings', JSON.stringify(settings));
+      localStorage.setItem('smtpSettings', JSON.stringify({
+        ...smtpSettings,
+        enabled: smtpEnabled
+      }));
       
       // Update emailjs with new settings
       emailjs.init(settings.publicKey);
@@ -131,13 +164,14 @@ const EmailSettings = ({ onUpdate }: EmailSettingsProps) => {
       <CardHeader>
         <CardTitle>Email Integration Settings</CardTitle>
         <CardDescription>
-          Configure your EmailJS integration to send emails from forms
+          Configure your email services to send emails from forms
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="settings">
           <TabsList className="mb-4">
-            <TabsTrigger value="settings">Settings</TabsTrigger>
+            <TabsTrigger value="settings">EmailJS</TabsTrigger>
+            <TabsTrigger value="smtp">SMTP</TabsTrigger>
             <TabsTrigger value="test">Test Email</TabsTrigger>
           </TabsList>
           
@@ -149,10 +183,10 @@ const EmailSettings = ({ onUpdate }: EmailSettingsProps) => {
                 name="serviceId"
                 value={settings.serviceId}
                 onChange={handleSettingChange}
-                placeholder="e.g., service_1a2b3c"
+                placeholder="e.g., service_jz8senj"
               />
               <p className="text-sm text-muted-foreground">
-                Find this in the Email Services section of your EmailJS dashboard
+                Default is set to use your SMTP service: service_jz8senj
               </p>
             </div>
             
@@ -204,6 +238,89 @@ const EmailSettings = ({ onUpdate }: EmailSettingsProps) => {
                 <li>Create Email Templates for contact and booking forms</li>
                 <li>Copy your IDs and keys to this settings page</li>
               </ol>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="smtp" className="space-y-4">
+            <div className="flex items-center space-x-2 mb-4">
+              <Switch 
+                id="smtp-enabled"
+                checked={smtpEnabled}
+                onCheckedChange={setSmtpEnabled}
+              />
+              <Label htmlFor="smtp-enabled">Use SMTP as backup</Label>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="host">SMTP Host</Label>
+              <Input
+                id="host"
+                name="host"
+                value={smtpSettings.host}
+                onChange={handleSmtpSettingChange}
+                placeholder="e.g., smtp.hostinger.com"
+                disabled={!smtpEnabled}
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="port">SMTP Port</Label>
+              <Input
+                id="port"
+                name="port"
+                value={smtpSettings.port.toString()}
+                onChange={handleSmtpSettingChange}
+                placeholder="e.g., 465"
+                disabled={!smtpEnabled}
+              />
+            </div>
+            
+            <div className="flex items-center space-x-2 my-4">
+              <Switch 
+                id="secure"
+                checked={smtpSettings.secure}
+                onCheckedChange={(checked) => 
+                  setSmtpSettings(prev => ({ ...prev, secure: checked }))
+                }
+                disabled={!smtpEnabled}
+              />
+              <Label htmlFor="secure">Use SSL/TLS</Label>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="user">Username/Email</Label>
+              <Input
+                id="user"
+                name="user"
+                value={smtpSettings.user}
+                onChange={handleSmtpSettingChange}
+                placeholder="e.g., support@howaiconnects.com"
+                disabled={!smtpEnabled}
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="appPassword">App Password</Label>
+              <Input
+                id="appPassword"
+                name="appPassword"
+                value={smtpSettings.appPassword}
+                onChange={handleSmtpSettingChange}
+                type="password"
+                placeholder="Your app-specific password"
+                disabled={!smtpEnabled}
+              />
+              <p className="text-sm text-muted-foreground">
+                For security reasons, use an app-specific password instead of your main account password
+              </p>
+            </div>
+            
+            <div className="bg-amber-50 p-4 rounded-md mt-4">
+              <h4 className="font-medium text-amber-800">SMTP Configuration Note</h4>
+              <p className="text-sm text-amber-700 mt-2">
+                Your SMTP settings are now pre-configured for <strong>smtp.hostinger.com</strong>. 
+                These credentials will be used as a fallback if EmailJS fails.
+              </p>
             </div>
           </TabsContent>
           

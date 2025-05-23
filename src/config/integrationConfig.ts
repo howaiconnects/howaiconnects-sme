@@ -12,10 +12,24 @@
  * - publicKey: Your Public Key found in Account > API Keys
  */
 export const emailjsConfig = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_jz8senj",
   contactTemplateId: import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID || "YOUR_CONTACT_TEMPLATE_ID",
   bookingTemplateId: import.meta.env.VITE_EMAILJS_BOOKING_TEMPLATE_ID || "YOUR_BOOKING_TEMPLATE_ID",
   publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
+};
+
+/**
+ * SMTP Configuration
+ * For direct email sending through SMTP (used as backup if EmailJS fails)
+ */
+export const smtpConfig = {
+  host: "smtp.hostinger.com",
+  port: 465,
+  secure: true, // use SSL
+  user: "support@howaiconnects.com",
+  // Password should be stored in environment variable in production
+  // This is just for development purposes
+  appPassword: "Recant6^Gizzard1!Justifier0", 
 };
 
 /**
@@ -43,3 +57,4 @@ export const n8nConfig = {
 export const zendeskConfig = {
   widgetKey: import.meta.env.VITE_ZENDESK_WIDGET_KEY || "your-zendesk-key",
 };
+
