@@ -2,6 +2,7 @@
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AdminNav from "@/components/admin/AdminNav";
 import EmailSettings from "@/components/admin/EmailSettings";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { InfoIcon, CheckCircle2Icon } from "lucide-react";
@@ -33,9 +34,11 @@ const EmailIntegration = () => {
       
       <Navbar />
       
-      <main className="flex-grow py-12">
+      <main className="flex-grow py-6">
+        <AdminNav />
+        
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
+          <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900">Email Integration Settings</h1>
             <p className="mt-2 text-lg text-gray-600">
               Configure how contact form submissions are delivered to your inbox

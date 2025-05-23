@@ -1,5 +1,19 @@
-
 import { n8nConfig } from "@/config/integrationConfig";
+
+/**
+ * Sanitize a string for display (remove sensitive information)
+ */
+const sanitizeForDisplay = (input: string): string => {
+  // If it's a default placeholder value, return it as is
+  if (input.includes('YOUR_') || input.startsWith('http')) {
+    return input;
+  }
+  
+  // Otherwise, mask the value
+  return input.length > 8 
+    ? `${input.substring(0, 3)}...${input.substring(input.length - 3)}` 
+    : '********';
+};
 
 /**
  * Initialize configuration values from localStorage if available
@@ -20,3 +34,8 @@ export const initializeConfig = () => {
   
   console.log("Application configuration initialized");
 };
+
+/**
+ * Export sanitizer for use in displaying sensitive information
+ */
+export { sanitizeForDisplay };

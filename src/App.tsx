@@ -1,9 +1,12 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { AuthProvider } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/admin/ProtectedRoute";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Courses from "./pages/Courses";
@@ -50,71 +53,82 @@ import ResourceDownloadPage from "./pages/resources/downloads/ResourceDownloadPa
 
 // Admin pages
 import EmailIntegration from "./pages/admin/EmailIntegration";
+import AdminLogin from "./pages/admin/AdminLogin";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            {/* Main pages */}
-            <Route path="/" element={<Index />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/ai-data-gem" element={<AIDataGemPage />} />
-            <Route path="/path-to-canada" element={<PathtoCanadaPage />} />
-            <Route path="/special-offer" element={<AdLandingPage />} />
-            <Route path="/sales-deck" element={<SalesDeck />} /> {/* New Sales Deck route */}
-            
-            {/* New service division pages */}
-            <Route path="/web-app-development" element={<WebAppDevelopment />} />
-            <Route path="/done-for-you-ai-agency" element={<DoneForYouAIAgency />} />
-            <Route path="/web-apps/path-to-canada" element={<PathtoCanadaPage />} />
-            <Route path="/web-apps/ai-data-gem" element={<AIDataGemPage />} />
-            
-            {/* Service detail pages */}
-            <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />
-            <Route path="/services/ai-automation-solutions/workflow-automation" element={<WorkflowAutomation />} />
-            <Route path="/services/ai-automation-solutions/customer-service-automation" element={<CustomerServiceAutomation />} />
-            <Route path="/services/ai-consultation/ai-readiness-assessment" element={<AIReadinessAssessment />} />
-            <Route path="/services/ai-consultation/ai-strategy-development" element={<AIStrategyDevelopment />} />
-            <Route path="/services/ai-consultation/implementation-support" element={<ImplementationSupport />} />
-            
-            {/* Resource detail pages */}
-            <Route path="/resources/blog" element={<Blog />} />
-            <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/resources/tools" element={<ToolsPage />} />
-            <Route path="/resources/automation-templates" element={<AutomationTemplatesPage />} />
-            <Route path="/resources/library" element={<ResourcesPage />} />
-            
-            {/* Course detail pages */}
-            <Route path="/courses/:courseSlug" element={<CourseDetail />} />
-            
-            {/* Template detail pages */}
-            <Route path="/resources/automation-templates/:templateSlug" element={<TemplateDetail />} />
-            
-            {/* Resource download pages */}
-            <Route path="/resources/downloads/:resourceSlug" element={<ResourceDownloadPage />} />
-            
-            {/* Admin pages */}
-            <Route path="/admin/email" element={<EmailIntegration />} />
-            
-            {/* Legal pages */}
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            
-            {/* Catch-all route for 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              {/* Main pages */}
+              <Route path="/" element={<Index />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/ai-data-gem" element={<AIDataGemPage />} />
+              <Route path="/path-to-canada" element={<PathtoCanadaPage />} />
+              <Route path="/special-offer" element={<AdLandingPage />} />
+              <Route path="/sales-deck" element={<SalesDeck />} /> {/* New Sales Deck route */}
+              
+              {/* New service division pages */}
+              <Route path="/web-app-development" element={<WebAppDevelopment />} />
+              <Route path="/done-for-you-ai-agency" element={<DoneForYouAIAgency />} />
+              <Route path="/web-apps/path-to-canada" element={<PathtoCanadaPage />} />
+              <Route path="/web-apps/ai-data-gem" element={<AIDataGemPage />} />
+              
+              {/* Service detail pages */}
+              <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />
+              <Route path="/services/ai-automation-solutions/workflow-automation" element={<WorkflowAutomation />} />
+              <Route path="/services/ai-automation-solutions/customer-service-automation" element={<CustomerServiceAutomation />} />
+              <Route path="/services/ai-consultation/ai-readiness-assessment" element={<AIReadinessAssessment />} />
+              <Route path="/services/ai-consultation/ai-strategy-development" element={<AIStrategyDevelopment />} />
+              <Route path="/services/ai-consultation/implementation-support" element={<ImplementationSupport />} />
+              
+              {/* Resource detail pages */}
+              <Route path="/resources/blog" element={<Blog />} />
+              <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
+              <Route path="/resources/tools" element={<ToolsPage />} />
+              <Route path="/resources/automation-templates" element={<AutomationTemplatesPage />} />
+              <Route path="/resources/library" element={<ResourcesPage />} />
+              
+              {/* Course detail pages */}
+              <Route path="/courses/:courseSlug" element={<CourseDetail />} />
+              
+              {/* Template detail pages */}
+              <Route path="/resources/automation-templates/:templateSlug" element={<TemplateDetail />} />
+              
+              {/* Resource download pages */}
+              <Route path="/resources/downloads/:resourceSlug" element={<ResourceDownloadPage />} />
+              
+              {/* Admin pages with authentication */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route 
+                path="/admin/email" 
+                element={
+                  <ProtectedRoute>
+                    <EmailIntegration />
+                  </ProtectedRoute>
+                } 
+              />
+              
+              {/* Legal pages */}
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              
+              {/* Catch-all route for 404 */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
     </HelmetProvider>
   </QueryClientProvider>
 );
