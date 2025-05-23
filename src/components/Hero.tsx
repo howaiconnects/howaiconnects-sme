@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -17,6 +19,12 @@ const Hero = () => {
 
   return (
     <div className="relative bg-gradient-to-r from-brand-light to-white overflow-hidden">
+      {/* Dynamic background elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -right-10 top-20 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl"></div>
+        <div className="absolute -left-20 bottom-10 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl"></div>
+      </div>
+      
       <div className="max-w-7xl mx-auto">
         <div className="relative z-10 pb-8 bg-transparent sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
           <svg
