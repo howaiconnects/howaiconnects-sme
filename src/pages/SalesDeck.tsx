@@ -50,9 +50,10 @@ const SalesDeck = () => {
     ],
     linkTo: "/services",
     linkText: "Explore AI Services",
-    imageSrc: "/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png",
+    imageSrc: "/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png", // Changed image to be more representative
     imageAlt: "AI Services Illustration",
-    bgColor: "bg-gradient-to-b from-gray-50 to-white"
+    bgColor: "bg-gradient-to-b from-gray-50 to-white",
+    expanded: true // Added expanded prop to show all content by default
   };
 
   const doneForYouAgency = {
@@ -85,7 +86,8 @@ const SalesDeck = () => {
     imageSrc: "/lovable-uploads/af6b0bd3-79bb-44ac-af7d-134a7e6d842a.png",
     imageAlt: "AI Agency Building Illustration",
     bgColor: "bg-brand-primary/5",
-    reverse: true
+    reverse: true,
+    expanded: true // Added expanded prop to show all content by default
   };
 
   const webAppDevelopment = {
@@ -116,7 +118,8 @@ const SalesDeck = () => {
     linkTo: "/web-app-development",
     linkText: "Discover Web App Solutions",
     imageSrc: "/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png",
-    imageAlt: "Web App Development Illustration"
+    imageAlt: "Web App Development Illustration",
+    expanded: true // Added expanded prop to show all content by default
   };
 
   // Business division summaries for the hero section
@@ -150,12 +153,12 @@ const SalesDeck = () => {
 
       <Navbar />
 
-      <main className="overflow-hidden">
+      <main className="overflow-hidden print:py-0">
         {/* Hero Section */}
         <SalesDeckHero businessDivisions={businessDivisions} />
         
         {/* Solutions Navigation Tabs */}
-        <div id="solutions" className="bg-white py-8 sticky top-0 z-30 shadow-sm">
+        <div id="solutions" className="bg-white py-8 sticky top-0 z-30 shadow-sm print:static print:shadow-none print:py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Tabs 
               defaultValue="overview" 
@@ -163,7 +166,7 @@ const SalesDeck = () => {
               onValueChange={setActiveTab}
               className="w-full"
             >
-              <TabsList className="grid grid-cols-4 w-full max-w-2xl mx-auto">
+              <TabsList className="grid grid-cols-4 w-full max-w-2xl mx-auto print:hidden">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="ai-services">AI Services</TabsTrigger>
                 <TabsTrigger value="ai-agency">AI Agency</TabsTrigger>
@@ -173,16 +176,16 @@ const SalesDeck = () => {
           </div>
         </div>
         
-        {/* Business Divisions */}
-        <div id="ai-services" className="scroll-mt-20">
+        {/* Business Divisions - Made fully expanded by default for presentations */}
+        <div id="ai-services" className="scroll-mt-20 print:scroll-mt-0 print:page-break-before">
           <DeckSection {...dedicatedAIServices} />
         </div>
         
-        <div id="ai-agency" className="scroll-mt-20">
+        <div id="ai-agency" className="scroll-mt-20 print:scroll-mt-0 print:page-break-before">
           <DeckSection {...doneForYouAgency} />
         </div>
         
-        <div id="web-app-dev" className="scroll-mt-20">
+        <div id="web-app-dev" className="scroll-mt-20 print:scroll-mt-0 print:page-break-before">
           <DeckSection {...webAppDevelopment} />
         </div>
 

@@ -17,6 +17,7 @@ interface DeckSectionProps {
   imageAlt: string;
   bgColor?: string;
   reverse?: boolean;
+  expanded?: boolean; // Add expanded prop to control visibility
 }
 
 const DeckSection = ({
@@ -31,6 +32,7 @@ const DeckSection = ({
   imageAlt,
   bgColor = "bg-white",
   reverse = false,
+  expanded = true, // Default to expanded for presentation-ready view
 }: DeckSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -60,14 +62,15 @@ const DeckSection = ({
   return (
     <section 
       ref={sectionRef}
-      className={`py-20 ${bgColor} overflow-hidden`}
+      className={`py-20 ${bgColor} overflow-hidden print:py-10`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div 
           className={cn(
             "grid md:grid-cols-2 gap-12 items-center",
             reverse ? "md:flex-row-reverse" : "",
-            isVisible ? "animate-fade-in" : "opacity-0"
+            isVisible ? "animate-fade-in" : "opacity-0",
+            "print:opacity-100 print:animate-none" // Ensure visibility in print
           )}
           style={{animationDelay: "150ms"}}
         >
@@ -96,7 +99,7 @@ const DeckSection = ({
               </ul>
             </div>
             
-            <Link to={linkTo}>
+            <Link to={linkTo} className="print:hidden">
               <Button 
                 className="bg-brand-primary hover:bg-brand-accent transition-colors hover:scale-105 transform duration-200"
                 size="lg"
@@ -104,6 +107,11 @@ const DeckSection = ({
                 {linkText} <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
+            
+            {/* Static text for print version */}
+            <div className="hidden print:block text-brand-primary font-bold">
+              {linkText}
+            </div>
           </div>
           
           <div 
@@ -112,15 +120,16 @@ const DeckSection = ({
               reverse ? "md:justify-start" : "md:justify-end",
               isVisible 
                 ? "translate-y-0 opacity-100" 
-                : reverse ? "translate-x-24 opacity-0" : "translate-x-[-6rem] opacity-0"
+                : reverse ? "translate-x-24 opacity-0" : "translate-x-[-6rem] opacity-0",
+              "print:translate-y-0 print:translate-x-0 print:opacity-100" // Ensure visibility in print
             )}
           >
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl blur-md opacity-25 animate-pulse"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl blur-md opacity-25 animate-pulse print:hidden"></div>
               <img 
                 src={imageSrc} 
                 alt={imageAlt}
-                className="relative rounded-lg shadow-xl w-full h-auto object-cover max-w-md hover:scale-105 transition-transform duration-300"
+                className="relative rounded-lg shadow-xl w-full h-auto object-cover max-w-md hover:scale-105 transition-transform duration-300 print:hover:scale-100 print:shadow-none"
               />
             </div>
           </div>
@@ -129,8 +138,9 @@ const DeckSection = ({
         {benefits.length > 0 && (
           <div 
             className={cn(
-              "mt-20", 
-              isVisible ? "animate-fade-in" : "opacity-0"
+              "mt-20 print:mt-10", 
+              isVisible ? "animate-fade-in" : "opacity-0",
+              "print:opacity-100 print:animate-none" // Ensure visibility in print
             )}
             style={{animationDelay: "300ms"}}
           >
@@ -139,7 +149,7 @@ const DeckSection = ({
               {benefits.map((benefit, index) => (
                 <div 
                   key={index} 
-                  className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-md border border-gray-100 hover:shadow-xl transition-all hover:border-brand-accent/30 group"
+                  className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-md border border-gray-100 hover:shadow-xl transition-all hover:border-brand-accent/30 group print:shadow-none print:border print:hover:shadow-none"
                   style={{animationDelay: `${(index + 1) * 150}ms`}}
                 >
                   <h4 className="text-xl font-bold mb-3 text-brand-primary group-hover:text-brand-accent transition-colors">{benefit.title}</h4>
