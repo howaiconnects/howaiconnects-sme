@@ -1,15 +1,15 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Mail } from "lucide-react";
-import emailjs from '@emailjs/browser';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { sendToZapier } from "@/utils/formUtils";
-import { emailjsConfig, zapierConfig } from "@/config/integrationConfig";
+import { zapierConfig, n8nConfig } from "@/config/integrationConfig";
+import { sendContactEmail } from "@/services/emailService";
 
 interface ContactFormValues {
   name: string;
@@ -20,6 +20,31 @@ interface ContactFormValues {
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailSettings, setEmailSettings] = useState({
+    configured: false
+  });
+  
+  useEffect(() => {
+    // Check if email settings exist in localStorage
+    const savedSettings = localStorage.getItem('emailSettings');
+    if (savedSettings) {
+      try {
+        const parsedSettings = JSON.parse(savedSettings);
+        if (
+          parsedSettings.serviceId && 
+          parsedSettings.serviceId !== "YOUR_SERVICE_ID" &&
+          parsedSettings.contactTemplateId && 
+          parsedSettings.publicKey
+        ) {
+          setEmailSettings({
+            configured: true
+          });
+        }
+      } catch (error) {
+        console.error("Failed to parse saved email settings:", error);
+      }
+    }
+  }, []);
   
   const form = useForm<ContactFormValues>({
     defaultValues: {
@@ -43,32 +68,51 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Configure EmailJS with your SMTP settings
-      const templateParams = {
-        from_name: data.name,
-        from_email: data.email,
-        phone: data.phone || "Not provided",
-        message: data.message,
-        to_email: "connect@howaiconnects.com"
-      };
+      // Send email notification using EmailJS
+      if (emailSettings.configured) {
+        await sendContactEmail({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message
+        });
+      }
       
-      // Send email notification
-      await emailjs.send(
-        emailjsConfig.serviceId,
-        emailjsConfig.contactTemplateId,
-        templateParams,
-        emailjsConfig.publicKey
-      );
+      // Try to send to Zapier if configured
+      try {
+        if (zapierConfig.contactFormWebhook && 
+            zapierConfig.contactFormWebhook !== "YOUR_ZAPIER_CONTACT_FORM_WEBHOOK_URL") {
+          await sendToZapier(
+            zapierConfig.contactFormWebhook,
+            {
+              ...data,
+              formType: "contact"
+            },
+            "contact_form"
+          );
+        }
+      } catch (zapierError) {
+        console.error("Zapier send error:", zapierError);
+        // Continue execution even if Zapier fails
+      }
       
-      // Send to Zapier for automation workflows
-      await sendToZapier(
-        zapierConfig.contactFormWebhook,
-        {
-          ...data,
-          formType: "contact"
-        },
-        "contact_form"
-      );
+      // Try to send to n8n if configured
+      try {
+        if (n8nConfig.contactFormWebhook && 
+            n8nConfig.contactFormWebhook !== "YOUR_N8N_CONTACT_FORM_WEBHOOK_URL") {
+          await sendToZapier(
+            n8nConfig.contactFormWebhook,
+            {
+              ...data,
+              formType: "contact"
+            },
+            "contact_form"
+          );
+        }
+      } catch (n8nError) {
+        console.error("n8n send error:", n8nError);
+        // Continue execution even if n8n fails
+      }
       
       toast({
         title: "Message sent!",

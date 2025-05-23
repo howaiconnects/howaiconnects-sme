@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
@@ -11,7 +11,7 @@ import { Form } from "@/components/ui/form";
 import { generateCalendarLinks, generateCalendarOptionsHtml } from "@/utils/bookingUtils";
 import { sendBookingEmail } from "@/services/emailService";
 import { sendToZapier } from "@/utils/formUtils";
-import { emailjsConfig, zapierConfig } from "@/config/integrationConfig";
+import { zapierConfig, n8nConfig } from "@/config/integrationConfig";
 
 interface BookingFormValues {
   name: string;
@@ -24,6 +24,31 @@ const BookAssessment = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailSettings, setEmailSettings] = useState({
+    configured: false
+  });
+  
+  useEffect(() => {
+    // Check if email settings exist in localStorage
+    const savedSettings = localStorage.getItem('emailSettings');
+    if (savedSettings) {
+      try {
+        const parsedSettings = JSON.parse(savedSettings);
+        if (
+          parsedSettings.serviceId && 
+          parsedSettings.serviceId !== "YOUR_SERVICE_ID" &&
+          parsedSettings.bookingTemplateId && 
+          parsedSettings.publicKey
+        ) {
+          setEmailSettings({
+            configured: true
+          });
+        }
+      } catch (error) {
+        console.error("Failed to parse saved email settings:", error);
+      }
+    }
+  }, []);
 
   const form = useForm<BookingFormValues>({
     defaultValues: {
@@ -54,28 +79,58 @@ const BookAssessment = () => {
         outlookCalendarUrl 
       } = generateCalendarLinks(date, selectedTime, data.name, data.company);
       
-      // Send booking notification via EmailJS
-      await sendBookingEmail({
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        company: data.company,
-        appointmentDate: startTime,
-        appointmentTime: selectedTime,
-        appointmentDetails: eventDetails
-      });
-      
-      // Send to Zapier for automation workflows
-      await sendToZapier(
-        zapierConfig.assessmentBookingWebhook,
-        {
-          ...data,
-          appointmentDate: date.toISOString(),
+      // Send booking notification via EmailJS if configured
+      if (emailSettings.configured) {
+        await sendBookingEmail({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          company: data.company,
+          appointmentDate: startTime,
           appointmentTime: selectedTime,
-          formType: "assessment_booking"
-        },
-        "assessment_booking"
-      );
+          appointmentDetails: eventDetails
+        });
+      }
+      
+      // Try to send to Zapier if configured
+      try {
+        if (zapierConfig.assessmentBookingWebhook && 
+            zapierConfig.assessmentBookingWebhook !== "YOUR_ZAPIER_ASSESSMENT_BOOKING_WEBHOOK_URL") {
+          await sendToZapier(
+            zapierConfig.assessmentBookingWebhook,
+            {
+              ...data,
+              appointmentDate: date.toISOString(),
+              appointmentTime: selectedTime,
+              formType: "assessment_booking"
+            },
+            "assessment_booking"
+          );
+        }
+      } catch (zapierError) {
+        console.error("Zapier send error:", zapierError);
+        // Continue execution even if Zapier fails
+      }
+      
+      // Try to send to n8n if configured
+      try {
+        if (n8nConfig.assessmentBookingWebhook && 
+            n8nConfig.assessmentBookingWebhook !== "YOUR_N8N_ASSESSMENT_BOOKING_WEBHOOK_URL") {
+          await sendToZapier(
+            n8nConfig.assessmentBookingWebhook,
+            {
+              ...data,
+              appointmentDate: date.toISOString(),
+              appointmentTime: selectedTime,
+              formType: "assessment_booking"
+            },
+            "assessment_booking"
+          );
+        }
+      } catch (n8nError) {
+        console.error("n8n send error:", n8nError);
+        // Continue execution even if n8n fails
+      }
       
       toast({
         title: "Assessment call scheduled!",

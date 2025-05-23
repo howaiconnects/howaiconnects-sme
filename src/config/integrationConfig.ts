@@ -1,27 +1,45 @@
 
 /**
  * Configuration for third-party integrations
- * Replace placeholder values with actual credentials in production
+ * This file centralizes all external service credentials
+ */
+
+/**
+ * EmailJS Configuration
+ * Create an account at https://www.emailjs.com/ to get these values
+ * - serviceId: Found in Email Services section of your EmailJS dashboard
+ * - templateIds: Create email templates in the Email Templates section
+ * - publicKey: Your Public Key found in Account > API Keys
+ */
+export const emailjsConfig = {
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
+  contactTemplateId: import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID || "YOUR_CONTACT_TEMPLATE_ID",
+  bookingTemplateId: import.meta.env.VITE_EMAILJS_BOOKING_TEMPLATE_ID || "YOUR_BOOKING_TEMPLATE_ID",
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
+};
+
+/**
+ * Zapier Webhook Configuration
+ * Create Zaps with Webhook triggers to get these URLs
  */
 export const zapierConfig = {
-  // Replace these with your actual Zapier webhook URLs
-  contactFormWebhook: "YOUR_ZAPIER_CONTACT_FORM_WEBHOOK_URL",
-  assessmentBookingWebhook: "YOUR_ZAPIER_ASSESSMENT_BOOKING_WEBHOOK_URL",
+  contactFormWebhook: import.meta.env.VITE_ZAPIER_CONTACT_WEBHOOK || "YOUR_ZAPIER_CONTACT_FORM_WEBHOOK_URL",
+  assessmentBookingWebhook: import.meta.env.VITE_ZAPIER_BOOKING_WEBHOOK || "YOUR_ZAPIER_ASSESSMENT_BOOKING_WEBHOOK_URL",
 };
 
+/**
+ * n8n Webhook Configuration
+ * Create n8n workflows with Webhook nodes to get these URLs
+ */
 export const n8nConfig = {
-  // Replace these with your actual n8n webhook URLs
-  contactFormWebhook: "YOUR_N8N_CONTACT_FORM_WEBHOOK_URL",
-  assessmentBookingWebhook: "YOUR_N8N_ASSESSMENT_BOOKING_WEBHOOK_URL",
+  contactFormWebhook: import.meta.env.VITE_N8N_CONTACT_WEBHOOK || "YOUR_N8N_CONTACT_FORM_WEBHOOK_URL",
+  assessmentBookingWebhook: import.meta.env.VITE_N8N_BOOKING_WEBHOOK || "YOUR_N8N_ASSESSMENT_BOOKING_WEBHOOK_URL",
 };
 
-export const emailjsConfig = {
-  serviceId: "YOUR_SERVICE_ID",
-  contactTemplateId: "YOUR_TEMPLATE_ID", 
-  bookingTemplateId: "YOUR_BOOKING_TEMPLATE_ID",
-  publicKey: "YOUR_PUBLIC_KEY",
-};
-
+/**
+ * Zendesk Configuration
+ * Get widget key from your Zendesk dashboard
+ */
 export const zendeskConfig = {
-  widgetKey: "your-zendesk-key",
+  widgetKey: import.meta.env.VITE_ZENDESK_WIDGET_KEY || "your-zendesk-key",
 };

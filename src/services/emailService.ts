@@ -1,6 +1,7 @@
 
 import emailjs from '@emailjs/browser';
 import { format } from "date-fns";
+import { emailjsConfig } from "@/config/integrationConfig";
 
 interface EmailParams {
   name: string;
@@ -32,9 +33,38 @@ export const sendBookingEmail = async ({
   };
   
   return emailjs.send(
-    'YOUR_SERVICE_ID',  // Replace with your EmailJS service ID
-    'YOUR_BOOKING_TEMPLATE_ID', // Replace with your EmailJS template ID for bookings
+    emailjsConfig.serviceId,
+    emailjsConfig.bookingTemplateId,
     templateParams,
-    'YOUR_PUBLIC_KEY'   // Replace with your EmailJS public key
+    emailjsConfig.publicKey
+  );
+};
+
+interface ContactEmailParams {
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+}
+
+export const sendContactEmail = async ({
+  name,
+  email,
+  phone,
+  message
+}: ContactEmailParams) => {
+  const templateParams = {
+    from_name: name,
+    from_email: email,
+    phone: phone || "Not provided",
+    message,
+    to_email: "connect@howaiconnects.com"  // You can replace this with an environment variable if needed
+  };
+  
+  return emailjs.send(
+    emailjsConfig.serviceId,
+    emailjsConfig.contactTemplateId,
+    templateParams,
+    emailjsConfig.publicKey
   );
 };

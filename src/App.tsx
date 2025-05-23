@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -48,6 +47,9 @@ import TemplateDetail from "./pages/resources/templates/TemplateDetail";
 
 // New placeholder page for resource downloads
 import ResourceDownloadPage from "./pages/resources/downloads/ResourceDownloadPage";
+
+// Admin pages
+import EmailIntegration from "./pages/admin/EmailIntegration";
 
 const queryClient = new QueryClient();
 
@@ -100,6 +102,9 @@ const App = () => (
             
             {/* Resource download pages */}
             <Route path="/resources/downloads/:resourceSlug" element={<ResourceDownloadPage />} />
+            
+            {/* Admin pages */}
+            <Route path="/admin/email" element={<EmailIntegration />} />
             
             {/* Legal pages */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
