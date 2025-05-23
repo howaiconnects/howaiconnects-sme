@@ -1,5 +1,5 @@
 
-import { Building, Mail, MapPin, Phone, LifeBuoy, Instagram, Facebook, Linkedin, Twitter, Youtube, Pinterest } from "lucide-react";
+import { Building, Mail, MapPin, Phone, LifeBuoy, Instagram, Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
 
 const ContactInfoCards = () => {
   return (

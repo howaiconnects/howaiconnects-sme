@@ -1,9 +1,8 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
-import { Instagram, Facebook, Linkedin, Twitter, Youtube, Pinterest } from "lucide-react";
+import { Instagram, Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -88,9 +87,14 @@ const Footer = () => {
                 <span className="sr-only">Instagram</span>
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="https://pinterest.com/HowAIConnects/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
-                <span className="sr-only">Pinterest</span>
-                <Pinterest className="h-6 w-6" />
+              <a href="https://yelp.com/biz/howaiconnects-com-mississauga-4" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+                <span className="sr-only">Yelp</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 926.7 1220" className="h-6 w-6 fill-current">
+                  <path d="M23.6 587.4C3.8 619.1-4.5 658.5 3.9 695.3c12.5 59.3 83.4 94.4 141.8 104.8 24.8 4.5 148.9 20.7 167.2-21.3 7.2-21.5 8.7-50.6 1.3-71.5-7.3-18.4-20.5-32.4-42.1-33.2-53.1-6.3-56.7 60.1-108.7 65-27.2-5-46.1-26.7-48.9-54.1-1.4-14.3 1.6-30.7 6.8-43.3 24.1-46.4 67.5-69.2 99.4-105.7 58.3-66.8 93.3-191.9 59.9-311.9C266.5 156 232.3 85.5 154.8 45.3 96.5 19.4 12.5 18.2 3.2 94.9c-1.9 55.6 15.3 111.6 23.5 165.3 8.1 36 13.5 78 4.2 114.7-8.8 73.4-1.1 147 32.5 212.5h-39.8z"/>
+                  <path d="M364.5 335.8c2.5 69.5 66.2 125.8 130.3 143.2 59.7 11.9 141.6 3.2 186.4-41.6 43.6-44.7 73.1-148.9 25.3-203.3-35-40.3-99.8-63.4-158-41.3-57.5 18.9-167.5 75-184 142.9zM254.9 1127.3c36.7 21.5 82.7 29.7 128.2 29.9 62.3 3.3 133.9-5.8 172.8-53.6 31.5-38.9 31.2-103.8 6.8-143-21.2-33.1-66.7-55.2-109.2-61.3-52.1-10.9-116.1-1.6-157.5 25.3-45.7 30.9-81 101.4-41 143.9v58.9h-.1zM2044.7 1408.9H1371c-8.9 0-16.1-5.8-16.1-14.7V552.5c0-8.9 7.2-14.7 16.1-14.7h673.7c8.9 0 14.1 5.8 14.1 14.7v841.7c0 8.9-5.1 14.7-14.1 14.7"/>
+                  <path d="M894 1045.1c-7.7-.1-39.7-.1-47.4 0-80.2 0-130.3-50.2-130.3-130.3V783.5c0-8.9-7.2-16.1-16.1-16.1h-95.4c-8.9 0-16.1 7.2-16.1 16.1v139.8c0 173.7 107.5 298.8 257.8 298.8H894c8.9 0 16.1-7.2 16.1-16.1v-144.7c0-8.9-7.2-16.2-16.1-16.2M587.3 557.6h95.4c8.9 0 16.1-7.2 16.1-16.1V288c0-8.9-7.2-16.1-16.1-16.1h-95.4c-8.9 0-16.1 7.2-16.1 16.1v253.5c0 8.9 7.2 16.1 16.1 16.1"/>
+                  <path d="M587.3 670.7h95.4c8.9 0 16.1-7.2 16.1-16.1v-61.6c0-8.9-7.2-16.1-16.1-16.1h-95.4c-8.9 0-16.1 7.2-16.1 16.1v61.6c0 8.9 7.2 16.1 16.1 16.1M1039.1 557.6h-74.9c-8.9 0-16.1 7.2-16.1 16.1v482c0 8.9 7.2 16.1 16.1 16.1H1154c8.9 0 16.1-7.2 16.1-16.1v-95.4c0-8.9-7.2-16.1-16.1-16.1h-98.9c-8.9 0-16.1-7.2-16.1-16.1V557.6h.1z"/>
+                </svg>
               </a>
             </div>
           </div>
