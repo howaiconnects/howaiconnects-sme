@@ -3,26 +3,48 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
-import { Instagram, Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Instagram, Facebook, Linkedin, Twitter, Youtube, Pinterest } from "lucide-react";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const currentYear = new Date().getFullYear();
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    
+    // Basic email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailPattern.test(email)) {
       toast({
-        title: "Subscription successful",
-        description: "Thank you for subscribing to our newsletter!",
-      });
-      setEmail("");
-    } else {
-      toast({
-        title: "Please enter an email address",
-        description: "A valid email address is required to subscribe.",
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
         variant: "destructive",
       });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Here you would normally send this to your backend or newsletter service
+      // For now we'll simulate a successful subscription
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network request
+      
+      toast({
+        title: "Subscription successful",
+        description: "Thank you for subscribing to our newsletter! Please check your email to confirm your subscription.",
+      });
+      setEmail("");
+    } catch (error) {
+      console.error("Subscribe error:", error);
+      toast({
+        title: "Subscription failed",
+        description: "There was a problem with your subscription. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -54,7 +76,7 @@ const Footer = () => {
                 <span className="sr-only">X (Twitter)</span>
                 <Twitter className="h-6 w-6" />
               </a>
-              <a href="https://linkedin.com/company/howaiconnects" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+              <a href="https://linkedin.com/company/howaiconnects/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
                 <span className="sr-only">LinkedIn</span>
                 <Linkedin className="h-6 w-6" />
               </a>
@@ -62,9 +84,13 @@ const Footer = () => {
                 <span className="sr-only">YouTube</span>
                 <Youtube className="h-6 w-6" />
               </a>
-              <a href="https://instagram.com/howaiconnects" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+              <a href="https://instagram.com/howaiconnects/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
                 <span className="sr-only">Instagram</span>
                 <Instagram className="h-6 w-6" />
+              </a>
+              <a href="https://pinterest.com/HowAIConnects/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+                <span className="sr-only">Pinterest</span>
+                <Pinterest className="h-6 w-6" />
               </a>
             </div>
           </div>
@@ -117,9 +143,14 @@ const Footer = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-grow px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                disabled={isSubmitting}
               />
-              <Button type="submit" className="rounded-l-none bg-brand-accent hover:bg-brand-lightAccent">
-                Subscribe
+              <Button 
+                type="submit" 
+                className="rounded-l-none bg-brand-accent hover:bg-brand-lightAccent"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Subscribing..." : "Subscribe"}
               </Button>
             </form>
           </div>

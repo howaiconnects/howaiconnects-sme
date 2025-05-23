@@ -5,25 +5,10 @@ import Footer from "@/components/Footer";
 import DeckSection from "@/components/sales/deck-section";
 import SalesDeckHero from "@/components/sales/SalesDeckHero";
 import SalesDeckCTA from "@/components/sales/SalesDeckCTA";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
-const SalesDeck = () => {
-  // State to track the active tab
-  const [activeTab, setActiveTab] = useState("overview");
-  
-  // Update URL hash when tab changes
-  useEffect(() => {
-    if (activeTab !== "overview") {
-      const element = document.getElementById(activeTab);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [activeTab]);
-  
-  // Data for each business division - updated with more engaging subtitles and benefit-focused copy
+const SalesDeckPresentation = () => {
+  // Data for each business division - same as in SalesDeck.tsx
   const dedicatedAIServices = {
     subtitle: "Cost-Saving Innovation",
     title: "Dedicated AI Services",
@@ -123,7 +108,7 @@ const SalesDeck = () => {
     expanded: true
   };
 
-  // Business division summaries for the hero section - updated with more captivating descriptions
+  // Business division summaries for the hero section
   const businessDivisions = [
     {
       title: "AI Services",
@@ -142,66 +127,74 @@ const SalesDeck = () => {
     }
   ];
 
+  // Add print functionality
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <>
       <Helmet>
-        <title>Business Solutions | HowAIConnects Transformation Suite</title>
+        <title>Business Solutions Presentation | HowAIConnects</title>
         <meta 
           name="description" 
-          content="Discover how our AI automation services can save your business thousands while keeping you competitive in today's market. Explore our comprehensive business solutions."
+          content="Presentation-ready version of our business solutions for meetings and pitches."
         />
+        <style type="text/css">
+          {`
+            @media print {
+              nav, footer, .print-hide {
+                display: none !important;
+              }
+              .page-break-before {
+                page-break-before: always;
+              }
+              body {
+                padding: 0;
+                margin: 0;
+              }
+              @page {
+                size: auto;
+                margin: 10mm;
+              }
+            }
+          `}
+        </style>
       </Helmet>
 
       <Navbar />
 
-      <main className="overflow-hidden print:py-0">
+      <main className="overflow-hidden">
         {/* Hero Section */}
         <SalesDeckHero businessDivisions={businessDivisions} />
         
-        {/* Solutions Navigation Tabs with Presentation Link */}
-        <div id="solutions" className="bg-white py-8 sticky top-0 z-30 shadow-sm print:static print:shadow-none print:py-4">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-800">Our Solutions</h2>
-              <Link 
-                to="/sales-presentation" 
-                className="bg-brand-primary hover:bg-brand-accent text-white px-4 py-2 rounded-md text-sm flex items-center gap-2"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-                Presentation Mode
-              </Link>
-            </div>
-            
-            <Tabs 
-              defaultValue="overview" 
-              value={activeTab} 
-              onValueChange={setActiveTab}
-              className="w-full"
+        {/* Print Button */}
+        <div className="bg-white py-4 sticky top-0 z-30 shadow-sm print-hide">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
+            <button 
+              onClick={handlePrint}
+              className="bg-brand-primary hover:bg-brand-accent text-white px-4 py-2 rounded flex items-center gap-2"
             >
-              <TabsList className="grid grid-cols-4 w-full max-w-2xl mx-auto print:hidden">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="ai-services">AI Services</TabsTrigger>
-                <TabsTrigger value="ai-agency">AI Agency</TabsTrigger>
-                <TabsTrigger value="web-app-dev">Web Apps</TabsTrigger>
-              </TabsList>
-            </Tabs>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              Print Presentation
+            </button>
           </div>
         </div>
         
-        {/* Business Divisions */}
-        <div id="ai-services" className="scroll-mt-20 print:scroll-mt-0 print:page-break-before">
+        {/* Business Divisions - No tabs, all sections shown */}
+        <div className="page-break-before">
           <DeckSection {...dedicatedAIServices} />
         </div>
         
-        <div id="ai-agency" className="scroll-mt-20 print:scroll-mt-0 print:page-break-before">
+        <div className="page-break-before">
           <DeckSection {...doneForYouAgency} />
         </div>
         
-        <div id="web-app-dev" className="scroll-mt-20 print:scroll-mt-0 print:page-break-before">
+        <div className="page-break-before">
           <DeckSection {...webAppDevelopment} />
         </div>
 
@@ -214,4 +207,4 @@ const SalesDeck = () => {
   );
 };
 
-export default SalesDeck;
+export default SalesDeckPresentation;

@@ -1,5 +1,6 @@
 
 import { useEffect } from "react";
+import { zendeskConfig } from "@/config/integrationConfig";
 
 const ZendeskIntegration = () => {
   // Initialize Zendesk widget when component mounts
@@ -26,7 +27,7 @@ const ZendeskIntegration = () => {
     // Add Zendesk script with your actual Zendesk key
     const script = document.createElement('script');
     script.id = 'ze-snippet';
-    script.src = 'https://static.zdassets.com/ekr/snippet.js?key=your-zendesk-key'; // Replace with your actual Zendesk key
+    script.src = `https://static.zdassets.com/ekr/snippet.js?key=${zendeskConfig.widgetKey}`; 
     script.async = true;
     document.head.appendChild(script);
     
