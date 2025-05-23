@@ -81,7 +81,7 @@ const DeckSection = ({
           style={{animationDelay: "150ms"}}
         >
           <div className={cn("flex flex-col", reverse ? "md:items-end md:text-right" : "")}>
-            {/* Highlighted label - now more elegant */}
+            {/* Highlighted value proposition label */}
             <div 
               className={cn(
                 "inline-flex items-center mb-3 px-4 py-1.5 rounded-full",
@@ -105,7 +105,7 @@ const DeckSection = ({
             <div className="mb-8">
               <h4 className="text-xl font-bold mb-4 flex items-center">
                 <span className="w-8 h-1 bg-brand-accent rounded-full mr-3 hidden md:block"></span>
-                Key Features
+                Key Benefits
               </h4>
               <ul className="space-y-4 mb-6">
                 {features.map((feature, index) => (
@@ -179,7 +179,7 @@ const DeckSection = ({
           >
             <div className="flex items-center justify-center mb-10">
               <div className="h-0.5 w-12 bg-brand-primary/30 rounded hidden md:block"></div>
-              <h3 className="text-2xl font-bold text-center mx-4 gradient-text">Key Benefits</h3>
+              <h3 className="text-2xl font-bold text-center mx-4 gradient-text">Real Business Impact</h3>
               <div className="h-0.5 w-12 bg-brand-primary/30 rounded hidden md:block"></div>
             </div>
             

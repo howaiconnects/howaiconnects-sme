@@ -22,97 +22,97 @@ const SalesDeck = () => {
     }
   }, [activeTab]);
   
-  // Data for each business division - updated with more engaging subtitles
+  // Data for each business division - updated with more engaging subtitles and benefit-focused copy
   const dedicatedAIServices = {
-    subtitle: "Transformative Solutions",
+    subtitle: "Cost-Saving Innovation",
     title: "Dedicated AI Services",
     description: 
-      "Transform your business operations with our comprehensive AI automation and consultation services, specifically designed for small and medium-sized businesses. Our solutions streamline processes, reduce operational costs, and elevate customer experiences.",
+      "Save hundreds of thousands in operational costs with our AI automation solutions. We help businesses stay competitive in tight markets by streamlining processes, reducing manual work, and uncovering new revenue opportunities.",
     features: [
-      "AI Automation Solutions for marketing, workflow, and customer service",
-      "AI Consultation Services including readiness assessment and strategy development",
-      "Tailored implementation and support for your specific business needs",
-      "Ongoing optimization and performance monitoring"
+      "Cut operational costs by up to 40% with targeted AI automation",
+      "Eliminate repetitive tasks that consume valuable staff time",
+      "Gain market advantage with 24/7 AI-powered business operations",
+      "Deploy custom AI solutions with no technical expertise required"
     ],
     benefits: [
       {
-        title: "Increased Efficiency",
-        description: "Automate repetitive tasks and streamline complex workflows to save time and resources."
+        title: "Proven ROI",
+        description: "Our clients typically see a 300-500% return on investment within the first year of implementation."
       },
       {
-        title: "Reduced Costs",
-        description: "Cut operational expenses by optimizing processes and reducing manual intervention."
+        title: "Time Savings",
+        description: "Reclaim hundreds of staff hours monthly by automating routine tasks and decision-making processes."
       },
       {
-        title: "Enhanced Customer Experience",
-        description: "Deliver faster, more personalized service with AI-powered customer interactions."
+        title: "Competitive Edge",
+        description: "Deploy enterprise-grade AI capabilities at a fraction of the cost of building in-house solutions."
       }
     ],
     linkTo: "/services",
     linkText: "Explore AI Services",
     imageSrc: "/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png",
-    imageAlt: "AI Services Illustration",
+    imageAlt: "AI Services Cost Savings Illustration",
     bgColor: "bg-gradient-to-b from-gray-50 to-white",
     expanded: true
   };
 
   const doneForYouAgency = {
-    subtitle: "Zero-Risk Opportunity",
+    subtitle: "Turn-Key Business Opportunity",
     title: "Done-for-You AI Agency",
     description: 
-      "Launch your own AI agency with zero upfront costs. Our turnkey solution provides everything you need to start and run a successful AI service business, leveraging our pre-negotiated deals with leading AI vendors and service providers.",
+      "Launch your own AI agency without the traditional startup headaches. Our complete business-in-a-box solution provides everything aspiring entrepreneurs need to capitalize on the booming AI services market with zero upfront costs.",
     features: [
-      "Complete agency setup with essential tools and platforms",
-      "Vendor integrations through affiliate partnerships",
-      "Business guidance and operational best practices",
-      "Revenue-ready foundation to start acquiring clients immediately"
+      "Ready-to-launch business model with proven market demand",
+      "Access to premium AI tools through our partner network",
+      "Complete operational systems and sales frameworks included",
+      "Ongoing mentorship from successful agency founders"
     ],
     benefits: [
       {
-        title: "No Upfront Investment",
-        description: "Start your AI agency without any initial financial burden through our affiliate commission structure."
+        title: "Zero Financial Risk",
+        description: "Start generating revenue before investing a single dollar through our affiliate commission structure."
       },
       {
-        title: "Ready-to-Launch Business",
-        description: "Skip the setup phase with our turnkey solution and start generating revenue immediately."
+        title: "Market-Tested Systems",
+        description: "Skip the trial-and-error phase with our field-tested business frameworks and marketing strategies."
       },
       {
-        title: "Ongoing Support",
-        description: "Benefit from continued guidance and access to the latest AI tools and technologies."
+        title: "Immediate Client Acquisition",
+        description: "Our lead generation system helps you secure your first clients within weeks, not months."
       }
     ],
     linkTo: "/done-for-you-ai-agency",
     linkText: "Launch Your AI Agency",
     imageSrc: "/lovable-uploads/af6b0bd3-79bb-44ac-af7d-134a7e6d842a.png",
-    imageAlt: "AI Agency Building Illustration",
+    imageAlt: "AI Agency Launch Illustration",
     bgColor: "bg-brand-primary/5",
     reverse: true,
     expanded: true
   };
 
   const webAppDevelopment = {
-    subtitle: "Custom Digital Solutions",
+    subtitle: "Transform Your Digital Presence",
     title: "Web App Development",
     description: 
-      "From concept to launch, we design and develop powerful, scalable web applications tailored to your specific business needs. Our expert team builds user-friendly digital solutions that help you streamline operations and grow your business.",
+      "Convert your business challenges into powerful digital solutions with our custom web application development. We create intuitive, scalable platforms that optimize your operations and enhance customer engagement.",
     features: [
-      "Custom web application development for specific business requirements",
-      "User-centric design focusing on intuitive interfaces",
-      "Scalable architecture that grows with your business",
-      "End-to-end service from discovery to launch and beyond"
+      "Custom applications aligned with specific business objectives",
+      "Intuitive user experiences that drive adoption and satisfaction",
+      "Scalable architecture designed for future growth",
+      "Integration with your existing tools and AI capabilities"
     ],
     benefits: [
       {
-        title: "Business Process Automation",
-        description: "Streamline operations with custom digital tools designed for your specific workflows."
+        title: "Process Automation",
+        description: "Eliminate manual workflows and reduce operating costs by up to 60% with digital transformation."
       },
       {
-        title: "Enhanced Customer Engagement",
-        description: "Create seamless digital experiences that keep your customers coming back."
+        title: "Customer Retention",
+        description: "Increase repeat business by 40% with engaging, customer-centric digital experiences."
       },
       {
-        title: "Competitive Advantage",
-        description: "Stand out from competitors with innovative digital solutions tailored to your business."
+        title: "Data-Driven Decisions",
+        description: "Leverage integrated analytics to make smarter business decisions based on real user behavior."
       }
     ],
     linkTo: "/web-app-development",
@@ -126,17 +126,17 @@ const SalesDeck = () => {
   const businessDivisions = [
     {
       title: "AI Services",
-      description: "Transform your business with AI automation and expert consultation.",
+      description: "Cut costs and boost efficiency with custom AI automation.",
       linkFragment: "ai-services"
     },
     {
       title: "AI Agency Building",
-      description: "Launch your own AI agency with zero upfront costs.",
+      description: "Start your own AI business with zero upfront investment.",
       linkFragment: "ai-agency"
     },
     {
       title: "Web App Development",
-      description: "Custom web applications designed for your unique business needs.",
+      description: "Custom digital solutions that solve real business problems.",
       linkFragment: "web-app-dev"
     }
   ];
@@ -144,10 +144,10 @@ const SalesDeck = () => {
   return (
     <>
       <Helmet>
-        <title>Solution Suite | HowAIConnects Business Solutions</title>
+        <title>Business Solutions | HowAIConnects Transformation Suite</title>
         <meta 
           name="description" 
-          content="Explore HowAIConnects' innovative business solutions: AI Services, Done-for-You AI Agency Building, and Custom Web App Development - driving digital transformation and growth."
+          content="Discover how our AI automation services can save your business thousands while keeping you competitive in today's market. Explore our comprehensive business solutions."
         />
       </Helmet>
 
