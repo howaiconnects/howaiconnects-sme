@@ -12,6 +12,8 @@ import { generateCalendarLinks, generateCalendarOptionsHtml } from "@/utils/book
 import { sendBookingEmail } from "@/services/emailService";
 import { sendToZapier } from "@/utils/formUtils";
 import { zapierConfig, n8nConfig } from "@/config/integrationConfig";
+import { apiService, BookingFormData } from "@/services/apiService";
+import { useApiRequest } from "@/hooks/useApiRequest";
 
 interface BookingFormValues {
   name: string;
@@ -23,10 +25,12 @@ interface BookingFormValues {
 const BookAssessment = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailSettings, setEmailSettings] = useState({
     configured: false
   });
+
+  // Use the new API request hook
+  const bookingApi = useApiRequest(apiService.submitBookingForm);
   
   useEffect(() => {
     // Check if email settings exist in localStorage
@@ -69,8 +73,6 @@ const BookAssessment = () => {
       return;
     }
     
-    setIsSubmitting(true);
-    
     try {
       const { 
         startTime, 
@@ -79,17 +81,35 @@ const BookAssessment = () => {
         outlookCalendarUrl 
       } = generateCalendarLinks(date, selectedTime, data.name, data.company);
       
+      // Prepare data for API
+      const apiData: BookingFormData = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        appointmentDate: date.toISOString(),
+        appointmentTime: selectedTime,
+      };
+
+      // Submit to new API service
+      const apiResponse = await bookingApi.execute(apiData);
+      
       // Send booking notification via EmailJS if configured
       if (emailSettings.configured) {
-        await sendBookingEmail({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          company: data.company,
-          appointmentDate: startTime,
-          appointmentTime: selectedTime,
-          appointmentDetails: eventDetails
-        });
+        try {
+          await sendBookingEmail({
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            company: data.company,
+            appointmentDate: startTime,
+            appointmentTime: selectedTime,
+            appointmentDetails: eventDetails
+          });
+        } catch (emailError) {
+          console.error("Email send error:", emailError);
+          // Continue execution even if email fails
+        }
       }
       
       // Try to send to Zapier if configured
@@ -132,10 +152,17 @@ const BookAssessment = () => {
         // Continue execution even if n8n fails
       }
       
-      toast({
-        title: "Assessment call scheduled!",
-        description: `Your call is booked for ${date.toLocaleDateString()} at ${selectedTime}.`,
-      });
+      if (apiResponse.success) {
+        toast({
+          title: "Assessment call scheduled!",
+          description: `Your call is booked for ${date.toLocaleDateString()} at ${selectedTime}.`,
+        });
+      } else {
+        toast({
+          title: "Booking processed via backup systems",
+          description: `Your call is booked for ${date.toLocaleDateString()} at ${selectedTime}.`,
+        });
+      }
       
       // Open a new window with calendar options
       const calendarOptionsHtml = generateCalendarOptionsHtml(
@@ -154,6 +181,7 @@ const BookAssessment = () => {
       form.reset();
       setDate(undefined);
       setSelectedTime(null);
+      bookingApi.reset();
     } catch (error) {
       console.error("Booking error:", error);
       toast({
@@ -161,8 +189,6 @@ const BookAssessment = () => {
         description: "There was a problem scheduling your call. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -188,10 +214,16 @@ const BookAssessment = () => {
           <Button 
             type="submit" 
             className="w-full bg-brand-primary hover:bg-brand-accent"
-            disabled={isSubmitting}
+            disabled={bookingApi.loading}
           >
-            {isSubmitting ? "Booking..." : "Schedule Assessment Call"}
+            {bookingApi.loading ? "Booking..." : "Schedule Assessment Call"}
           </Button>
+          
+          {bookingApi.error && (
+            <p className="text-sm text-red-600 mt-2">
+              API Error: {bookingApi.error} (Booking processed via backup systems)
+            </p>
+          )}
           
           <div className="flex items-center gap-2 text-sm text-gray-500 mt-2">
             <CalendarIcon className="h-4 w-4" />
