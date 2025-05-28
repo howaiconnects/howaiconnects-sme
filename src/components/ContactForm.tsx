@@ -162,7 +162,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md">
+    <div className="bg-white/90 backdrop-blur-sm p-8 rounded-lg shadow-xl border border-gray-100 floating-elements relative">
       <div className="flex items-center gap-3 text-brand-primary mb-6">
         <Mail className="h-7 w-7" />
         <h3 className="text-2xl font-bold">Send Us a Message</h3>
@@ -176,9 +176,9 @@ const ContactForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name <span className="text-red-500">*</span></FormLabel>
+                  <FormLabel className="text-brand-primary font-medium">Full Name <span className="text-red-500">*</span></FormLabel>
                   <FormControl>
-                    <Input {...field} className="mt-1" required />
+                    <Input {...field} className="mt-1 border-brand-primary/20 focus:border-brand-accent" required />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -190,9 +190,9 @@ const ContactForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address <span className="text-red-500">*</span></FormLabel>
+                  <FormLabel className="text-brand-primary font-medium">Email Address <span className="text-red-500">*</span></FormLabel>
                   <FormControl>
-                    <Input {...field} type="email" className="mt-1" required />
+                    <Input {...field} type="email" className="mt-1 border-brand-primary/20 focus:border-brand-accent" required />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -205,9 +205,9 @@ const ContactForm = () => {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone Number</FormLabel>
+                <FormLabel className="text-brand-primary font-medium">Phone Number</FormLabel>
                 <FormControl>
-                  <Input {...field} className="mt-1" />
+                  <Input {...field} className="mt-1 border-brand-primary/20 focus:border-brand-accent" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -219,9 +219,9 @@ const ContactForm = () => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message <span className="text-red-500">*</span></FormLabel>
+                <FormLabel className="text-brand-primary font-medium">Message <span className="text-red-500">*</span></FormLabel>
                 <FormControl>
-                  <Textarea {...field} className="mt-1" rows={5} required />
+                  <Textarea {...field} className="mt-1 border-brand-primary/20 focus:border-brand-accent" rows={5} required />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -230,7 +230,7 @@ const ContactForm = () => {
           
           <Button 
             type="submit" 
-            className="w-full bg-brand-primary hover:bg-brand-accent"
+            className="w-full bg-brand-primary hover:bg-brand-accent transition-all hover:scale-105 transform duration-200 shadow-lg"
             disabled={contactApi.loading}
           >
             {contactApi.loading ? "Sending..." : "Send Message"}
