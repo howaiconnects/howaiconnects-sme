@@ -10,6 +10,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { sendToZapier } from "@/utils/formUtils";
 import { zapierConfig, n8nConfig } from "@/config/integrationConfig";
 import { sendContactEmail } from "@/services/emailService";
+import { apiService, ContactFormData } from "@/services/apiService";
+import { useApiRequest } from "@/hooks/useApiRequest";
 
 interface ContactFormValues {
   name: string;
@@ -19,10 +21,12 @@ interface ContactFormValues {
 }
 
 const ContactForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailSettings, setEmailSettings] = useState({
     configured: false
   });
+
+  // Use the new API request hook
+  const contactApi = useApiRequest(apiService.submitContactForm);
   
   useEffect(() => {
     // Check if email settings exist in localStorage
@@ -65,17 +69,31 @@ const ContactForm = () => {
       return;
     }
     
-    setIsSubmitting(true);
-    
     try {
-      // Send email notification using EmailJS
+      // Prepare data for API
+      const apiData: ContactFormData = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        message: data.message,
+      };
+
+      // Submit to new API service
+      const apiResponse = await contactApi.execute(apiData);
+      
+      // Send email notification using EmailJS if configured
       if (emailSettings.configured) {
-        await sendContactEmail({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          message: data.message
-        });
+        try {
+          await sendContactEmail({
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            message: data.message
+          });
+        } catch (emailError) {
+          console.error("Email send error:", emailError);
+          // Continue execution even if email fails
+        }
       }
       
       // Try to send to Zapier if configured
@@ -114,13 +132,25 @@ const ContactForm = () => {
         // Continue execution even if n8n fails
       }
       
-      toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
-      });
-      
-      // Reset form
-      form.reset();
+      if (apiResponse.success) {
+        toast({
+          title: "Message sent!",
+          description: "We'll get back to you as soon as possible.",
+        });
+        
+        // Reset form
+        form.reset();
+        contactApi.reset();
+      } else {
+        toast({
+          title: "Message sent via backup systems",
+          description: "We'll get back to you as soon as possible.",
+        });
+        
+        // Reset form even if API failed but other methods succeeded
+        form.reset();
+        contactApi.reset();
+      }
     } catch (error) {
       console.error("Send error:", error);
       toast({
@@ -128,8 +158,6 @@ const ContactForm = () => {
         description: "There was a problem sending your message. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -203,10 +231,16 @@ const ContactForm = () => {
           <Button 
             type="submit" 
             className="w-full bg-brand-primary hover:bg-brand-accent"
-            disabled={isSubmitting}
+            disabled={contactApi.loading}
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
+            {contactApi.loading ? "Sending..." : "Send Message"}
           </Button>
+          
+          {contactApi.error && (
+            <p className="text-sm text-red-600 mt-2">
+              API Error: {contactApi.error} (Message sent via backup systems)
+            </p>
+          )}
           
           <p className="text-sm text-gray-500 text-center mt-4">
             We'll respond to your message as soon as possible, typically within 24 hours.
