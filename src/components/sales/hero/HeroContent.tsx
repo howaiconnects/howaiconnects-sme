@@ -6,9 +6,17 @@ import { Button } from "@/components/ui/button";
 
 interface HeroContentProps {
   isVisible: boolean;
+  title?: string;
+  subtitle?: string;
+  description?: string;
 }
 
-const HeroContent: React.FC<HeroContentProps> = ({ isVisible }) => {
+const HeroContent: React.FC<HeroContentProps> = ({ 
+  isVisible, 
+  title = "Transform Your Business With Powerful AI Solutions",
+  subtitle = "Cutting-Edge Solutions", 
+  description = "Reduce costs, increase efficiency, and gain a competitive edge in today's market with our customized AI automation and digital solutions."
+}) => {
   return (
     <div className="text-left" data-aos="fade-right">
       {/* Enhanced heading with animated reveal */}
@@ -18,17 +26,15 @@ const HeroContent: React.FC<HeroContentProps> = ({ isVisible }) => {
         <h1 
           className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight transition-all duration-1000 ease-out ${isVisible ? 'translate-y-0' : 'translate-y-10'}`}
         >
-          <span className="block text-white/90">Transform Your</span>
-          <span className="block text-white/90">Business With</span>
-          <span className="block text-brand-accent">Powerful AI</span>
-          <span className="block text-brand-lightAccent">Solutions</span>
+          <span className="block text-white/90">{title}</span>
+          <span className="block text-brand-accent">{subtitle}</span>
         </h1>
       </div>
       
       <p 
         className={`mt-6 text-xl text-white/80 max-w-xl transition-all duration-700 delay-300 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
-        Reduce costs, increase efficiency, and gain a competitive edge in today's market with our customized AI automation and digital solutions.
+        {description}
       </p>
       
       {/* Enhanced call-to-action buttons */}
