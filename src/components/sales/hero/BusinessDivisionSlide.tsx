@@ -26,8 +26,8 @@ const BusinessDivisionSlide: React.FC<BusinessDivisionSlideProps> = ({
     <div className="p-1">
       <div className="overflow-hidden rounded-xl transform transition-all hover:scale-[1.02] duration-300 print:shadow-md print:hover:scale-100 group">
         <div className="relative h-60 overflow-hidden">
-          {/* Enhanced gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/90 via-brand-primary/50 to-transparent z-10"></div>
+          {/* Enhanced gradient overlay with better colors */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-800/60 to-transparent z-10"></div>
           
           <img 
             src={image} 
@@ -41,24 +41,24 @@ const BusinessDivisionSlide: React.FC<BusinessDivisionSlideProps> = ({
           
           {/* Enhanced content positioning */}
           <div className="absolute bottom-0 left-0 p-6 z-20 w-full">
-            <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-brand-lightAccent transition-colors">{division.title}</h3>
-            <p className="text-white/90 line-clamp-2">{division.description}</p>
+            <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors drop-shadow-lg">{division.title}</h3>
+            <p className="text-gray-200 line-clamp-2 drop-shadow-md">{division.description}</p>
           </div>
           
-          {/* Animated highlight line */}
-          <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full bg-brand-accent transition-all duration-500"></div>
+          {/* Animated highlight line with new color */}
+          <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full bg-emerald-400 transition-all duration-500"></div>
         </div>
         
-        {/* Enhanced footer with glass effect */}
-        <div className="bg-white/10 backdrop-blur-sm p-4 flex items-center justify-between border-t border-white/10">
+        {/* Enhanced footer with better backdrop */}
+        <div className="bg-slate-800/40 backdrop-blur-sm p-4 flex items-center justify-between border-t border-emerald-400/20">
           <Link 
             to={`#${division.linkFragment}`} 
-            className="text-brand-accent flex items-center font-medium group-hover:text-brand-lightAccent transition-colors print:hidden"
+            className="text-emerald-400 flex items-center font-medium group-hover:text-cyan-400 transition-colors print:hidden"
           >
             Learn more 
             <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <span className="text-white/60 text-sm">{index + 1} / {total}</span>
+          <span className="text-gray-300 text-sm">{index + 1} / {total}</span>
         </div>
       </div>
     </div>

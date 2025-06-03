@@ -57,15 +57,15 @@ const DivisionCarousel: React.FC<DivisionCarouselProps> = ({
       data-aos="fade-left"
     >
       <div className="relative">
-        {/* Enhanced decorative elements */}
-        <div className="absolute -left-10 -top-10 w-20 h-20 border border-brand-accent/30 rounded-xl rotate-12 z-0"></div>
-        <div className="absolute -right-5 -bottom-5 w-32 h-32 border border-white/20 rounded-full z-0"></div>
+        {/* Enhanced decorative elements with new colors */}
+        <div className="absolute -left-10 -top-10 w-20 h-20 border border-emerald-400/40 rounded-xl rotate-12 z-0"></div>
+        <div className="absolute -right-5 -bottom-5 w-32 h-32 border border-cyan-400/30 rounded-full z-0"></div>
         
-        {/* Enhanced showcase carousel with inspirational imagery */}
-        <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-2xl border border-white/10 relative z-10">
+        {/* Enhanced showcase carousel with better backdrop */}
+        <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/10 relative z-10 ring-1 ring-emerald-400/20">
           {/* Interactive graphic element */}
-          <div className="absolute -top-4 -right-4 w-8 h-8 bg-brand-accent rounded-full flex items-center justify-center text-white shadow-lg">
-            <span className="animate-pulse">AI</span>
+          <div className="absolute -top-4 -right-4 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-emerald-500/30">
+            <span className="animate-pulse text-xs font-bold">AI</span>
           </div>
           
           <Carousel 
@@ -85,8 +85,8 @@ const DivisionCarousel: React.FC<DivisionCarouselProps> = ({
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-0 sm:-left-12 print:hidden text-white backdrop-blur-sm bg-black/30 hover:bg-black/50 border-0" />
-            <CarouselNext className="right-0 sm:-right-12 print:hidden text-white backdrop-blur-sm bg-black/30 hover:bg-black/50 border-0" />
+            <CarouselPrevious className="left-0 sm:-left-12 print:hidden text-white backdrop-blur-sm bg-slate-800/60 hover:bg-slate-700/80 border-0 hover:text-emerald-400" />
+            <CarouselNext className="right-0 sm:-right-12 print:hidden text-white backdrop-blur-sm bg-slate-800/60 hover:bg-slate-700/80 border-0 hover:text-emerald-400" />
           </Carousel>
           
           {/* Enhanced navigation dots with better visibility */}
@@ -97,8 +97,8 @@ const DivisionCarousel: React.FC<DivisionCarouselProps> = ({
                 onClick={() => setActiveIndex(index)}
                 className={`transition-all ${
                   index === activeIndex 
-                    ? "bg-brand-accent scale-125 w-6 h-3 rounded-full" 
-                    : "bg-white/30 hover:bg-white/50 w-3 h-3 rounded-full"
+                    ? "bg-emerald-400 scale-125 w-6 h-3 rounded-full shadow-lg" 
+                    : "bg-white/40 hover:bg-white/60 w-3 h-3 rounded-full"
                 }`}
                 aria-label={`View ${businessDivisions[index].title}`}
               />
