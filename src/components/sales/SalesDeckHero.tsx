@@ -39,7 +39,10 @@ const SalesDeckHero = ({
       {/* Background elements */}
       <HeroBackground />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Dark overlay for better text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-dark/60 via-brand-primary/50 to-brand-primary/70 z-10"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left side content */}
           <HeroContent 
