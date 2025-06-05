@@ -1,3 +1,4 @@
+
 // Export Website Script
 // This script helps export the website using HTTrack or provides instructions for alternatives
 
@@ -118,6 +119,109 @@ function generateMigrationPlan() {
   }
 }
 
+// Generate Airtable schema for content management
+function generateAirtableSchema() {
+  const schema = {
+    tables: {
+      pages: {
+        fields: [
+          { name: 'Page Title', type: 'Single line text', primary: true },
+          { name: 'URL Path', type: 'Single line text' },
+          { name: 'Meta Description', type: 'Long text' },
+          { name: 'Primary Keywords', type: 'Multiple select' },
+          { name: 'Content Status', type: 'Single select', options: ['Draft', 'Review', 'Published', 'Archived'] },
+          { name: 'Business Purpose', type: 'Single select', options: ['Conversion', 'Education', 'Trust Building', 'SEO'] },
+          { name: 'Last Updated', type: 'Date' },
+          { name: 'Performance Score', type: 'Number' }
+        ]
+      },
+      contentBlocks: {
+        fields: [
+          { name: 'Block Name', type: 'Single line text', primary: true },
+          { name: 'Block Type', type: 'Single select', options: ['Hero', 'Features', 'Benefits', 'CTA', 'Testimonial'] },
+          { name: 'Content', type: 'Long text' },
+          { name: 'Used On Pages', type: 'Link to another record', linkedTable: 'Pages' },
+          { name: 'A/B Test Status', type: 'Single select', options: ['Control', 'Variant A', 'Variant B', 'Winner'] },
+          { name: 'Conversion Rate', type: 'Percent' }
+        ]
+      },
+      seoData: {
+        fields: [
+          { name: 'Page', type: 'Link to another record', linkedTable: 'Pages' },
+          { name: 'Target Keywords', type: 'Multiple select' },
+          { name: 'Meta Title', type: 'Single line text' },
+          { name: 'Meta Description', type: 'Long text' },
+          { name: 'Schema Markup', type: 'Long text' },
+          { name: 'Search Volume', type: 'Number' },
+          { name: 'Difficulty Score', type: 'Number' },
+          { name: 'Current Ranking', type: 'Number' }
+        ]
+      },
+      mediaAssets: {
+        fields: [
+          { name: 'Asset Name', type: 'Single line text', primary: true },
+          { name: 'File', type: 'Attachment' },
+          { name: 'Alt Text', type: 'Single line text' },
+          { name: 'Usage Context', type: 'Multiple select' },
+          { name: 'Optimization Status', type: 'Single select', options: ['Optimized', 'Needs WebP', 'Needs Compression', 'Needs Alt Text'] },
+          { name: 'SEO Value', type: 'Single select', options: ['High', 'Medium', 'Low'] },
+          { name: 'Used On Pages', type: 'Link to another record', linkedTable: 'Pages' }
+        ]
+      }
+    }
+  };
+  
+  const schemaPath = path.join(__dirname, '..', '..', 'airtable-schema.json');
+  fs.writeFileSync(schemaPath, JSON.stringify(schema, null, 2));
+  console.log(`📋 Airtable schema saved to ${schemaPath}`);
+  return schemaPath;
+}
+
+// Function to generate a sitemap
+function generateSitemap(baseUrl) {
+  console.log(`Generating sitemap for ${baseUrl || 'the website'}...`);
+  
+  try {
+    const pages = [
+      '/',
+      '/about',
+      '/services',
+      '/courses',
+      '/resources',
+      '/contact',
+      '/services/ai-automation-solutions/workflow-automation',
+      '/services/ai-automation-solutions/marketing-automation',
+      '/services/ai-automation-solutions/customer-service-automation',
+      '/services/ai-consultation/ai-readiness-assessment',
+      '/services/ai-consultation/ai-strategy-development',
+      '/services/ai-consultation/implementation-support'
+    ];
+    
+    const hostname = baseUrl || 'https://howaiconnects.com';
+    
+    let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+    
+    pages.forEach(page => {
+      sitemap += '  <url>\n';
+      sitemap += `    <loc>${hostname}${page}</loc>\n`;
+      sitemap += '    <changefreq>weekly</changefreq>\n';
+      sitemap += '    <priority>0.8</priority>\n';
+      sitemap += '  </url>\n';
+    });
+    
+    sitemap += '</urlset>';
+    
+    const sitemapPath = path.join(__dirname, '..', '..', 'sitemap.xml');
+    fs.writeFileSync(sitemapPath, sitemap);
+    
+    console.log(`Sitemap generated and saved to ${sitemapPath}`);
+    return sitemapPath;
+  } catch (error) {
+    console.error('Error generating sitemap:', error.message);
+  }
+}
+
 // Comprehensive analysis function
 function performComprehensiveAnalysis(url) {
   console.log('🔍 Starting comprehensive website analysis...');
@@ -199,50 +303,6 @@ function generateSummaryReport(contentResult, migrationResult) {
   
   console.log(`📋 Executive summary saved to ${summaryPath}`);
   return summaryPath;
-}
-
-// Function to generate a sitemap
-function generateSitemap(baseUrl) {
-  console.log(`Generating sitemap for ${baseUrl || 'the website'}...`);
-  
-  try {
-    const pages = [
-      '/',
-      '/about',
-      '/services',
-      '/courses',
-      '/resources',
-      '/contact',
-      '/services/ai-automation-solutions/workflow-automation',
-      '/services/ai-automation-solutions/marketing-automation',
-      '/services/ai-automation-solutions/customer-service-automation',
-      '/services/ai-consultation/ai-readiness-assessment',
-      '/services/ai-consultation/ai-strategy-development',
-      '/services/ai-consultation/implementation-support'
-    ];
-    
-    const hostname = baseUrl || 'https://howaiconnects.com';
-    
-    let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
-    sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-    
-    pages.forEach(page => {
-      sitemap += '  <url>\n';
-      sitemap += `    <loc>${hostname}${page}</loc>\n`;
-      sitemap += '    <changefreq>weekly</changefreq>\n';
-      sitemap += '    <priority>0.8</priority>\n';
-      sitemap += '  </url>\n';
-    });
-    
-    sitemap += '</urlset>';
-    
-    const sitemapPath = path.join(__dirname, '..', '..', 'sitemap.xml');
-    fs.writeFileSync(sitemapPath, sitemap);
-    
-    console.log(`Sitemap generated and saved to ${sitemapPath}`);
-  } catch (error) {
-    console.error('Error generating sitemap:', error.message);
-  }
 }
 
 // Main function
