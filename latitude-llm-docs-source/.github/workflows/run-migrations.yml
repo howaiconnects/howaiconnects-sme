@@ -1,0 +1,109 @@
+name: Run Database Migrations
+
+on:
+  workflow_call:
+    inputs:
+      workflow_call:
+        type: boolean
+        required: false
+        default: false
+    secrets:
+      DB_USERNAME:
+        required: true
+      DB_PASSWORD:
+        required: true
+      DB_NAME:
+        required: true
+      DB_HOST:
+        required: true
+      SSH_HOST:
+        required: true
+      SSH_USER:
+        required: true
+      SSH_PRIVATE_KEY:
+        required: true
+      DB_PORT:
+        required: true
+
+jobs:
+  run-migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --filter='./packages/core'
+
+      - name: Setup SSH configuration
+        working-directory: packages/core
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/key.pem
+          chmod 600 ~/.ssh/key.pem
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Establish SSH tunnel
+        working-directory: packages/core
+        run: |
+          ssh -i ~/.ssh/key.pem -o ServerAliveInterval=30 -o ServerAliveCountMax=2 -f -N -L ${{ secrets.DB_PORT }}:${{ secrets.DB_HOST }}:${{ secrets.DB_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+
+          # Wait for tunnel to be established
+          sleep 5
+
+      - name: Test tunnel connection
+        working-directory: packages/core
+        run: |
+          nc -zv 127.0.0.1 ${{ secrets.DB_PORT }}
+          if [ $? -ne 0 ]; then
+            echo "Failed to establish tunnel connection"
+            exit 1
+          fi
+
+      - name: Test database connection
+        working-directory: packages/core
+        run: |
+          psql "postgresql://${{ secrets.DB_USERNAME }}:${{ secrets.DB_PASSWORD }}@127.0.0.1:${{ secrets.DB_PORT }}/${{ secrets.DB_NAME }}" -c "\conninfo"
+        continue-on-error: true
+
+      - name: Run database migrations
+        working-directory: packages/core
+        run: PGSSLMODE=no-verify pnpm db:migrate
+        env:
+          DATABASE_URL: postgresql://${{ secrets.DB_USERNAME }}:${{ secrets.DB_PASSWORD }}@127.0.0.1:${{ secrets.DB_PORT }}/${{ secrets.DB_NAME }}
+          NODE_ENV: production
+
+      - name: Cleanup SSH tunnel
+        if: always()
+        run: |
+          # Kill SSH tunnel if it exists, don't fail if not found
+          pkill -f "ssh -f -N -L ${{ secrets.DB_PORT }}" || true
+
+          # Clean up SSH files
+          rm -f ~/.ssh/key.pem
+          rm -f ~/.ssh/known_hosts
