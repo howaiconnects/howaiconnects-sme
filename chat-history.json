@@ -1,0 +1,68 @@
+{
+  "project": {
+    "name": "HowAIConnects-Lovable-Project",
+    "exportTimestamp": "2025-06-05T08:25:28.498Z",
+    "totalMessages": 4
+  },
+  "conversations": [
+    {
+      "id": 1,
+      "timestamp": "2025-01-06T10:00:00Z",
+      "type": "user",
+      "content": "can we create a plan for creating all 3 formats: Structured JSON Export, Markdown Export, HTML Export...",
+      "codeChanges": [],
+      "wordCount": 17
+    },
+    {
+      "id": 2,
+      "timestamp": "2025-01-06T10:05:00Z",
+      "type": "ai",
+      "content": "Created a comprehensive plan and new utilities for content extraction...",
+      "codeChanges": [
+        {
+          "action": "created",
+          "file": "src/utils/content-extractor.js"
+        },
+        {
+          "action": "created",
+          "file": "src/utils/migration-planner.js"
+        },
+        {
+          "action": "edited",
+          "file": "src/utils/export-website.js"
+        }
+      ],
+      "wordCount": 10
+    },
+    {
+      "id": 3,
+      "timestamp": "2025-01-06T10:10:00Z",
+      "type": "user",
+      "content": "yes please",
+      "codeChanges": [],
+      "wordCount": 2
+    },
+    {
+      "id": 4,
+      "timestamp": "2025-01-06T10:15:00Z",
+      "type": "ai",
+      "content": "Running the comprehensive analysis to generate all export files...",
+      "codeChanges": [
+        {
+          "action": "edited",
+          "file": "src/utils/export-website.js"
+        },
+        {
+          "action": "created",
+          "file": "run-analysis.js"
+        }
+      ],
+      "wordCount": 9
+    }
+  ],
+  "summary": {
+    "userMessages": 2,
+    "aiMessages": 2,
+    "totalCodeChanges": 5
+  }
+}

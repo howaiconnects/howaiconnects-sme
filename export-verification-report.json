@@ -1,0 +1,79 @@
+{
+  "timestamp": "2025-06-05T08:29:48.357Z",
+  "projectName": "HowAIConnects SME Boost",
+  "exportStatus": "complete",
+  "files": [
+    {
+      "file": "content-export-structured.json",
+      "status": "success",
+      "size": "10.23 KB",
+      "modified": "2025-06-05T08:25:28.531Z"
+    },
+    {
+      "file": "content-export-llm-optimized.md",
+      "status": "success",
+      "size": "5.36 KB",
+      "modified": "2025-06-05T08:25:28.531Z"
+    },
+    {
+      "file": "content-export-visual-reference.html",
+      "status": "success",
+      "size": "4.72 KB",
+      "modified": "2025-06-05T08:25:28.531Z"
+    },
+    {
+      "file": "migration-plan-detailed.json",
+      "status": "success",
+      "size": "13.13 KB",
+      "modified": "2025-06-05T08:25:28.496Z"
+    },
+    {
+      "file": "migration-plan.md",
+      "status": "success",
+      "size": "2.31 KB",
+      "modified": "2025-06-05T08:25:28.496Z"
+    },
+    {
+      "file": "airtable-schema.json",
+      "status": "success",
+      "size": "3.68 KB",
+      "modified": "2025-06-05T08:25:28.497Z"
+    },
+    {
+      "file": "executive-summary.json",
+      "status": "success",
+      "size": "1.61 KB",
+      "modified": "2025-06-05T08:26:18.833Z"
+    },
+    {
+      "file": "sitemap.xml",
+      "status": "success",
+      "size": "1.90 KB",
+      "modified": "2025-06-05T08:25:28.497Z"
+    },
+    {
+      "file": "chat-history.json",
+      "status": "success",
+      "size": "1.61 KB",
+      "modified": "2025-06-05T08:25:28.497Z"
+    },
+    {
+      "file": "chat-history.md",
+      "status": "success",
+      "size": "0.96 KB",
+      "modified": "2025-06-05T08:25:28.530Z"
+    },
+    {
+      "file": "chat-history.xml",
+      "status": "success",
+      "size": "1.50 KB",
+      "modified": "2025-06-05T08:25:28.530Z"
+    }
+  ],
+  "nextSteps": [
+    "Import files to Replit.com or AI agent builders",
+    "Analyze with Claude Opus 4 using the markdown export",
+    "Begin Next.js 15 migration using the migration plan",
+    "Set up Airtable using the schema file"
+  ]
+}

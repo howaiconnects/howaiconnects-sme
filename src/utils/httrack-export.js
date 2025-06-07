@@ -45,9 +45,13 @@ Note: Replace "https://example.howaiconnects.com" with your actual domain once t
 */
 
 // Node.js script to run HTTrack (requires HTTrack to be installed)
-const { exec } = require('child_process');
-const path = require('path');
-const fs = require('fs');
+import { exec } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Create backup directory if it doesn't exist
 const backupDir = path.join(__dirname, '..', '..', 'website-backup');
@@ -56,7 +60,7 @@ if (!fs.existsSync(backupDir)) {
 }
 
 // Function to run HTTrack
-function runHTTrack(url) {
+export function runHTTrack(url) {
   if (!url) {
     console.error('Please provide a URL for the website to backup');
     console.log('Example: node httrack-export.js https://example.howaiconnects.com');
@@ -82,9 +86,7 @@ function runHTTrack(url) {
 }
 
 // If this script is run directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const url = process.argv[2];
   runHTTrack(url);
 }
-
-module.exports = { runHTTrack };

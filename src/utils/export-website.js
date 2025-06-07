@@ -1,13 +1,18 @@
 // Export Website Script
 // This script helps export the website using HTTrack or provides instructions for alternatives
 
-const { runHTTrack } = require('./httrack-export');
-const { ContentExtractor } = require('./content-extractor');
-const { MigrationPlanner } = require('./migration-planner');
-const { ChatHistoryExtractor } = require('./chat-history-extractor');
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+import { runHTTrack } from './httrack-export.js';
+import { ContentExtractor } from './content-extractor.js';
+import { MigrationPlanner } from './migration-planner.js';
+import { ChatHistoryExtractor } from './chat-history-extractor.js';
+import fs from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Function to create a README file with export instructions
 function createExportInstructions() {
@@ -292,8 +297,8 @@ function generateSummaryReport(contentResult, migrationResult) {
     },
     contentAnalysis: {
       totalPages: contentResult.extractedData.pages.length,
-      reusableComponents: contentResult.extractedData.technicalArchitecture.componentStructure.reusableComponents?.length || 0,
-      seoOpportunities: contentResult.extractedData.seoMarketingAssets.contentGaps.length,
+      reusableComponents: contentResult.extractedData.technicalArchitecture.componentStructure?.reusableComponents?.length || 0,
+      seoOpportunities: contentResult.extractedData.seoMarketingAssets.contentGaps?.length || 0,
       businessValue: 'High - clear value propositions and conversion funnels identified'
     },
     technicalAssessment: {
@@ -376,12 +381,12 @@ function main() {
 }
 
 // Run the main function if this script is executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   main();
 }
 
 // Export functions for use in other scripts
-module.exports = {
+export {
   runHTTrack,
   extractWebsiteContentEnhanced,
   generateMigrationPlan,

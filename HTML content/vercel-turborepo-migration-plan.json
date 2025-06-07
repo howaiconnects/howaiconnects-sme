@@ -1,0 +1,96 @@
+{
+  "projectName": "HowAIConnects Vercel Turborepo",
+  "template": "Vercel Turborepo Starter",
+  "structure": {
+    "apps": {
+      "web": "Main Next.js 15 website",
+      "admin": "Admin dashboard for content management",
+      "docs": "Documentation site"
+    },
+    "packages": {
+      "ui": "Shared UI components library",
+      "shared": "Business logic and utilities",
+      "config": "Shared configurations (ESLint, TypeScript)",
+      "types": "TypeScript type definitions",
+      "airtable": "Airtable integration package"
+    }
+  },
+  "setupSteps": [
+    {
+      "step": 1,
+      "title": "Clone Vercel Turborepo Template",
+      "command": "npx create-turbo@latest howaiconnects-vercel --example with-tailwind",
+      "description": "Creates a new Turborepo project with Tailwind CSS"
+    },
+    {
+      "step": 2,
+      "title": "Install Dependencies",
+      "commands": [
+        "cd howaiconnects-vercel",
+        "pnpm install",
+        "pnpm add -D @vercel/style-guide prettier-plugin-tailwindcss"
+      ]
+    },
+    {
+      "step": 3,
+      "title": "Configure Vercel Project",
+      "actions": [
+        "Link to Vercel: vercel link",
+        "Set up environment variables in Vercel dashboard",
+        "Configure build settings for monorepo"
+      ]
+    }
+  ],
+  "brandingUpdates": {
+    "colors": {
+      "primary": "#1E3A50",
+      "secondary": "#35A162",
+      "accent": "#F39C12",
+      "background": "#0A1628",
+      "text": "#FFFFFF",
+      "textSecondary": "#B8C5D6"
+    },
+    "files": [
+      "apps/web/tailwind.config.ts",
+      "apps/web/app/globals.css",
+      "packages/ui/tailwind.config.ts"
+    ],
+    "logos": [
+      "Copy logo files to apps/web/public/brand/",
+      "Update favicon in apps/web/app/favicon.ico",
+      "Add Open Graph images"
+    ]
+  },
+  "contentMigration": {
+    "pages": [
+      "/",
+      "/sales-deck",
+      "/sales-presentation",
+      "/services",
+      "/contact",
+      "/about"
+    ],
+    "components": [],
+    "strategy": "Gradual migration using Vercel's default components"
+  },
+  "airtableIntegration": {
+    "package": "packages/airtable",
+    "apiRoutes": [
+      "apps/web/app/api/airtable/content/route.ts",
+      "apps/web/app/api/airtable/sync/route.ts"
+    ],
+    "tables": [
+      "pages",
+      "contentBlocks",
+      "seoData",
+      "mediaAssets"
+    ]
+  },
+  "deployment": {
+    "platform": "Vercel",
+    "buildCommand": "turbo run build",
+    "outputDirectory": "apps/web/.next",
+    "installCommand": "pnpm install",
+    "rootDirectory": "./"
+  }
+}

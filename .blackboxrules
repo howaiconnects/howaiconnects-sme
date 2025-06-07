@@ -1,0 +1,26 @@
+# BLACKBOX RULES for SME Boost Platform Development
+
+# Purpose:
+# Ensure consistent use of exact boilerplate templates for styles, themes, color palettes, assets, and routing.
+
+# Rules:
+# 1. Always use the exact boilerplate template repositories for admin, user, and backend dashboards.
+# 2. Maintain the original styles, themes, color palettes, assets, and routing structures from the boilerplates.
+# 3. Any customization must preserve the integrity of the boilerplate design system.
+# 4. Shared utilities, styles, and assets should be managed in dedicated packages within the Turbo Repo structure.
+# 5. Follow a pre-planned project structure to avoid conflicts and ensure smooth integration.
+# 6. Document all major changes and customizations in the project documentation.
+# 7. Regularly review adherence to these rules during development phases.
+
+# Structure:
+# - sme-boost/
+#   - apps/
+#     - admin/
+#     - user/
+#     - backend/
+#   - packages/
+#     - ui/
+#     - config/
+#     - utils/
+
+# This file will be updated as the project evolves to reflect new guidelines and best practices.

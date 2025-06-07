@@ -2,8 +2,12 @@
 // Chat History Extractor
 // Extracts and formats Lovable project chat history into multiple formats
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class ChatHistoryExtractor {
   constructor() {
@@ -198,16 +202,15 @@ class ChatHistoryExtractor {
 }
 
 // Export the class and utility functions
-module.exports = {
-  ChatHistoryExtractor,
-  extractChatHistory: () => {
-    const extractor = new ChatHistoryExtractor();
-    return extractor.exportAll();
-  }
-};
+export { ChatHistoryExtractor };
+
+export function extractChatHistory() {
+  const extractor = new ChatHistoryExtractor();
+  return extractor.exportAll();
+}
 
 // Run if called directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const extractor = new ChatHistoryExtractor();
   extractor.exportAll();
 }
