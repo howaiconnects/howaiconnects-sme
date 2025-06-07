@@ -1,0 +1,164 @@
+{
+  "folders": [
+    {
+      "name": "MCP Servers Project",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "*.env.*": "dotenv",
+      "docker-compose*.yml": "dockercompose"
+    },
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact"
+    },
+    "git.ignoreLimitWarning": true,
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "debug.allowBreakpointsEverywhere": true
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.vscode-json",
+      "ms-vscode.vscode-typescript-next",
+      "bradlc.vscode-tailwindcss",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "ms-vscode.vscode-docker",
+      "redhat.vscode-yaml",
+      "ms-vscode.vscode-jest",
+      "ms-vscode.vscode-node-debug2",
+      "formulahendry.auto-rename-tag",
+      "christian-kohler.path-intellisense",
+      "ms-vscode.vscode-dotenv"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Start Development Servers",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "start:dev"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Build for Production",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "build"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Deploy to Staging",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "deploy:staging"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Deploy to Production",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "deploy:production"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Validate Configurations",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "validate:configs"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Health Check",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "health:check"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        }
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug Database Server",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/servers/database/index.js",
+        "env": {
+          "NODE_ENV": "development",
+          "DEBUG": "*"
+        },
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen"
+      },
+      {
+        "name": "Debug API Gateway",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/servers/api-gateway/index.js",
+        "env": {
+          "NODE_ENV": "development",
+          "DEBUG": "*"
+        },
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen"
+      },
+      {
+        "name": "Debug All Servers",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/scripts/debug-all.js",
+        "env": {
+          "NODE_ENV": "development",
+          "DEBUG": "*"
+        },
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen"
+      }
+    ]
+  }
+}

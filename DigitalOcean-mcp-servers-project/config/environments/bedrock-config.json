@@ -1,0 +1,67 @@
+{
+  "bedrock": {
+    "server": {
+      "port": 3010,
+      "host": "localhost",
+      "cors": {
+        "origin": ["http://localhost:3000", "https://smeboost.howaiconnects.com"],
+        "credentials": true
+      },
+      "rateLimit": {
+        "windowMs": 900000,
+        "max": 100
+      }
+    },
+    "models": {
+      "default": "anthropic.claude-3-sonnet-20240229-v1:0",
+      "alternatives": [
+        "anthropic.claude-3-haiku-20240307-v1:0",
+        "anthropic.claude-instant-v1"
+      ]
+    },
+    "cache": {
+      "enabled": true,
+      "ttl": 3600,
+      "maxSize": 1000
+    },
+    "monitoring": {
+      "enabled": true,
+      "metrics": {
+        "requestCount": true,
+        "responseTime": true,
+        "errorRate": true,
+        "tokenUsage": true
+      },
+      "alerts": {
+        "errorThreshold": 0.1,
+        "responseTimeThreshold": 5000
+      }
+    },
+    "security": {
+      "maxTokens": 4096,
+      "maxPromptLength": 2048,
+      "contentFiltering": true,
+      "apiKeyRequired": true
+    },
+    "logging": {
+      "level": "info",
+      "format": "json",
+      "requests": true,
+      "responses": false,
+      "errors": true
+    },
+    "defaults": {
+      "temperature": 0.7,
+      "maxTokens": 1000,
+      "topP": 1,
+      "frequencyPenalty": 0,
+      "presencePenalty": 0
+    },
+    "retryPolicy": {
+      "attempts": 3,
+      "delay": 1000,
+      "maxDelay": 5000,
+      "backoff": 2
+    }
+  }
+}
