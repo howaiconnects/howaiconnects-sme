@@ -23,7 +23,7 @@
     "@latitude-data/core": "workspace:^",
     "@latitude-data/env": "workspace:^",
     "@latitude-data/sdk": "workspace:^",
-    "@sentry/cli": "^2.37.0",
+    "@sentry/cli": "^2.46.0",
     "@sentry/node": "^9.9.0",
     "@t3-oss/env-core": "^0.10.1",
     "drizzle-orm": "catalog:",
