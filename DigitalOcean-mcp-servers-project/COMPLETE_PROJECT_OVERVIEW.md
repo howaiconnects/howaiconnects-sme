@@ -13,6 +13,7 @@ graph TB
         UD[User Dashboard]
         AD[Admin Dashboard]
         ACD[Airtable Control Dashboard]
+        PMD[Prompt Management Dashboard]
     end
 
     subgraph "API Gateway Layer"
@@ -56,6 +57,7 @@ graph TB
     UD --> AG
     AD --> AG
     ACD --> AG
+    PMD --> AG
     ACD --> WS
 
     AG --> Auth
@@ -88,7 +90,7 @@ graph TB
     classDef external fill:#fce4ec,stroke:#c2185b,stroke-width:2px
     classDef infra fill:#f5f5f5,stroke:#616161,stroke-width:2px
 
-    class LP,UD,AD,ACD frontend
+    class LP,UD,AD,ACD,PMD frontend
     class AG,Auth,RL,Cache api
     class BS,SS,RS,AS mcp
     class WS,Queue,Sync,Transform integration
@@ -190,6 +192,17 @@ const Dashboard = () => (
 );
 ```
 
+### 4. Latitude AI Prompt Management Dashboard
+
+- **Purpose**: To provide a dedicated interface for creating, managing, testing, and versioning AI prompts, particularly those intended for use with the Bedrock MCP Server. This component will be based on a fork of the `latitude-dev/latitude-llm` project.
+- **Key Features (Initial Baseline):**
+    - Fork and integrate the `latitude-dev/latitude-llm` codebase.
+    - Basic prompt CRUD operations (Create, Read, Update, Delete).
+    - Prompt organization (e.g., categorization, tagging).
+    - Simple interface for testing prompts (potentially via Bedrock MCP Server).
+    - User authentication (leveraging Supabase MCP Server).
+- **Local Codebase & Documentation Source**: The codebase for the Latitude AI Prompt Management Dashboard is a fork of `latitude-dev/latitude-llm` and is located locally in the project root at `/latitude-llm-docs-source/`. The comprehensive original Latitude documentation, for detailed reference on its features and usage, can be found within `/latitude-llm-docs-source/docs/`.
+
 ## Development Phases
 
 ### Phase 1: Foundation (Completed)
@@ -205,6 +218,7 @@ const Dashboard = () => (
 - [ ] Import/export system
 - [ ] Field management
 - [ ] Data validation
+- [ ] Integrate Latitude AI Prompt Management Dashboard (forked from latitude-dev/latitude-llm, establish baseline functionality)
 
 ### Phase 3: Advanced Features (Planned)
 - [ ] Two-way sync engine

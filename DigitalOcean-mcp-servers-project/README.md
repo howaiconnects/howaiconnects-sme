@@ -61,6 +61,9 @@ All MCP servers are configured through centralized config files that can be easi
 - **Workflow Server**: Task automation and workflows
 - **Analytics Server**: Data analysis and reporting
 
+### Latitude AI Prompt Management
+The platform integrates the Latitude AI Prompt Management Dashboard for creating, testing, and versioning AI prompts. The core codebase and detailed documentation for Latitude are available locally in the project root under `/latitude-llm-docs-source/`. For more details on its integration, see the `COMPLETE_PROJECT_OVERVIEW.md`.
+
 ## Cloud VPS Deployment
 
 The project includes Docker configurations optimized for cloud VPS deployment with:

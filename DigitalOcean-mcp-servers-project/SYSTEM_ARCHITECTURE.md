@@ -62,6 +62,8 @@ graph TB
     class AWS,AT,SB external
 ```
 
+Note: The "Frontend Layer" also includes a Prompt Management Dashboard (PMD), which is based on the Latitude platform. The local codebase and detailed documentation for Latitude can be found in the project root at `/latitude-llm-docs-source/`. For a more detailed architecture including the PMD, please refer to the `COMPLETE_PROJECT_OVERVIEW.md` document.
+
 ## Detailed Component Architecture
 
 ### Landing Page Structure
