@@ -1,11 +1,7 @@
 
 // Migration Planning Utility for Next.js 15 + Turborepo
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const fs = require('fs');
+const path = require('path');
 
 class MigrationPlanner {
   constructor() {
@@ -548,10 +544,10 @@ project-root/
 }
 
 // Export for use
-export { MigrationPlanner };
+module.exports = { MigrationPlanner };
 
 // Run if called directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (require.main === module) {
   const planner = new MigrationPlanner();
   planner.exportMigrationPlan();
   planner.generateMarkdownPlan();

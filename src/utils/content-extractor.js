@@ -1,13 +1,8 @@
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 // Enhanced Content Extraction Utility for LLM Analysis and Migration
+const fs = require('fs');
+const path = require('path');
+
 class ContentExtractor {
   constructor() {
     this.extractedData = {
@@ -774,7 +769,7 @@ function generateMigrationChecklist() {
 }
 
 // Export for use in other scripts
-export {
+module.exports = {
   ContentExtractor,
   main,
   generateAirtableSchema,
@@ -782,6 +777,6 @@ export {
 };
 
 // Run if called directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (require.main === module) {
   main().catch(console.error);
 }

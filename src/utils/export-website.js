@@ -1,18 +1,13 @@
+
 // Export Website Script
 // This script helps export the website using HTTrack or provides instructions for alternatives
 
-import { runHTTrack } from './httrack-export.js';
-import { ContentExtractor } from './content-extractor.js';
-import { MigrationPlanner } from './migration-planner.js';
-import { ChatHistoryExtractor } from './chat-history-extractor.js';
-import fs from 'fs';
-import path from 'path';
-import { execSync } from 'child_process';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const { runHTTrack } = require('./httrack-export');
+const { ContentExtractor } = require('./content-extractor');
+const { MigrationPlanner } = require('./migration-planner');
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
 
 // Function to create a README file with export instructions
 function createExportInstructions() {
@@ -227,7 +222,7 @@ function generateSitemap(baseUrl) {
   }
 }
 
-// Enhanced comprehensive analysis function
+// Comprehensive analysis function
 function performComprehensiveAnalysis(url) {
   console.log('🔍 Starting comprehensive website analysis...');
   
@@ -235,9 +230,8 @@ function performComprehensiveAnalysis(url) {
     extractWebsiteContentEnhanced(url),
     generateMigrationPlan(),
     generateAirtableSchema(),
-    generateSitemap(url || 'https://howaiconnects.com'),
-    extractChatHistoryForAnalysis() // Add chat history extraction
-  ]).then(([contentResult, migrationResult, schemaPath, sitemapPath, chatHistoryResult]) => {
+    generateSitemap(url || 'https://howaiconnects.com')
+  ]).then(([contentResult, migrationResult, schemaPath, sitemapPath]) => {
     console.log('\n🎉 Comprehensive analysis completed!');
     console.log('\n📊 Generated Files:');
     console.log(`- Content JSON: ${contentResult.exports.jsonPath}`);
@@ -247,9 +241,6 @@ function performComprehensiveAnalysis(url) {
     console.log(`- Migration Summary: ${migrationResult.markdownPath}`);
     console.log(`- Airtable Schema: ${schemaPath}`);
     console.log(`- Sitemap: ${sitemapPath}`);
-    console.log(`- Chat History JSON: ${chatHistoryResult.json}`);
-    console.log(`- Chat History Markdown: ${chatHistoryResult.markdown}`);
-    console.log(`- Chat History XML: ${chatHistoryResult.xml}`);
     
     // Generate summary report
     generateSummaryReport(contentResult, migrationResult);
@@ -257,26 +248,12 @@ function performComprehensiveAnalysis(url) {
     return {
       content: contentResult,
       migration: migrationResult,
-      chatHistory: chatHistoryResult,
       analysis: 'comprehensive-analysis-complete'
     };
   }).catch(error => {
     console.error('❌ Error in comprehensive analysis:', error.message);
     throw error;
   });
-}
-
-// Extract chat history for analysis
-function extractChatHistoryForAnalysis() {
-  console.log('💬 Extracting chat history for comprehensive analysis...');
-  
-  try {
-    const extractor = new ChatHistoryExtractor();
-    return extractor.exportAll();
-  } catch (error) {
-    console.error('❌ Error extracting chat history:', error.message);
-    throw error;
-  }
 }
 
 // Generate executive summary report
@@ -297,8 +274,8 @@ function generateSummaryReport(contentResult, migrationResult) {
     },
     contentAnalysis: {
       totalPages: contentResult.extractedData.pages.length,
-      reusableComponents: contentResult.extractedData.technicalArchitecture.componentStructure?.reusableComponents?.length || 0,
-      seoOpportunities: contentResult.extractedData.seoMarketingAssets.contentGaps?.length || 0,
+      reusableComponents: contentResult.extractedData.technicalArchitecture.componentStructure.reusableComponents?.length || 0,
+      seoOpportunities: contentResult.extractedData.seoMarketingAssets.contentGaps.length,
       businessValue: 'High - clear value propositions and conversion funnels identified'
     },
     technicalAssessment: {
@@ -339,7 +316,6 @@ function main() {
   const generateSitemapFlag = args.includes('--generate-sitemap');
   const migrationPlanFlag = args.includes('--migration-plan');
   const comprehensiveFlag = args.includes('--comprehensive');
-  const chatHistoryFlag = args.includes('--chat-history'); // Add new flag
   
   // Get URL (may be after a flag)
   let url;
@@ -352,8 +328,6 @@ function main() {
   
   if (comprehensiveFlag) {
     performComprehensiveAnalysis(url).catch(console.error);
-  } else if (chatHistoryFlag) {
-    extractChatHistoryForAnalysis().catch(console.error);
   } else if (extractContentFlag) {
     extractWebsiteContentEnhanced(url).catch(console.error);
   } else if (migrationPlanFlag) {
@@ -371,7 +345,6 @@ function main() {
     console.log('Enhanced Website Export & Migration Planning Tool\n');
     console.log('Available commands:');
     console.log('  node src/utils/export-website.js --comprehensive [url]        # Complete analysis for LLM');
-    console.log('  node src/utils/export-website.js --chat-history               # Extract chat history');
     console.log('  node src/utils/export-website.js --extract-content [url]      # Enhanced content extraction');
     console.log('  node src/utils/export-website.js --migration-plan             # Generate migration plan');
     console.log('  node src/utils/export-website.js --generate-sitemap [url]     # Generate sitemap');
@@ -381,18 +354,17 @@ function main() {
 }
 
 // Run the main function if this script is executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (require.main === module) {
   main();
 }
 
 // Export functions for use in other scripts
-export {
+module.exports = {
   runHTTrack,
   extractWebsiteContentEnhanced,
   generateMigrationPlan,
   performComprehensiveAnalysis,
   generateSummaryReport,
   generateSitemap,
-  createExportInstructions,
-  extractChatHistoryForAnalysis // Add new export
+  createExportInstructions
 };
