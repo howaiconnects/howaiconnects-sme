@@ -16,7 +16,7 @@ const EnrollmentCTA = () => {
                 We'll help you choose the right course based on your business needs and goals.
               </p>
               <div className="mt-8">
-                <Button className="bg-brand-primary hover:bg-brand-accent">
+                <Button>
                   Schedule Free Consultation
                 </Button>
               </div>

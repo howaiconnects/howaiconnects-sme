@@ -21,11 +21,6 @@ const ResourcesFilter = ({ activeFilter, onFilterChange }: ResourcesFilterProps)
         <Button
           key={option.id}
           variant={activeFilter === option.id ? "default" : "outline"}
-          className={`${
-            activeFilter === option.id 
-              ? "bg-brand-primary hover:bg-brand-accent text-white" 
-              : "hover:text-brand-primary"
-          }`}
           onClick={() => onFilterChange(option.id)}
         >
           {option.label}
