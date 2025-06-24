@@ -6,20 +6,20 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-brand-primary text-white hover:bg-brand-secondary shadow-md hover:shadow-lg transition-all duration-300",
+        default: "bg-brand-primary text-white hover:bg-brand-secondary shadow-md hover:shadow-lg",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-brand-primary bg-background text-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-300",
+          "border-2 border-brand-primary bg-transparent text-brand-primary hover:bg-brand-primary hover:text-white shadow-sm hover:shadow-md",
         secondary:
-          "bg-brand-secondary text-white hover:bg-brand-primary transition-all duration-300",
+          "bg-brand-secondary text-white hover:bg-brand-primary shadow-md hover:shadow-lg",
         ghost: "text-brand-primary hover:bg-brand-primary/10 hover:text-brand-primary",
         link: "text-brand-primary underline-offset-4 hover:underline",
-        accent: "bg-brand-accent text-white hover:bg-brand-lightAccent shadow-md hover:shadow-lg transition-all duration-300",
+        accent: "bg-brand-accent text-white hover:bg-brand-accent/90 shadow-lg hover:shadow-xl hover:scale-[1.02]",
       },
       size: {
         default: "h-10 px-4 py-2",
