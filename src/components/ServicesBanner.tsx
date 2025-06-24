@@ -19,7 +19,7 @@ const ServicesBanner = () => {
           <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
             <div className="rounded-md shadow">
               <Link to="/contact">
-                <Button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-accent hover:bg-brand-lightAccent md:py-4 md:text-lg md:px-10">
+                <Button variant="accent" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
                   Schedule Consultation <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>

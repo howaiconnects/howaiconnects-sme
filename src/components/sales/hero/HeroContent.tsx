@@ -44,7 +44,7 @@ const HeroContent: React.FC<HeroContentProps> = ({
         className={`mt-8 flex flex-wrap gap-4 transition-all duration-700 delay-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <Link to="#solutions" className="print:hidden group">
-          <Button size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-white transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:scale-105">
+          <Button size="lg" variant="accent" className="shadow-lg hover:scale-105">
             See How We Can Help <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </Link>

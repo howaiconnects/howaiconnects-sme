@@ -14,7 +14,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ linkTo, linkText }) => {
     <>
       <Link to={linkTo} className="print:hidden">
         <Button 
-          className="bg-brand-primary hover:bg-brand-accent transition-colors hover:scale-105 transform duration-200 group"
+          className="bg-brand-primary hover:bg-brand-secondary transition-colors hover:scale-105 transform duration-200 group"
           size="lg"
         >
           {linkText} <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

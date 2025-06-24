@@ -57,7 +57,8 @@ const Hero = () => {
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-accent to-brand-lightAccent rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
                   <Link to="/contact" className="relative block">
                     <Button 
-                      className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md text-white bg-brand-accent hover:bg-brand-primary hover:scale-105 transition-all duration-300 md:text-lg shadow-lg shadow-brand-accent/25"
+                      variant="accent"
+                      className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
                       Get Your Free AI Assessment <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
                     </Button>
@@ -67,7 +68,7 @@ const Hero = () => {
                   <Link to="/courses" className="block">
                     <Button 
                       variant="outline" 
-                      className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md text-brand-primary border-2 border-brand-primary bg-white hover:bg-gray-50 hover:scale-105 transition-all duration-300 md:text-lg shadow-md"
+                      className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
                       Explore Our AI Courses <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Button>
