@@ -21,15 +21,15 @@ export const emailjsConfig = {
 /**
  * SMTP Configuration
  * For direct email sending through SMTP (used as backup if EmailJS fails)
+ * SECURITY: Credentials are now handled securely via environment variables
  */
 export const smtpConfig = {
-  host: "smtp.hostinger.com",
-  port: 465,
-  secure: true, // use SSL
-  user: "support@howaiconnects.com",
+  host: import.meta.env.VITE_SMTP_HOST || "smtp.hostinger.com",
+  port: parseInt(import.meta.env.VITE_SMTP_PORT || "465"),
+  secure: import.meta.env.VITE_SMTP_SECURE !== "false", // use SSL
+  user: import.meta.env.VITE_SMTP_USER || "support@howaiconnects.com",
   // Password should be stored in environment variable in production
-  // This is just for development purposes
-  appPassword: "Recant6^Gizzard1!Justifier0", 
+  appPassword: import.meta.env.VITE_SMTP_PASSWORD || "", 
 };
 
 /**

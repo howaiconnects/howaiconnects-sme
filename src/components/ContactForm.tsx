@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,13 +13,10 @@ import { zapierConfig, n8nConfig } from "@/config/integrationConfig";
 import { sendContactEmail } from "@/services/emailService";
 import { apiService, ContactFormData } from "@/services/apiService";
 import { useApiRequest } from "@/hooks/useApiRequest";
+import { contactFormSchema, type ContactFormData as ContactFormValues } from "@/schemas/validationSchemas";
+import { sanitizeInput, formRateLimiter } from "@/utils/security";
 
-interface ContactFormValues {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
+// Remove duplicate interface - using the one from schemas
 
 const ContactForm = () => {
   const [emailSettings, setEmailSettings] = useState({
@@ -51,6 +49,7 @@ const ContactForm = () => {
   }, []);
   
   const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -60,22 +59,32 @@ const ContactForm = () => {
   });
 
   const onSubmit = async (data: ContactFormValues) => {
-    if (!data.name || !data.email || !data.message) {
+    // Check rate limiting
+    const userIdentifier = data.email || 'anonymous';
+    if (!formRateLimiter.isAllowed(userIdentifier)) {
       toast({
-        title: "Missing information",
-        description: "Please fill in all required fields",
+        title: "Too many submissions",
+        description: "Please wait before submitting another form.",
         variant: "destructive",
       });
       return;
     }
-    
+
     try {
+      // Sanitize all inputs
+      const sanitizedData = {
+        name: sanitizeInput(data.name),
+        email: sanitizeInput(data.email),
+        phone: data.phone ? sanitizeInput(data.phone) : "",
+        message: sanitizeInput(data.message)
+      };
+    
       // Prepare data for API
       const apiData: ContactFormData = {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        message: data.message,
+        name: sanitizedData.name,
+        email: sanitizedData.email,
+        phone: sanitizedData.phone,
+        message: sanitizedData.message,
       };
 
       // Submit to new API service
@@ -85,10 +94,10 @@ const ContactForm = () => {
       if (emailSettings.configured) {
         try {
           await sendContactEmail({
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            message: data.message
+            name: sanitizedData.name,
+            email: sanitizedData.email,
+            phone: sanitizedData.phone,
+            message: sanitizedData.message
           });
         } catch (emailError) {
           console.error("Email send error:", emailError);
@@ -103,7 +112,7 @@ const ContactForm = () => {
           await sendToZapier(
             zapierConfig.contactFormWebhook,
             {
-              ...data,
+              ...sanitizedData,
               formType: "contact"
             },
             "contact_form"
@@ -121,7 +130,7 @@ const ContactForm = () => {
           await sendToZapier(
             n8nConfig.contactFormWebhook,
             {
-              ...data,
+              ...sanitizedData,
               formType: "contact"
             },
             "contact_form"
@@ -152,7 +161,7 @@ const ContactForm = () => {
         contactApi.reset();
       }
     } catch (error) {
-      console.error("Send error:", error);
+      console.error("Form submission error:", error);
       toast({
         title: "Failed to send message",
         description: "There was a problem sending your message. Please try again.",
