@@ -120,11 +120,19 @@ const Navbar = () => {
                           </Link>
                         </NavigationMenuLink>
                       </li>
-                      <li>
+                       <li>
                         <NavigationMenuLink asChild>
                           <Link to="/services/ai-consultation/ai-strategy-development" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                             <div className="text-sm font-medium leading-none">AI Strategy Development</div>
                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Create a custom AI adoption roadmap</p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link to="/services/ai-consultation/implementation-support" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">Implementation Support</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Ongoing support for AI deployment</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>
@@ -160,6 +168,14 @@ const Navbar = () => {
                   <NavigationMenuTrigger className="text-gray-700 hover:text-brand-accent">Resources</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-4 w-[400px] md:w-[500px] md:grid-cols-2">
+                      <li className="col-span-2">
+                        <NavigationMenuLink asChild>
+                          <Link to="/resources" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">All Resources</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Browse all our resources and educational content</p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
                       <li>
                         <NavigationMenuLink asChild>
                           <Link to="/courses" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
@@ -189,6 +205,14 @@ const Navbar = () => {
                           <Link to="/resources/tools" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                             <div className="text-sm font-medium leading-none">Tools</div>
                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Free tools for AI implementation</p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link to="/resources/templates" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">Templates</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Ready-to-use automation templates</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>

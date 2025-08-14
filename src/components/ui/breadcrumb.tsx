@@ -1,15 +1,16 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { ChevronRight, MoreHorizontal } from "lucide-react"
-
+import { ChevronRight, Home } from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
   React.ComponentPropsWithoutRef<"nav"> & {
-    separator?: React.ReactNode
+    separator?: React.ComponentType<{ className?: string }>
   }
->(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />)
+>(({ className, separator: Separator = ChevronRight, ...props }, ref) => (
+  <nav ref={ref} aria-label="breadcrumb" className={className} {...props} />
+))
 Breadcrumb.displayName = "Breadcrumb"
 
 const BreadcrumbList = React.forwardRef<
@@ -41,20 +42,14 @@ BreadcrumbItem.displayName = "BreadcrumbItem"
 
 const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<"a"> & {
-    asChild?: boolean
-  }
->(({ asChild, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : "a"
-
-  return (
-    <Comp
-      ref={ref}
-      className={cn("transition-colors hover:text-foreground", className)}
-      {...props}
-    />
-  )
-})
+  React.ComponentPropsWithoutRef<typeof Link>
+>(({ className, ...props }, ref) => (
+  <Link
+    ref={ref}
+    className={cn("transition-colors hover:text-foreground", className)}
+    {...props}
+  />
+))
 BreadcrumbLink.displayName = "BreadcrumbLink"
 
 const BreadcrumbPage = React.forwardRef<
@@ -72,11 +67,7 @@ const BreadcrumbPage = React.forwardRef<
 ))
 BreadcrumbPage.displayName = "BreadcrumbPage"
 
-const BreadcrumbSeparator = ({
-  children,
-  className,
-  ...props
-}: React.ComponentProps<"li">) => (
+const BreadcrumbSeparator = ({ children, className, ...props }: React.ComponentProps<"li">) => (
   <li
     role="presentation"
     aria-hidden="true"
@@ -88,21 +79,72 @@ const BreadcrumbSeparator = ({
 )
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 
-const BreadcrumbEllipsis = ({
-  className,
-  ...props
-}: React.ComponentProps<"span">) => (
-  <span
-    role="presentation"
-    aria-hidden="true"
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
-    {...props}
-  >
-    <MoreHorizontal className="h-4 w-4" />
-    <span className="sr-only">More</span>
-  </span>
-)
-BreadcrumbEllipsis.displayName = "BreadcrumbElipssis"
+// Auto-generating breadcrumb component
+const AutoBreadcrumb: React.FC<{ className?: string }> = ({ className }) => {
+  const location = useLocation()
+  const pathnames = location.pathname.split('/').filter((x) => x)
+
+  // Route label mapping
+  const routeLabels: { [key: string]: string } = {
+    'services': 'Services',
+    'ai-automation-solutions': 'AI Automation Solutions',
+    'ai-consultation': 'AI Consultation',
+    'marketing-automation': 'Marketing Automation',
+    'workflow-automation': 'Workflow Automation',
+    'customer-service-automation': 'Customer Service Automation',
+    'ai-readiness-assessment': 'AI Readiness Assessment',
+    'ai-strategy-development': 'AI Strategy Development',
+    'implementation-support': 'Implementation Support',
+    'resources': 'Resources',
+    'blog': 'Blog',
+    'case-studies': 'Case Studies',
+    'tools': 'Tools',
+    'templates': 'Templates',
+    'automation-templates': 'Automation Templates',
+    'courses': 'Courses',
+    'about': 'About',
+    'contact': 'Contact',
+    'web-apps': 'Web Apps',
+    'path-to-canada': 'PathtoCanada.ca',
+    'ai-data-gem': 'AIDataGem.com',
+    'web-app-development': 'Web App Development',
+    'done-for-you-ai-agency': 'Done-for-You AI Agency',
+  }
+
+  if (pathnames.length === 0) return null
+
+  return (
+    <Breadcrumb className={cn("py-3 px-4 sm:px-6 lg:px-8", className)}>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink to="/">
+            <Home className="h-4 w-4" />
+            <span className="sr-only">Home</span>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        
+        {pathnames.map((pathname, index) => {
+          const to = `/${pathnames.slice(0, index + 1).join('/')}`
+          const isLast = index === pathnames.length - 1
+          const label = routeLabels[pathname] || pathname.charAt(0).toUpperCase() + pathname.slice(1)
+
+          return (
+            <React.Fragment key={to}>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                {isLast ? (
+                  <BreadcrumbPage>{label}</BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink to={to}>{label}</BreadcrumbLink>
+                )}
+              </BreadcrumbItem>
+            </React.Fragment>
+          )
+        })}
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}
 
 export {
   Breadcrumb,
@@ -111,5 +153,5 @@ export {
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
+  AutoBreadcrumb,
 }
