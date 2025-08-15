@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceDetails from "@/components/ServiceDetails";
 import ContactSection from "@/components/ContactSection";
+import RelatedServices from "@/components/RelatedServices";
+import { AutoBreadcrumb } from "@/components/ui/breadcrumb";
 import { Map, Settings, ClipboardList, Clock } from "lucide-react";
 
 const AIStrategyDevelopment = () => {
@@ -88,6 +90,7 @@ const AIStrategyDevelopment = () => {
       </Helmet>
 
       <Navbar />
+      <AutoBreadcrumb />
       
       <main>
         <ServiceDetails
@@ -99,6 +102,11 @@ const AIStrategyDevelopment = () => {
           useCases={useCases}
           relatedServices={relatedServices}
           imageSrc="/lovable-uploads/af6b0bd3-79bb-44ac-af7d-134a7e6d842a.png"
+        />
+        
+        <RelatedServices 
+          currentService="/services/ai-consultation/ai-strategy-development"
+          category="consultation"
         />
         
         <ContactSection />

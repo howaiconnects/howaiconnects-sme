@@ -7,6 +7,7 @@ import OurMission from "@/components/OurMission";
 import TeamMembers from "@/components/TeamMembers";
 import CompanyValues from "@/components/CompanyValues";
 import ContactSection from "@/components/ContactSection";
+import { AutoBreadcrumb } from "@/components/ui/breadcrumb";
 
 const About = () => {
   return (
@@ -43,6 +44,7 @@ const About = () => {
       </Helmet>
       
       <Navbar />
+      <AutoBreadcrumb />
       <main className="flex-grow">
         <AboutBanner />
         <OurMission />

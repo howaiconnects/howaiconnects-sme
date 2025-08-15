@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceDetails from "@/components/ServiceDetails";
 import ContactSection from "@/components/ContactSection";
+import RelatedServices from "@/components/RelatedServices";
+import { AutoBreadcrumb } from "@/components/ui/breadcrumb";
 import { ClipboardCheck, Search, Calculator } from "lucide-react";
 
 const AIReadinessAssessment = () => {
@@ -88,6 +90,7 @@ const AIReadinessAssessment = () => {
       </Helmet>
 
       <Navbar />
+      <AutoBreadcrumb />
       
       <main>
         <ServiceDetails
@@ -99,6 +102,11 @@ const AIReadinessAssessment = () => {
           useCases={useCases}
           relatedServices={relatedServices}
           imageSrc="/lovable-uploads/6a19eca0-b899-42d6-bcd1-37c87248c21d.png"
+        />
+        
+        <RelatedServices 
+          currentService="/services/ai-consultation/ai-readiness-assessment"
+          category="consultation"
         />
         
         <ContactSection />

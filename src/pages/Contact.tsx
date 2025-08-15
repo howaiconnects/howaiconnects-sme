@@ -7,6 +7,7 @@ import ContactInfoCards from "@/components/contact/ContactInfoCards";
 import ContactTabs from "@/components/contact/ContactTabs";
 import LocationSection from "@/components/contact/LocationSection";
 import ZendeskIntegration from "@/components/contact/ZendeskIntegration";
+import { AutoBreadcrumb } from "@/components/ui/breadcrumb";
 
 const Contact = () => {
   return (
@@ -18,6 +19,7 @@ const Contact = () => {
       
       <ZendeskIntegration />
       <Navbar />
+      <AutoBreadcrumb />
       
       <main className="flex-grow">
         <ContactHeader />

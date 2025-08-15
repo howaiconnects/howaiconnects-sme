@@ -8,6 +8,7 @@ import BlogPosts from "@/components/BlogPosts";
 import CaseStudies from "@/components/CaseStudies";
 import AITools from "@/components/AITools";
 import AutomationTemplates from "@/components/AutomationTemplates";
+import { AutoBreadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { FileText, Calculator, CheckSquare, BookOpen } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,6 +60,7 @@ const Resources = () => {
       </Helmet>
       
       <Navbar />
+      <AutoBreadcrumb />
       <main className="flex-grow">
         <ResourcesBanner />
         

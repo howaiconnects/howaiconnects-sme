@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceDetails from "@/components/ServiceDetails";
 import ContactSection from "@/components/ContactSection";
+import RelatedServices from "@/components/RelatedServices";
+import { AutoBreadcrumb } from "@/components/ui/breadcrumb";
 import { Database, BarChart2, Settings } from "lucide-react";
 
 const WorkflowAutomation = () => {
@@ -88,6 +90,7 @@ const WorkflowAutomation = () => {
       </Helmet>
 
       <Navbar />
+      <AutoBreadcrumb />
       
       <main>
         <ServiceDetails
@@ -99,6 +102,11 @@ const WorkflowAutomation = () => {
           useCases={useCases}
           relatedServices={relatedServices}
           imageSrc="/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png"
+        />
+        
+        <RelatedServices 
+          currentService="/services/ai-automation-solutions/workflow-automation"
+          category="automation"
         />
         
         <ContactSection />
