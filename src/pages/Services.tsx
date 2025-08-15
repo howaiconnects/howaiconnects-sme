@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import ServicesBanner from "@/components/ServicesBanner";
 import ServicesShowcase from "@/components/ServicesShowcase";
 import ContactSection from "@/components/ContactSection";
+import { AutoBreadcrumb } from "@/components/ui/breadcrumb";
 
 const Services = () => {
   return (
@@ -41,6 +42,7 @@ const Services = () => {
       </Helmet>
       
       <Navbar />
+      <AutoBreadcrumb />
       <main className="flex-grow">
         <ServicesBanner />
         <ServicesShowcase />

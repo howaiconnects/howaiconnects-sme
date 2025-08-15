@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceDetails from "@/components/ServiceDetails";
 import ContactSection from "@/components/ContactSection";
+import RelatedServices from "@/components/RelatedServices";
+import { AutoBreadcrumb } from "@/components/ui/breadcrumb";
 import { BarChart2, Send, Zap } from "lucide-react";
 
 const MarketingAutomation = () => {
@@ -88,6 +90,7 @@ const MarketingAutomation = () => {
       </Helmet>
 
       <Navbar />
+      <AutoBreadcrumb />
       
       <main>
         <ServiceDetails
@@ -99,6 +102,11 @@ const MarketingAutomation = () => {
           useCases={useCases}
           relatedServices={relatedServices}
           imageSrc="/lovable-uploads/c50cf4b9-a887-4b83-a417-1906d3a084a3.png"
+        />
+        
+        <RelatedServices 
+          currentService="/services/ai-automation-solutions/marketing-automation"
+          category="automation"
         />
         
         <ContactSection />

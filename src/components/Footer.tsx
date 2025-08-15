@@ -119,6 +119,7 @@ const Footer = () => {
               <li><Link to="/services/ai-automation-solutions/customer-service-automation" className="text-gray-300 hover:text-brand-lightAccent">Customer Service Automation</Link></li>
               <li><Link to="/services/ai-consultation/ai-readiness-assessment" className="text-gray-300 hover:text-brand-lightAccent">AI Readiness Assessment</Link></li>
               <li><Link to="/services/ai-consultation/ai-strategy-development" className="text-gray-300 hover:text-brand-lightAccent">AI Strategy Development</Link></li>
+              <li><Link to="/services/ai-consultation/implementation-support" className="text-gray-300 hover:text-brand-lightAccent">Implementation Support</Link></li>
             </ul>
           </div>
           
