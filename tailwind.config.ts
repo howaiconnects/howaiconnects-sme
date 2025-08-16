@@ -63,13 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Brand colors - these should be used consistently
-				'brand-primary': "#1E3A50",    // Dark blue - main brand color
-				'brand-secondary': "#4D7A97",  // Medium blue - hover state
-				'brand-accent': "#35A162",     // Green - accent color
-				'brand-light-accent': "#7CCD9D", // Light green
-				'brand-dark': "#1A1F2C",       // Dark slate
-				'brand-light': "#F8FAFC",      // Light background
+				// HowAIConnects Brand Colors - Dual Blue System
+				'brand-primary': "210 60% 20%",      // Deep Navy HSL
+				'brand-secondary': "210 45% 35%",    // Medium Blue HSL
+				'brand-accent': "152 55% 45%",       // Accent Green HSL
+				'brand-light-accent': "152 40% 60%", // Light Green HSL
+				'brand-dark': "220 30% 15%",         // Dark Slate HSL
+				'brand-light': "210 20% 98%",        // Light Background HSL
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

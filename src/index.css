@@ -5,16 +5,17 @@
 
 @layer base {
   :root {
+    /* HowAIConnects Brand Theme */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 50% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 50% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 50% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 210 60% 20%;        /* Dark blue brand */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;

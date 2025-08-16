@@ -15,9 +15,9 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
-        {/* Global Header with Sidebar Trigger */}
-        <header className="fixed top-0 left-0 right-0 h-12 flex items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
-          <SidebarTrigger className="ml-2" />
+        {/* App Platform Header */}
+        <header className="fixed top-0 left-0 right-0 h-12 flex items-center border-b bg-gradient-to-r from-blue-700 to-blue-600 backdrop-blur z-50">
+          <SidebarTrigger className="ml-2 text-white hover:bg-white/20" />
           <div className="flex-1 flex items-center justify-between px-4">
             <div className="flex items-center gap-2">
               <img 
@@ -25,11 +25,11 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                 alt="HowAIConnects Logo" 
                 className="h-6 w-auto" 
               />
-              <span className="font-semibold text-brand-primary">HowAIConnects</span>
+              <span className="font-semibold text-white">HowAIConnects App</span>
             </div>
             <div className="flex items-center gap-2">
               {user && (
-                <span className="text-sm text-muted-foreground">{user.email}</span>
+                <span className="text-sm text-white/80">{user.email}</span>
               )}
               <UserNav />
             </div>
@@ -40,7 +40,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         <AppSidebar />
 
         {/* Main Content */}
-        <main className="flex-1 pt-12 bg-background">
+        <main className="flex-1 pt-12 bg-gradient-to-br from-slate-50 to-blue-50/30">
           <div className="container mx-auto px-4 py-6">
             {children || <Outlet />}
           </div>

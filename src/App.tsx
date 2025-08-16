@@ -128,15 +128,22 @@ function App() {
           </PublicRoute>
         } />
 
-        {/* App Platform Routes - All use AppLayout */}
+        {/* App Platform Routes - All use AppLayout under /app/* */}
         <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          <Route path="/app/dashboard" element={<Dashboard />} />
+          <Route path="/app/seo" element={<SEODashboard />} />
+          <Route path="/app/automation" element={<AutomationDashboard />} />
+          <Route path="/app/navigation" element={<NavigationDashboard />} />
+          <Route path="/app/audit" element={<RoutingAuditDashboard />} />
+          <Route path="/app/resources/downloads/:id" element={<ResourceDownloadPage />} />
+          <Route path="/app/resources/templates/:id" element={<TemplateDetail />} />
+          
+          {/* Legacy redirects for backward compatibility */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/seo" element={<SEODashboard />} />
           <Route path="/automation" element={<AutomationDashboard />} />
           <Route path="/navigation" element={<NavigationDashboard />} />
           <Route path="/audit" element={<RoutingAuditDashboard />} />
-          <Route path="/resources/downloads/:id" element={<ResourceDownloadPage />} />
-          <Route path="/resources/templates/:id" element={<TemplateDetail />} />
         </Route>
 
         {/* Admin Routes - All use AdminLayout */}

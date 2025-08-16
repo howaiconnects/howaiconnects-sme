@@ -65,26 +65,32 @@ export function AppSidebar() {
       items: [
         {
           title: "Main Dashboard",
-          url: "/dashboard", 
+          url: "/app/dashboard", 
           icon: Home
         },
         {
           title: "SEO Dashboard",
-          url: "/seo",
+          url: "/app/seo",
           icon: BarChart3,
           badge: "Premium"
         },
         {
           title: "Automation Hub", 
-          url: "/automation",
+          url: "/app/automation",
           icon: Zap,
           badge: "New"
         },
         {
           title: "Navigation Center",
-          url: "/navigation",
+          url: "/app/navigation",
           icon: Menu,
           badge: "360°"
+        },
+        {
+          title: "Routing Audit",
+          url: "/app/audit",
+          icon: Shield,
+          badge: "System"
         }
       ]
     },
