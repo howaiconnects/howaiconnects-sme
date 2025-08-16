@@ -1,13 +1,14 @@
 /**
  * SEO AI Platform Configuration
  * Centralized configuration for all AI services, APIs, and integrations
+ * Note: Environment variables removed - use Supabase secrets for sensitive data
  */
 
 // Latitude.so Configuration
 export const latitudeConfig = {
-  apiKey: import.meta.env.VITE_LATITUDE_API_KEY || '',
   baseUrl: 'https://gateway.latitude.so/api',
-  projectId: import.meta.env.VITE_LATITUDE_PROJECT_ID || '',
+  apiKey: '', // Will be loaded from Supabase secrets
+  projectId: '', // Will be loaded from Supabase secrets
   promptVersions: {
     keywordResearch: 'keyword-research-v1',
     contentGeneration: 'content-generation-v1',
@@ -19,8 +20,6 @@ export const latitudeConfig = {
 
 // Azure AI Foundry Configuration
 export const azureAIConfig = {
-  endpoint: import.meta.env.VITE_AZURE_AI_ENDPOINT || '',
-  apiKey: import.meta.env.VITE_AZURE_AI_KEY || '',
   deployments: {
     gpt4: 'gpt-4-deployment',
     gpt35: 'gpt-35-turbo',
@@ -28,16 +27,12 @@ export const azureAIConfig = {
     vision: 'gpt-4-vision',
   },
   searchService: {
-    endpoint: import.meta.env.VITE_AZURE_SEARCH_ENDPOINT || '',
-    apiKey: import.meta.env.VITE_AZURE_SEARCH_KEY || '',
     indexName: 'seo-content-index'
   }
 };
 
 // Airtable Configuration
 export const airtableConfig = {
-  apiKey: import.meta.env.VITE_AIRTABLE_API_KEY || '',
-  baseId: import.meta.env.VITE_AIRTABLE_BASE_ID || '',
   tables: {
     content: 'Content',
     keywords: 'Keywords',
@@ -50,22 +45,13 @@ export const airtableConfig = {
 
 // SEO Tools API Configuration
 export const seoToolsConfig = {
-  googleSearchConsole: {
-    clientId: import.meta.env.VITE_GSC_CLIENT_ID || '',
-    clientSecret: import.meta.env.VITE_GSC_CLIENT_SECRET || '',
-    redirectUri: import.meta.env.VITE_GSC_REDIRECT_URI || '',
-  },
   ahrefs: {
-    apiKey: import.meta.env.VITE_AHREFS_API_KEY || '',
     baseUrl: 'https://apiv2.ahrefs.com'
   },
   semrush: {
-    apiKey: import.meta.env.VITE_SEMRUSH_API_KEY || '',
     baseUrl: 'https://api.semrush.com'
   },
   brightData: {
-    username: import.meta.env.VITE_BRIGHT_DATA_USERNAME || '',
-    password: import.meta.env.VITE_BRIGHT_DATA_PASSWORD || '',
     endpoint: 'brd.superproxy.io:22225'
   }
 };
@@ -73,20 +59,16 @@ export const seoToolsConfig = {
 // Automation Platform Configuration
 export const automationConfig = {
   zapier: {
-    webhookUrl: import.meta.env.VITE_ZAPIER_WEBHOOK_URL || '',
-    apiKey: import.meta.env.VITE_ZAPIER_API_KEY || ''
+    webhookUrl: ''
   },
   make: {
-    webhookUrl: import.meta.env.VITE_MAKE_WEBHOOK_URL || '',
-    apiKey: import.meta.env.VITE_MAKE_API_KEY || ''
+    webhookUrl: ''
   },
   n8n: {
-    webhookUrl: import.meta.env.VITE_N8N_WEBHOOK_URL || '',
-    apiKey: import.meta.env.VITE_N8N_API_KEY || ''
+    webhookUrl: ''
   },
   pipedream: {
-    webhookUrl: import.meta.env.VITE_PIPEDREAM_WEBHOOK_URL || '',
-    apiKey: import.meta.env.VITE_PIPEDREAM_API_KEY || ''
+    webhookUrl: ''
   }
 };
 
@@ -97,28 +79,28 @@ export const aiAgentConfig = {
     model: 'gpt-4',
     temperature: 0.3,
     maxTokens: 2000,
-    systemPrompt: 'You are an expert SEO keyword researcher...'
+    systemPrompt: 'You are an expert SEO keyword researcher specializing in AI automation and business technology keywords. Focus on commercial intent and long-tail opportunities.'
   },
   contentGenerationAgent: {
     name: 'Content Generation Agent',
     model: 'gpt-4',
     temperature: 0.7,
     maxTokens: 4000,
-    systemPrompt: 'You are an expert content writer...'
+    systemPrompt: 'You are an expert content writer specializing in AI automation, business transformation, and technology solutions. Write engaging, SEO-optimized content that converts.'
   },
   seoOptimizationAgent: {
     name: 'SEO Optimization Agent',
     model: 'gpt-4',
     temperature: 0.2,
     maxTokens: 3000,
-    systemPrompt: 'You are an expert SEO optimizer...'
+    systemPrompt: 'You are an expert SEO optimizer focusing on technical SEO, on-page optimization, and content structure for maximum search visibility.'
   },
   competitorAnalysisAgent: {
     name: 'Competitor Analysis Agent',
     model: 'gpt-4',
     temperature: 0.4,
     maxTokens: 2500,
-    systemPrompt: 'You are an expert competitive intelligence analyst...'
+    systemPrompt: 'You are an expert competitive intelligence analyst specializing in AI automation and business technology markets.'
   }
 };
 
@@ -193,6 +175,50 @@ export const monitoringConfig = {
   }
 };
 
+// Page-specific SEO Configuration
+export const pageConfig = {
+  home: {
+    title: "HowAIConnects - AI Business Automation Platform | Toronto",
+    description: "Transform your business with AI automation solutions. Custom web apps, workflow automation, and intelligent business insights. Toronto's leading AI consulting firm.",
+    keywords: ["AI automation Toronto", "business automation", "AI consulting", "workflow automation", "custom web applications"],
+    schema: {
+      "@type": "Organization",
+      "name": "HowAIConnects",
+      "url": "https://howaiconnects.com",
+      "logo": "https://howaiconnects.com/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png",
+      "sameAs": [
+        "https://linkedin.com/company/howaiconnects",
+        "https://twitter.com/howaiconnects"
+      ]
+    }
+  },
+  services: {
+    title: "AI Automation Services | Custom Solutions for Business Growth",
+    description: "Comprehensive AI automation services including workflow automation, marketing automation, and custom AI solutions. Transform your operations with intelligent automation.",
+    keywords: ["AI automation services", "workflow automation", "marketing automation", "AI consulting services"],
+    schema: {
+      "@type": "Service",
+      "serviceType": "AI Automation Services",
+      "provider": {
+        "@type": "Organization",
+        "name": "HowAIConnects"
+      }
+    }
+  },
+  about: {
+    title: "About HowAIConnects | AI Automation Experts in Toronto",
+    description: "Learn about HowAIConnects, Toronto's leading AI automation company. Our team specializes in transforming businesses through intelligent automation solutions.",
+    keywords: ["HowAIConnects team", "AI automation company Toronto", "AI consulting experts"],
+    schema: {
+      "@type": "AboutPage",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "HowAIConnects"
+      }
+    }
+  }
+};
+
 export default {
   latitude: latitudeConfig,
   azureAI: azureAIConfig,
@@ -202,5 +228,6 @@ export default {
   aiAgents: aiAgentConfig,
   workflow: workflowConfig,
   quality: qualityConfig,
-  monitoring: monitoringConfig
+  monitoring: monitoringConfig,
+  pages: pageConfig
 };
