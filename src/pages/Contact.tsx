@@ -1,7 +1,5 @@
 
 import { Helmet } from "react-helmet-async";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ContactHeader from "@/components/contact/ContactHeader";
 import ContactInfoCards from "@/components/contact/ContactInfoCards";
 import ContactTabs from "@/components/contact/ContactTabs";
@@ -18,7 +16,6 @@ const Contact = () => {
       </Helmet>
       
       <ZendeskIntegration />
-      <Navbar />
       <AutoBreadcrumb />
       
       <main className="flex-grow">
@@ -36,8 +33,6 @@ const Contact = () => {
           </div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };
