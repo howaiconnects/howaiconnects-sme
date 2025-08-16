@@ -4,6 +4,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminAuthProvider as SecureAdminAuthProvider } from "@/contexts/SecureAdminAuthContext";
 
+// Layout Components
+import PublicLayout from "@/components/layouts/PublicLayout";
+import AppLayout from "@/components/layouts/AppLayout";
+import AdminLayout from "@/components/layouts/AdminLayout";
+
 // Auth Components
 import ProtectedRoute from "@/components/ProtectedRoute";
 import RoleBasedRoute from "@/components/auth/RoleBasedRoute";
@@ -69,50 +74,52 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        {/* Public Routes - Available to everyone */}
-        <Route path="/" element={<Index />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/services" element={<Services />} />
-        
-        {/* Service Detail Pages - Public */}
-        <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />
-        <Route path="/services/ai-automation-solutions/workflow-automation" element={<WorkflowAutomation />} />
-        <Route path="/services/ai-automation-solutions/customer-service-automation" element={<CustomerServiceAutomation />} />
-        <Route path="/services/ai-consultation/ai-readiness-assessment" element={<AIReadinessAssessment />} />
-        <Route path="/services/ai-consultation/ai-strategy-development" element={<AIStrategyDevelopment />} />
-        <Route path="/services/ai-consultation/implementation-support" element={<ImplementationSupport />} />
-        
-        {/* Resources Pages - Public */}
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/resources/blog" element={<Blog />} />
-        <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
-        <Route path="/resources/tools" element={<ToolsPage />} />
-        <Route path="/resources/templates" element={<AutomationTemplatesPage />} />
-        <Route path="/resources/automation-templates" element={<AutomationTemplatesPage />} />
-        <Route path="/resources/:category" element={<ResourcesPage />} />
-        
-        {/* Courses Pages - Public */}
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/courses/:id" element={<CourseDetail />} />
-        
-        {/* Business Division Pages - Public */}
-        <Route path="/done-for-you-ai-agency" element={<DoneForYouAIAgency />} />
-        <Route path="/web-app-development" element={<WebAppDevelopment />} />
-        
-        {/* Web App Examples - Public */}
-        <Route path="/web-apps/path-to-canada" element={<PathtoCanadaPage />} />
-        <Route path="/web-apps/ai-data-gem" element={<AIDataGemPage />} />
-        
-        {/* Marketing Pages - Public */}
-        <Route path="/special-offer" element={<AdLandingPage />} />
-        <Route path="/sales-deck" element={<SalesDeck />} />
-        <Route path="/sales-presentation" element={<SalesDeckPresentation />} />
-        
-        {/* Legal Pages - Public */}
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
+        {/* Public Routes - All wrapped in PublicLayout */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/services" element={<Services />} />
+          
+          {/* Service Detail Pages - Public */}
+          <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />
+          <Route path="/services/ai-automation-solutions/workflow-automation" element={<WorkflowAutomation />} />
+          <Route path="/services/ai-automation-solutions/customer-service-automation" element={<CustomerServiceAutomation />} />
+          <Route path="/services/ai-consultation/ai-readiness-assessment" element={<AIReadinessAssessment />} />
+          <Route path="/services/ai-consultation/ai-strategy-development" element={<AIStrategyDevelopment />} />
+          <Route path="/services/ai-consultation/implementation-support" element={<ImplementationSupport />} />
+          
+          {/* Resources Pages - Public */}
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/resources/blog" element={<Blog />} />
+          <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/resources/tools" element={<ToolsPage />} />
+          <Route path="/resources/templates" element={<AutomationTemplatesPage />} />
+          <Route path="/resources/automation-templates" element={<AutomationTemplatesPage />} />
+          <Route path="/resources/:category" element={<ResourcesPage />} />
+          
+          {/* Courses Pages - Public */}
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:id" element={<CourseDetail />} />
+          
+          {/* Business Division Pages - Public */}
+          <Route path="/done-for-you-ai-agency" element={<DoneForYouAIAgency />} />
+          <Route path="/web-app-development" element={<WebAppDevelopment />} />
+          
+          {/* Web App Examples - Public */}
+          <Route path="/web-apps/path-to-canada" element={<PathtoCanadaPage />} />
+          <Route path="/web-apps/ai-data-gem" element={<AIDataGemPage />} />
+          
+          {/* Marketing Pages - Public */}
+          <Route path="/special-offer" element={<AdLandingPage />} />
+          <Route path="/sales-deck" element={<SalesDeck />} />
+          <Route path="/sales-presentation" element={<SalesDeckPresentation />} />
+          
+          {/* Legal Pages - Public */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+        </Route>
 
         {/* Auth Routes - Redirect authenticated users */}
         <Route path="/auth" element={
@@ -121,70 +128,35 @@ function App() {
           </PublicRoute>
         } />
 
-        {/* Protected User Routes - Require authentication */}
-        <Route path="/dashboard" element={
-          <ProtectedRoute>
-            <AuthLayout>
-              <Dashboard />
-            </AuthLayout>
-          </ProtectedRoute>
-        } />
+        {/* App Platform Routes - All use AppLayout */}
+        <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/seo" element={<SEODashboard />} />
+          <Route path="/automation" element={<AutomationDashboard />} />
+          <Route path="/navigation" element={<NavigationDashboard />} />
+          <Route path="/audit" element={<RoutingAuditDashboard />} />
+          <Route path="/resources/downloads/:id" element={<ResourceDownloadPage />} />
+          <Route path="/resources/templates/:id" element={<TemplateDetail />} />
+        </Route>
 
-        {/* SEO AI Platform - Require authentication */}
-        <Route path="/seo" element={
-          <ProtectedRoute>
-            <SEODashboard />
-          </ProtectedRoute>
-        } />
-        
-        {/* Automation Dashboard - Require authentication */}
-        <Route path="/automation" element={
-          <ProtectedRoute>
-            <AutomationDashboard />
-          </ProtectedRoute>
-        } />
-        
-        {/* Navigation Dashboard - Require authentication */}
-        <Route path="/navigation" element={
-          <ProtectedRoute>
-            <NavigationDashboard />
-          </ProtectedRoute>
-        } />
-        
-        {/* Routing Audit Dashboard - Require authentication */}
-        <Route path="/audit" element={
-          <ProtectedRoute>
-            <RoutingAuditDashboard />
-          </ProtectedRoute>
-        } />
+        {/* Admin Routes - All use AdminLayout */}
+        <Route element={<RoleBasedRoute allowedRoles={['admin']}><AdminLayout /></RoleBasedRoute>}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/settings" element={
+            <div className="text-center py-12">
+              <h2 className="text-2xl font-bold">Admin Settings</h2>
+              <p className="text-muted-foreground mt-2">Coming soon...</p>
+            </div>
+          } />
+        </Route>
 
-        {/* Protected Download Routes - Require authentication */}
-        <Route path="/resources/downloads/:id" element={
-          <ProtectedRoute>
-            <AuthLayout>
-              <ResourceDownloadPage />
-            </AuthLayout>
-          </ProtectedRoute>
-        } />
-        <Route path="/resources/templates/:id" element={
-          <ProtectedRoute>
-            <AuthLayout>
-              <TemplateDetail />
-            </AuthLayout>
-          </ProtectedRoute>
-        } />
-
-        {/* Admin Routes - Require admin role */}
-        <Route path="/admin/dashboard" element={
-          <RoleBasedRoute allowedRoles={['admin']}>
-            <AuthLayout>
-              <AdminDashboard />
-            </AuthLayout>
-          </RoleBasedRoute>
-        } />
-
-        {/* Legacy Admin Routes - Redirect to secure login */}
+        {/* Legacy Admin Routes - Standalone with secure auth */}
         <Route path="/admin/login" element={
+          <SecureAdminAuthProvider>
+            <SecureAdminLogin />
+          </SecureAdminAuthProvider>
+        } />
+        <Route path="/admin/secure-login" element={
           <SecureAdminAuthProvider>
             <SecureAdminLogin />
           </SecureAdminAuthProvider>
@@ -196,34 +168,14 @@ function App() {
             </AdminProtectedRoute>
           </SecureAdminAuthProvider>
         } />
-
-        {/* Secure Admin Routes - New secure authentication system */}
-        <Route path="/admin/secure-login" element={
-          <SecureAdminAuthProvider>
-            <SecureAdminLogin />
-          </SecureAdminAuthProvider>
-        } />
-        
         <Route path="/admin/secure/dashboard" element={
           <SecureAdminAuthProvider>
             <AdminProtectedRoute>
-              <AuthLayout>
+              <AdminLayout>
                 <AdminDashboard />
-              </AuthLayout>
+              </AdminLayout>
             </AdminProtectedRoute>
           </SecureAdminAuthProvider>
-        } />
-
-        {/* New Admin Routes - Using new role-based auth */}
-        <Route path="/admin/settings" element={
-          <RoleBasedRoute allowedRoles={['admin']}>
-            <AuthLayout>
-              <div className="text-center py-12">
-                <h2 className="text-2xl font-bold">Admin Settings</h2>
-                <p className="text-muted-foreground mt-2">Coming soon...</p>
-              </div>
-            </AuthLayout>
-          </RoleBasedRoute>
         } />
 
         {/* 404 Page */}
