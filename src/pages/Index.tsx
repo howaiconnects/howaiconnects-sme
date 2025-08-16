@@ -1,13 +1,11 @@
 
 import { Helmet } from "react-helmet-async";
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ProblemSolution from "@/components/ProblemSolution";
 import ServicesShowcase from "@/components/ServicesShowcase";
 import SuccessStories from "@/components/SuccessStories";
 import EducationalOfferings from "@/components/EducationalOfferings";
 import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
 import FeaturedServices from "@/components/FeaturedServices";
 import VisionSection from "@/components/VisionSection";
 
@@ -43,7 +41,6 @@ const Index = () => {
         </script>
       </Helmet>
       
-      <Navbar />
       <main className="flex-grow">
         <Hero />
         <FeaturedServices />
@@ -54,7 +51,6 @@ const Index = () => {
         <EducationalOfferings />
         <ContactSection />
       </main>
-      <Footer />
     </div>
   );
 };
