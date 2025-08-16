@@ -1,21 +1,20 @@
 
+import React from 'react';
 import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
-import ProblemSolution from "@/components/ProblemSolution";
-import ServicesShowcase from "@/components/ServicesShowcase";
+import AIStartupMission from "@/components/AIStartupMission";
+import AISolutionsShowcase from "@/components/AISolutionsShowcase";
 import SuccessStories from "@/components/SuccessStories";
-import EducationalOfferings from "@/components/EducationalOfferings";
 import ContactSection from "@/components/ContactSection";
 import FeaturedServices from "@/components/FeaturedServices";
-import VisionSection from "@/components/VisionSection";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Helmet>
-        <title>HowAIConnects | Building the Future of AI Orchestration</title>
-        <meta name="description" content="Advanced AI platform that anticipates tomorrow's needs today. We're building revolutionary technology that seamlessly integrates AI into everyday life with deep automation and intuitive design." />
-        <meta name="keywords" content="AI platform, AI orchestration, voice-activated AI, advanced automation, AI startup, Next.js AI, Supabase AI, business AI platform" />
+        <title>HowAIConnects | Pioneering AI Startup Building Tomorrow's Technology</title>
+        <meta name="description" content="Revolutionary AI startup creating advanced AI-powered web applications and intelligent automation solutions. We're building the future of AI technology today - from concept to deployment." />
+        <meta name="keywords" content="AI startup, artificial intelligence, AI web applications, intelligent automation, custom AI solutions, machine learning, AI development, tech innovation, AI platform, future technology" />
         <link rel="canonical" href="https://howaiconnects.com" />
         <script type="application/ld+json">
           {`
@@ -24,17 +23,20 @@ const Index = () => {
               "@type": "Organization",
               "url": "https://howaiconnects.com",
               "name": "HowAIConnects",
+              "description": "AI startup pioneering advanced AI-powered web applications and intelligent automation solutions for the future of business technology.",
+              "foundingDate": "2024",
+              "industry": "Artificial Intelligence",
+              "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Web Development", "Automation", "Custom AI Solutions"],
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+12895055070",
+                "telephone": "+1-647-123-4567",
                 "contactType": "customer service",
-                "areaServed": "Mississauga, ON and Greater Toronto Area"
+                "areaServed": "Global"
               },
-              "description": "AI technology platform building advanced automation and orchestration solutions for the future of business.",
               "sameAs": [
-                "https://facebook.com/howaiconnects",
+                "https://linkedin.com/company/howaiconnects",
                 "https://twitter.com/howaiconnects",
-                "https://linkedin.com/company/howaiconnects"
+                "https://github.com/howaiconnects"
               ]
             }
           `}
@@ -44,11 +46,9 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <FeaturedServices />
-        <ProblemSolution />
-        <VisionSection />
-        <ServicesShowcase />
+        <AIStartupMission />
+        <AISolutionsShowcase />
         <SuccessStories />
-        <EducationalOfferings />
         <ContactSection />
       </main>
     </div>
