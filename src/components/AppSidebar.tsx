@@ -61,7 +61,7 @@ export function AppSidebar() {
   // Main navigation sections - All under /app/*
   const navSections: NavSection[] = [
     {
-      title: "App Platform",
+      title: "AI Platform",
       items: [
         {
           title: "Analytics Dashboard",
@@ -78,7 +78,7 @@ export function AppSidebar() {
           title: "Automation Hub", 
           url: "/app/automation",
           icon: Zap,
-          badge: "New"
+          badge: "Live"
         },
         {
           title: "Navigation Center",
@@ -95,53 +95,45 @@ export function AppSidebar() {
       ]
     },
     {
-      title: "AI Services",
+      title: "Integrations",
       items: [
         {
-          title: "All Services",
-          url: "/services",
-          icon: Brain,
-          subItems: [
-            { title: "Marketing Automation", url: "/services/ai-automation-solutions/marketing-automation" },
-            { title: "Workflow Automation", url: "/services/ai-automation-solutions/workflow-automation" },
-            { title: "Customer Service AI", url: "/services/ai-automation-solutions/customer-service-automation" },
-            { title: "AI Strategy", url: "/services/ai-consultation/ai-strategy-development" },
-            { title: "AI Readiness", url: "/services/ai-consultation/ai-readiness-assessment" },
-            { title: "Implementation", url: "/services/ai-consultation/implementation-support" }
-          ]
+          title: "Airtable",
+          url: "/app/automation#airtable",
+          icon: Database,
+          badge: "Beta"
         },
         {
-          title: "Web Development",
-          url: "/web-app-development",
-          icon: Database
+          title: "Zapier",
+          url: "/app/automation#zapier",
+          icon: Zap,
+          badge: "Coming"
         },
         {
-          title: "AI Agency",
-          url: "/done-for-you-ai-agency", 
-          icon: Users,
-          badge: "Premium"
+          title: "API Center",
+          url: "/app/api",
+          icon: Brain
         }
       ]
     },
     {
-      title: "Resources",
+      title: "Data & Analytics",
       items: [
         {
-          title: "Resource Library",
-          url: "/resources",
+          title: "Activity Feed",
+          url: "/app/automation#activity",
           icon: FileText,
-          subItems: [
-            { title: "Blog Articles", url: "/resources/blog" },
-            { title: "Case Studies", url: "/resources/case-studies" },
-            { title: "AI Tools", url: "/resources/tools" },
-            { title: "Templates", url: "/resources/templates" }
-          ]
+          badge: "Live"
         },
         {
-          title: "Training Courses",
-          url: "/courses",
-          icon: Brain,
-          badge: "Beta"
+          title: "Performance",
+          url: "/app/analytics",
+          icon: BarChart3
+        },
+        {
+          title: "Reports",
+          url: "/app/reports",
+          icon: FileText
         }
       ]
     }
@@ -153,13 +145,18 @@ export function AppSidebar() {
     items: [
       {
         title: "Admin Console",
-        url: "/admin/dashboard",
+        url: "/app/admin",
         icon: Shield
       },
       {
         title: "User Management", 
-        url: "/admin/settings",
+        url: "/app/admin/users",
         icon: Users
+      },
+      {
+        title: "System Settings",
+        url: "/app/admin/settings",
+        icon: Settings
       }
     ]
   };
@@ -285,8 +282,8 @@ export function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link 
-                    to="/account" 
-                    className={getNavCls(isActive('/account'))}
+                    to="/app/account" 
+                    className={getNavCls(isActive('/app/account'))}
                   >
                     <Settings className="h-4 w-4" />
                     {!collapsed && <span>Account Settings</span>}
