@@ -60,11 +60,10 @@ const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           <div>
             <h2 className="text-3xl font-extrabold text-gray-900 mb-6">
-              Get Started with AI Automation
+              Join the AI Revolution
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Ready to transform your business with AI? Contact us today to discuss 
-              your needs or book your free AI readiness assessment.
+              Ready to experience the future? Get early access to our platform and be part of the next generation of AI-powered business automation.
             </p>
             
             <div className="space-y-4 mb-8">
@@ -98,13 +97,13 @@ const ContactSection = () => {
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Book Your Free Assessment</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Join Our Waitlist</h3>
               <p className="text-gray-600 mb-4">
-                Schedule your complimentary 30-minute AI readiness assessment call with one of our experts.
+                Get early access to our revolutionary AI platform and be the first to experience the future of business automation.
               </p>
               <Link to="/contact">
                 <Button className="w-full bg-brand-primary hover:bg-brand-secondary">
-                  Book Assessment Call <ArrowRight className="ml-2 h-4 w-4" />
+                  Join Waitlist <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </div>

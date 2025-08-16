@@ -52,16 +52,16 @@ const ServicesShowcase = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl gradient-text">
-            Additional Services
+            Our Platform Capabilities
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Comprehensive AI solutions tailored for small and medium-sized businesses
+            Advanced AI products that reshape workflows and anticipate future needs
           </p>
         </div>
 
-        {/* Automation Services */}
+        {/* Automation Platform */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold text-brand-primary mb-8">AI Automation Solutions</h3>
+          <h3 className="text-2xl font-bold text-brand-primary mb-8">AI Orchestration Platform</h3>
           <div className="grid gap-8 lg:grid-cols-3">
             {automationServices.map((service, index) => (
               <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
@@ -86,9 +86,9 @@ const ServicesShowcase = () => {
           </div>
         </div>
 
-        {/* Consultation Services */}
+        {/* Research & Development */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-brand-accent mb-8">AI Consultation Services</h3>
+          <h3 className="text-2xl font-bold text-brand-accent mb-8">R&D Innovation Labs</h3>
           <div className="grid gap-8 lg:grid-cols-3">
             {consultationServices.map((service, index) => (
               <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">

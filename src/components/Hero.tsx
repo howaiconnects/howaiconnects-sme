@@ -42,13 +42,13 @@ const Hero = () => {
               <h1 
                 className={`text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl transition-all duration-700 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               >
-                <span className="block">AI Automation & Consultation</span>
-                <span className="block gradient-text">Tailored for Small Business Growth</span>
+                <span className="block">We're building what you're</span>
+                <span className="block gradient-text">dreaming about — today</span>
               </h1>
               <p 
                 className={`mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0 transition-all duration-700 delay-300 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               >
-                Increase efficiency, reduce costs, and scale operations with AI solutions designed specifically for SMEs
+                Seamlessly integrating AI into everyday life with advanced automation, deep integrations, and intuitive design. Building the future before it arrives.
               </p>
               <div 
                 className={`mt-8 sm:mt-10 sm:flex sm:justify-center lg:justify-start gap-4 transition-all duration-700 delay-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
@@ -56,21 +56,21 @@ const Hero = () => {
                 <div className="relative group w-full sm:w-auto mb-4 sm:mb-0">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-accent to-brand-lightAccent rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
                   <Link to="/contact" className="relative block">
-                    <Button 
+                     <Button 
                       variant="accent"
                       className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
-                      Get Your Free AI Assessment <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
+                      Explore Our Platform <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
                     </Button>
                   </Link>
                 </div>
                 <div className="w-full sm:w-auto">
                   <Link to="/courses" className="block">
-                    <Button 
+                     <Button 
                       variant="outline" 
                       className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
-                      Explore Our AI Courses <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      Join Waitlist <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </Link>
                 </div>

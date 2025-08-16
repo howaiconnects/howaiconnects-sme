@@ -9,14 +9,15 @@ import EducationalOfferings from "@/components/EducationalOfferings";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FeaturedServices from "@/components/FeaturedServices";
+import VisionSection from "@/components/VisionSection";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Helmet>
-        <title>HowAIConnects | AI Automation & Education for Small Businesses</title>
-        <meta name="description" content="HowAIConnects provides AI automation services and practical education for small businesses. Increase efficiency, reduce costs, and scale operations with AI." />
-        <meta name="keywords" content="AI for small business, AI automation, SME AI education, AI consulting, business AI solutions, web app development, AI agency" />
+        <title>HowAIConnects | Building the Future of AI Orchestration</title>
+        <meta name="description" content="Advanced AI platform that anticipates tomorrow's needs today. We're building revolutionary technology that seamlessly integrates AI into everyday life with deep automation and intuitive design." />
+        <meta name="keywords" content="AI platform, AI orchestration, voice-activated AI, advanced automation, AI startup, Next.js AI, Supabase AI, business AI platform" />
         <link rel="canonical" href="https://howaiconnects.com" />
         <script type="application/ld+json">
           {`
@@ -31,7 +32,7 @@ const Index = () => {
                 "contactType": "customer service",
                 "areaServed": "Mississauga, ON and Greater Toronto Area"
               },
-              "description": "AI automation and educational services for small and medium-sized businesses.",
+              "description": "AI technology platform building advanced automation and orchestration solutions for the future of business.",
               "sameAs": [
                 "https://facebook.com/howaiconnects",
                 "https://twitter.com/howaiconnects",
@@ -47,6 +48,7 @@ const Index = () => {
         <Hero />
         <FeaturedServices />
         <ProblemSolution />
+        <VisionSection />
         <ServicesShowcase />
         <SuccessStories />
         <EducationalOfferings />
