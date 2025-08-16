@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -8,45 +8,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Mail } from "lucide-react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { sendToZapier } from "@/utils/formUtils";
-import { zapierConfig, n8nConfig } from "@/config/integrationConfig";
-import { sendContactEmail } from "@/services/emailService";
-import { apiService, ContactFormData } from "@/services/apiService";
-import { useApiRequest } from "@/hooks/useApiRequest";
+import { useSecureForm } from "@/hooks/useSecureForm";
 import { contactFormSchema, type ContactFormData as ContactFormValues } from "@/schemas/validationSchemas";
-import { sanitizeInput, formRateLimiter } from "@/utils/security";
 
 // Remove duplicate interface - using the one from schemas
 
 const ContactForm = () => {
-  const [emailSettings, setEmailSettings] = useState({
-    configured: false
-  });
-
-  // Use the new API request hook
-  const contactApi = useApiRequest(apiService.submitContactForm);
-  
-  useEffect(() => {
-    // Check if email settings exist in localStorage
-    const savedSettings = localStorage.getItem('emailSettings');
-    if (savedSettings) {
-      try {
-        const parsedSettings = JSON.parse(savedSettings);
-        if (
-          parsedSettings.serviceId && 
-          parsedSettings.serviceId !== "YOUR_SERVICE_ID" &&
-          parsedSettings.contactTemplateId && 
-          parsedSettings.publicKey
-        ) {
-          setEmailSettings({
-            configured: true
-          });
-        }
-      } catch (error) {
-        console.error("Failed to parse saved email settings:", error);
-      }
+  // Use secure form hook instead of direct API calls
+  const { loading, error, submitForm } = useSecureForm({
+    onSuccess: () => {
+      form.reset();
     }
-  }, []);
+  });
+  
   
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -59,115 +33,13 @@ const ContactForm = () => {
   });
 
   const onSubmit = async (data: ContactFormValues) => {
-    // Check rate limiting
-    const userIdentifier = data.email || 'anonymous';
-    if (!formRateLimiter.isAllowed(userIdentifier)) {
-      toast({
-        title: "Too many submissions",
-        description: "Please wait before submitting another form.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    try {
-      // Sanitize all inputs
-      const sanitizedData = {
-        name: sanitizeInput(data.name),
-        email: sanitizeInput(data.email),
-        phone: data.phone ? sanitizeInput(data.phone) : "",
-        message: sanitizeInput(data.message)
-      };
-    
-      // Prepare data for API
-      const apiData: ContactFormData = {
-        name: sanitizedData.name,
-        email: sanitizedData.email,
-        phone: sanitizedData.phone,
-        message: sanitizedData.message,
-      };
-
-      // Submit to new API service
-      const apiResponse = await contactApi.execute(apiData);
-      
-      // Send email notification using EmailJS if configured
-      if (emailSettings.configured) {
-        try {
-          await sendContactEmail({
-            name: sanitizedData.name,
-            email: sanitizedData.email,
-            phone: sanitizedData.phone,
-            message: sanitizedData.message
-          });
-        } catch (emailError) {
-          console.error("Email send error:", emailError);
-          // Continue execution even if email fails
-        }
-      }
-      
-      // Try to send to Zapier if configured
-      try {
-        if (zapierConfig.contactFormWebhook && 
-            zapierConfig.contactFormWebhook !== "YOUR_ZAPIER_CONTACT_FORM_WEBHOOK_URL") {
-          await sendToZapier(
-            zapierConfig.contactFormWebhook,
-            {
-              ...sanitizedData,
-              formType: "contact"
-            },
-            "contact_form"
-          );
-        }
-      } catch (zapierError) {
-        console.error("Zapier send error:", zapierError);
-        // Continue execution even if Zapier fails
-      }
-      
-      // Try to send to n8n if configured
-      try {
-        if (n8nConfig.contactFormWebhook && 
-            n8nConfig.contactFormWebhook !== "YOUR_N8N_CONTACT_FORM_WEBHOOK_URL") {
-          await sendToZapier(
-            n8nConfig.contactFormWebhook,
-            {
-              ...sanitizedData,
-              formType: "contact"
-            },
-            "contact_form"
-          );
-        }
-      } catch (n8nError) {
-        console.error("n8n send error:", n8nError);
-        // Continue execution even if n8n fails
-      }
-      
-      if (apiResponse.success) {
-        toast({
-          title: "Message sent!",
-          description: "We'll get back to you as soon as possible.",
-        });
-        
-        // Reset form
-        form.reset();
-        contactApi.reset();
-      } else {
-        toast({
-          title: "Message sent via backup systems",
-          description: "We'll get back to you as soon as possible.",
-        });
-        
-        // Reset form even if API failed but other methods succeeded
-        form.reset();
-        contactApi.reset();
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      toast({
-        title: "Failed to send message",
-        description: "There was a problem sending your message. Please try again.",
-        variant: "destructive",
-      });
-    }
+    // Submit through secure edge function
+    await submitForm('secure-contact-form', {
+      name: data.name,
+      email: data.email,
+      phone: data.phone || '',
+      message: data.message
+    });
   };
 
   return (
@@ -240,14 +112,14 @@ const ContactForm = () => {
           <Button 
             type="submit" 
             className="w-full bg-brand-primary hover:bg-brand-accent transition-all hover:scale-105 transform duration-200 shadow-lg"
-            disabled={contactApi.loading}
+            disabled={loading}
           >
-            {contactApi.loading ? "Sending..." : "Send Message"}
+            {loading ? "Sending..." : "Send Message"}
           </Button>
           
-          {contactApi.error && (
+          {error && (
             <p className="text-sm text-red-600 mt-2">
-              API Error: {contactApi.error} (Message sent via backup systems)
+              Error: {error}
             </p>
           )}
           

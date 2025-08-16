@@ -19,8 +19,12 @@ export const useAdminAuth = () => {
   return context;
 };
 
-// Secure authentication configuration
-const ADMIN_PASSWORD_HASH = import.meta.env.VITE_ADMIN_PASSWORD_HASH || "$2a$12$K8gJQ4xQK9wQ1Q5Q5Q5Q5uK5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5QO"; // Default hash for "admin123"
+// Secure authentication configuration - NO HARDCODED DEFAULTS
+const ADMIN_PASSWORD_HASH = import.meta.env.VITE_ADMIN_PASSWORD_HASH;
+
+if (!ADMIN_PASSWORD_HASH) {
+  console.error('CRITICAL SECURITY ERROR: VITE_ADMIN_PASSWORD_HASH environment variable is not set. Admin authentication is disabled.');
+}
 const AUTH_KEY = "secure_admin_session";
 
 export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -55,6 +59,14 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
     
     try {
+      // Check if admin password hash is configured
+      if (!ADMIN_PASSWORD_HASH) {
+        return {
+          success: false,
+          error: 'Admin authentication is not properly configured. Please contact system administrator.'
+        };
+      }
+      
       // Verify password against hash
       const isValid = await verifyPassword(password, ADMIN_PASSWORD_HASH);
       
