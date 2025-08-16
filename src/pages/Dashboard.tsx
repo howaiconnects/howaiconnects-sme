@@ -4,8 +4,9 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Brain, Cpu, Zap, Settings, LogOut, User, Database, ArrowRight } from 'lucide-react';
+import { Brain, Cpu, Zap, Settings, LogOut, User, Database, ArrowRight, Menu, Map } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { DashboardLayout } from '@/components/layouts/DashboardLayout';
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
@@ -32,7 +33,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <>
+    <DashboardLayout>
       <Helmet>
         <title>AI Platform Dashboard | HowAIConnects</title>
         <meta name="description" content="Your personal AI orchestration dashboard. Manage workflows, integrations, and automation." />
@@ -107,6 +108,29 @@ const Dashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+              {/* Featured Action - Navigation Dashboard */}
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-purple-500 text-white">
+                        <Map className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold">360° Navigation Center</h3>
+                        <p className="text-sm text-muted-foreground">Complete visibility of all features & services</p>
+                      </div>
+                    </div>
+                    <Button asChild>
+                      <Link to="/navigation">
+                        <ArrowRight className="h-4 w-4 mr-2" />
+                        Explore All
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+              
               {/* Featured Action - Automation Dashboard */}
               <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
                 <CardContent className="p-4">
@@ -120,7 +144,7 @@ const Dashboard = () => {
                         <p className="text-sm text-muted-foreground">Manage Zapier, Airtable & AI integrations</p>
                       </div>
                     </div>
-                    <Button asChild>
+                    <Button variant="outline" asChild>
                       <Link to="/automation">
                         <ArrowRight className="h-4 w-4 mr-2" />
                         Open Dashboard
@@ -139,14 +163,16 @@ const Dashboard = () => {
                   </Link>
                 </Button>
                 <Button variant="outline" className="h-auto py-4 flex-col space-y-2" asChild>
+                  <Link to="/navigation">
+                    <Map className="h-6 w-6" />
+                    <span>Navigation Center</span>
+                  </Link>
+                </Button>
+                <Button variant="outline" className="h-auto py-4 flex-col space-y-2" asChild>
                   <Link to="/automation">
                     <Database className="h-6 w-6" />
                     <span>Automation Hub</span>
                   </Link>
-                </Button>
-                <Button variant="outline" className="h-auto py-4 flex-col space-y-2">
-                  <Zap className="h-6 w-6" />
-                  <span>View Analytics</span>
                 </Button>
                 <Button variant="outline" className="h-auto py-4 flex-col space-y-2">
                   <Settings className="h-6 w-6" />
@@ -157,7 +183,7 @@ const Dashboard = () => {
           </Card>
         </main>
       </div>
-    </>
+    </DashboardLayout>
   );
 };
 
