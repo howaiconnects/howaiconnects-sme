@@ -33,157 +33,142 @@ const Dashboard = () => {
   ];
 
   return (
-    <DashboardLayout>
+    <div className="min-h-screen bg-gradient-to-br from-brand-light to-blue-50/30">
       <Helmet>
         <title>AI Platform Dashboard | HowAIConnects</title>
         <meta name="description" content="Your personal AI orchestration dashboard. Manage workflows, integrations, and automation." />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        {/* Header */}
-        <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <div className="container flex h-16 items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-primary to-secondary"></div>
-              <h1 className="text-xl font-bold">AI Platform</h1>
+      {/* Main Content */}
+      <main className="container mx-auto px-6 py-8">
+        <div className="mb-8">
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="h-10 w-10 rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary flex items-center justify-center">
+              <Brain className="h-6 w-6 text-white" />
             </div>
-            <div className="flex items-center space-x-4">
-              <Badge variant="outline" className="hidden sm:inline-flex">
-                <User className="h-3 w-3 mr-1" />
-                {user?.email}
-              </Badge>
-              <Button variant="outline" size="sm">
-                <Settings className="h-4 w-4 mr-2" />
-                Settings
-              </Button>
-              <Button variant="outline" size="sm" onClick={signOut}>
-                <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
-              </Button>
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900">AI Platform</h1>
+              <p className="text-gray-600">Welcome to the Future</p>
             </div>
           </div>
-        </header>
+          <p className="text-muted-foreground text-lg">
+            Your AI orchestration platform is ready. Start building tomorrow's workflows today.
+          </p>
+        </div>
 
-        {/* Main Content */}
-        <main className="container py-8">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold tracking-tight">
-              Welcome to the Future
-            </h2>
-            <p className="text-muted-foreground mt-2">
-              Your AI orchestration platform is ready. Start building tomorrow's workflows today.
-            </p>
-          </div>
-
-          {/* Platform Capabilities */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
-            {capabilities.map((capability, index) => (
-              <Card key={index} className="border-primary/20 hover:border-primary/40 transition-colors">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <div className="p-2 rounded-lg bg-primary/10">
+        {/* Platform Capabilities */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
+          {capabilities.map((capability, index) => (
+            <Card key={index} className="border-brand-primary/20 hover:border-brand-primary/40 transition-all duration-300 hover:shadow-lg bg-white">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary">
+                      <div className="text-white">
                         {capability.icon}
                       </div>
-                      <CardTitle className="text-lg">{capability.title}</CardTitle>
                     </div>
-                    <Badge variant={capability.status === 'Active' ? 'default' : 'secondary'}>
-                      {capability.status}
-                    </Badge>
+                    <CardTitle className="text-lg text-gray-900">{capability.title}</CardTitle>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{capability.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  <Badge 
+                    variant={capability.status === 'Active' ? 'default' : 'secondary'}
+                    className={capability.status === 'Active' ? 'bg-brand-accent text-white' : ''}
+                  >
+                    {capability.status}
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-600">{capability.description}</CardDescription>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
 
-          {/* Quick Actions */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-              <CardDescription>
-                Jump into building your AI-powered workflows
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {/* Featured Action - Navigation Dashboard */}
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-purple-500 text-white">
-                        <Map className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">360° Navigation Center</h3>
-                        <p className="text-sm text-muted-foreground">Complete visibility of all features & services</p>
-                      </div>
+        {/* Quick Actions */}
+        <Card className="bg-white shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-gray-900">Quick Actions</CardTitle>
+            <CardDescription className="text-gray-600">
+              Jump into building your AI-powered workflows
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Featured Action - Navigation Dashboard */}
+            <Card className="border-brand-accent/30 bg-gradient-to-r from-brand-accent/10 to-brand-accent/5">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-brand-accent to-brand-light-accent text-white">
+                      <Menu className="h-5 w-5" />
                     </div>
-                    <Button asChild>
-                      <Link to="/navigation">
-                        <ArrowRight className="h-4 w-4 mr-2" />
-                        Explore All
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              {/* Featured Action - Automation Dashboard */}
-              <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-blue-500 text-white">
-                        <Database className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">Automation Dashboard</h3>
-                        <p className="text-sm text-muted-foreground">Manage Zapier, Airtable & AI integrations</p>
-                      </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">360° Navigation Center</h3>
+                      <p className="text-sm text-gray-600">Complete visibility of all features & services</p>
                     </div>
-                    <Button variant="outline" asChild>
-                      <Link to="/automation">
-                        <ArrowRight className="h-4 w-4 mr-2" />
-                        Open Dashboard
-                      </Link>
-                    </Button>
                   </div>
-                </CardContent>
-              </Card>
-              
-              {/* Quick Actions Grid */}
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Button className="h-auto py-4 flex-col space-y-2" asChild>
-                  <Link to="/seo">
-                    <Brain className="h-6 w-6" />
-                    <span>SEO Dashboard</span>
-                  </Link>
-                </Button>
-                <Button variant="outline" className="h-auto py-4 flex-col space-y-2" asChild>
-                  <Link to="/navigation">
-                    <Map className="h-6 w-6" />
-                    <span>Navigation Center</span>
-                  </Link>
-                </Button>
-                <Button variant="outline" className="h-auto py-4 flex-col space-y-2" asChild>
-                  <Link to="/automation">
-                    <Database className="h-6 w-6" />
-                    <span>Automation Hub</span>
-                  </Link>
-                </Button>
-                <Button variant="outline" className="h-auto py-4 flex-col space-y-2">
-                  <Settings className="h-6 w-6" />
-                  <span>Platform Settings</span>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </main>
-      </div>
-    </DashboardLayout>
+                  <Button asChild className="bg-brand-accent hover:bg-brand-accent/90">
+                    <Link to="/seo/navigation">
+                      <ArrowRight className="h-4 w-4 mr-2" />
+                      Explore All
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Featured Action - Automation Dashboard */}
+            <Card className="border-brand-primary/30 bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary text-white">
+                      <Database className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Automation Dashboard</h3>
+                      <p className="text-sm text-gray-600">Manage Zapier, Airtable & AI integrations</p>
+                    </div>
+                  </div>
+                  <Button variant="outline" asChild className="border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white">
+                    <Link to="/seo/automation">
+                      <ArrowRight className="h-4 w-4 mr-2" />
+                      Open Dashboard
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Quick Actions Grid */}
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <Button className="h-auto py-6 flex-col space-y-2 bg-gradient-to-br from-brand-primary to-brand-secondary hover:from-brand-primary/90 hover:to-brand-secondary/90" asChild>
+                <Link to="/seo">
+                  <Brain className="h-6 w-6" />
+                  <span>SEO Dashboard</span>
+                </Link>
+              </Button>
+              <Button variant="outline" className="h-auto py-6 flex-col space-y-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white" asChild>
+                <Link to="/seo/navigation">
+                  <Menu className="h-6 w-6" />
+                  <span>Navigation Center</span>
+                </Link>
+              </Button>
+              <Button variant="outline" className="h-auto py-6 flex-col space-y-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white" asChild>
+                <Link to="/seo/automation">
+                  <Database className="h-6 w-6" />
+                  <span>Automation Hub</span>
+                </Link>
+              </Button>
+              <Button variant="outline" className="h-auto py-6 flex-col space-y-2 border-gray-300 text-gray-700 hover:bg-gray-50">
+                <Settings className="h-6 w-6" />
+                <span>Platform Settings</span>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </main>
+    </div>
   );
 };
 

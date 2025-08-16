@@ -177,15 +177,19 @@ export function AppSidebar() {
           <div className="flex items-center gap-2">
             {!collapsed && (
               <>
-                <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"></div>
+                <div className="h-8 w-8 rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary flex items-center justify-center">
+                  <div className="w-4 h-4 bg-white rounded-full"></div>
+                </div>
                 <div>
-                  <p className="font-semibold text-sm">HowAIConnects</p>
-                  <p className="text-xs text-muted-foreground">{user?.role || 'Member'}</p>
+                  <p className="font-semibold text-sm text-gray-900">HowAIConnects</p>
+                  <p className="text-xs text-gray-600">{user?.role || 'Member'}</p>
                 </div>
               </>
             )}
             {collapsed && (
-              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary flex items-center justify-center mx-auto">
+                <div className="w-4 h-4 bg-white rounded-full"></div>
+              </div>
             )}
           </div>
         </div>
