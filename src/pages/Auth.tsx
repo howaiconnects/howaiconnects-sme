@@ -88,102 +88,48 @@ const Auth = () => {
 
           <Card className="backdrop-blur-sm border-primary/20">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-center">Get Started</CardTitle>
+              <CardTitle className="text-center">Sign In</CardTitle>
               <CardDescription className="text-center">
-                Join thousands building the future with AI
+                Access your HowAIConnects platform account
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Tabs defaultValue="signin" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="signin">Sign In</TabsTrigger>
-                  <TabsTrigger value="signup">Sign Up</TabsTrigger>
-                </TabsList>
+              <div className="w-full">
                 
-                <TabsContent value="signin">
-                  <form onSubmit={handleSignIn} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signin-email">Email</Label>
-                      <Input
-                        id="signin-email"
-                        type="email"
-                        placeholder="your@email.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="transition-all hover:border-primary/50 focus:border-primary"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signin-password">Password</Label>
-                      <Input
-                        id="signin-password"
-                        type="password"
-                        placeholder="••••••••"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="transition-all hover:border-primary/50 focus:border-primary"
-                      />
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Signing In..." : "Access Platform"}
-                    </Button>
-                  </form>
-                </TabsContent>
-                
-                <TabsContent value="signup">
-                  <form onSubmit={handleSignUp} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-name">Full Name</Label>
-                      <Input
-                        id="signup-name"
-                        type="text"
-                        placeholder="Your Full Name"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        required
-                        className="transition-all hover:border-primary/50 focus:border-primary"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-email">Email</Label>
-                      <Input
-                        id="signup-email"
-                        type="email"
-                        placeholder="your@email.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="transition-all hover:border-primary/50 focus:border-primary"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-password">Password</Label>
-                      <Input
-                        id="signup-password"
-                        type="password"
-                        placeholder="••••••••"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="transition-all hover:border-primary/50 focus:border-primary"
-                      />
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Creating Account..." : "Join the Revolution"}
-                    </Button>
-                  </form>
-                </TabsContent>
-              </Tabs>
+                <form onSubmit={handleSignIn} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="signin-email">Email</Label>
+                    <Input
+                      id="signin-email"
+                      type="email"
+                      placeholder="your@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="transition-all hover:border-primary/50 focus:border-primary"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="signin-password">Password</Label>
+                    <Input
+                      id="signin-password"
+                      type="password"
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      className="transition-all hover:border-primary/50 focus:border-primary"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Signing In..." : "Access Platform"}
+                  </Button>
+                </form>
+              </div>
             </CardContent>
           </Card>
           
