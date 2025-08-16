@@ -48,6 +48,9 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 
+// SEO AI Platform
+import SEODashboard from "./pages/seo/SEODashboard";
+
 // Admin Pages
 import AdminLogin from "./pages/admin/AdminLogin";
 import EmailIntegration from "./pages/admin/EmailIntegration";
@@ -112,6 +115,13 @@ function App() {
             <AuthLayout>
               <Dashboard />
             </AuthLayout>
+          </ProtectedRoute>
+        } />
+
+        {/* SEO AI Platform - Require authentication */}
+        <Route path="/seo" element={
+          <ProtectedRoute>
+            <SEODashboard />
           </ProtectedRoute>
         } />
 
