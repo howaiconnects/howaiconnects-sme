@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import ZapierIntegration from '@/components/seo/ZapierIntegration';
+import ZapierAirtableIntegration from '@/components/integrations/ZapierAirtableIntegration';
 import ZapierCLI from '@/components/zapier/ZapierCLI';
 import { 
   Search, 
@@ -237,13 +237,13 @@ const SEODashboard = () => {
           </TabsContent>
 
           <TabsContent value="automation" className="space-y-6">
-            <Tabs defaultValue="zapier" className="w-full">
+            <Tabs defaultValue="integration" className="w-full">
               <TabsList>
-                <TabsTrigger value="zapier">Zapier Integration</TabsTrigger>
+                <TabsTrigger value="integration">Zapier + Airtable</TabsTrigger>
                 <TabsTrigger value="cli">Zapier CLI</TabsTrigger>
               </TabsList>
-              <TabsContent value="zapier">
-                <ZapierIntegration />
+              <TabsContent value="integration">
+                <ZapierAirtableIntegration />
               </TabsContent>
               <TabsContent value="cli">
                 <ZapierCLI />
