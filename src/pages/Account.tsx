@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/contexts/AuthContext';
@@ -13,7 +12,6 @@ import {
   User, 
   LogOut, 
   LogIn, 
-  UserPlus, 
   Settings, 
   Key,
   Shield,
@@ -23,11 +21,10 @@ import {
 } from 'lucide-react';
 
 const Account = () => {
-  const { user, userProfile, signIn, signUp, signOut, loading } = useAuth();
+  const { user, userProfile, signIn, signOut, loading } = useAuth();
   const { toast } = useToast();
   
   const [loginData, setLoginData] = useState({ email: '', password: '' });
-  const [signupData, setSignupData] = useState({ email: '', password: '', fullName: '' });
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -53,37 +50,6 @@ const Account = () => {
     } catch (error) {
       toast({
         title: "Login Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoadingAction(null);
-    }
-  };
-
-  const handleSignup = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoadingAction('signup');
-
-    try {
-      const { error } = await signUp(signupData.email, signupData.password, signupData.fullName);
-      
-      if (error) {
-        toast({
-          title: "Signup Failed",
-          description: error.message,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Account Created!",
-          description: "Please check your email to verify your account.",
-        });
-        setSignupData({ email: '', password: '', fullName: '' });
-      }
-    } catch (error) {
-      toast({
-        title: "Signup Error",
         description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
@@ -119,6 +85,82 @@ const Account = () => {
     );
   }
 
+  // If not logged in, show login form only
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+        <Helmet>
+          <title>Sign In | HowAIConnects</title>
+          <meta name="description" content="Sign in to access your HowAIConnects account and premium features." />
+        </Helmet>
+
+        <div className="container mx-auto px-4 py-12 max-w-md">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Sign In Required</h1>
+            <p className="text-xl text-gray-600">
+              Please sign in to access your account
+            </p>
+          </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <LogIn className="h-5 w-5" />
+                <span>Sign In</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="login-email">Email</Label>
+                  <Input
+                    id="login-email"
+                    type="email"
+                    value={loginData.email}
+                    onChange={(e) => setLoginData(prev => ({ ...prev, email: e.target.value }))}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="login-password">Password</Label>
+                  <Input
+                    id="login-password"
+                    type="password"
+                    value={loginData.password}
+                    onChange={(e) => setLoginData(prev => ({ ...prev, password: e.target.value }))}
+                    required
+                  />
+                </div>
+                <Button 
+                  type="submit" 
+                  className="w-full"
+                  disabled={loadingAction === 'login'}
+                >
+                  {loadingAction === 'login' ? (
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                  ) : (
+                    <LogIn className="h-4 w-4 mr-2" />
+                  )}
+                  Sign In
+                </Button>
+              </form>
+              
+              <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                <div className="flex items-center space-x-2 text-blue-800">
+                  <AlertCircle className="h-4 w-4" />
+                  <p className="text-xs">
+                    Need an account? Contact our team to get access to premium features.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
+  // Authenticated User View
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Helmet>
@@ -131,275 +173,151 @@ const Account = () => {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Account Management</h1>
           <p className="text-xl text-gray-600">
-            {user ? 'Manage your account and access premium features' : 'Sign in to access your account'}
+            Manage your account and access premium features
           </p>
         </div>
 
-        {user ? (
-          // Authenticated User View
-          <div className="space-y-8">
-            {/* Profile Card */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <User className="h-5 w-5" />
-                  <span>Profile Information</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <Mail className="h-4 w-4 text-gray-500" />
-                      <div>
-                        <p className="text-sm text-gray-500">Email</p>
-                        <p className="font-medium">{user.email}</p>
-                      </div>
-                    </div>
-                    {userProfile?.full_name && (
-                      <div className="flex items-center space-x-3">
-                        <User className="h-4 w-4 text-gray-500" />
-                        <div>
-                          <p className="text-sm text-gray-500">Full Name</p>
-                          <p className="font-medium">{userProfile.full_name}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <Shield className="h-4 w-4 text-gray-500" />
-                      <div>
-                        <p className="text-sm text-gray-500">Role</p>
-                        <Badge variant={userProfile?.role === 'admin' ? 'default' : 'secondary'}>
-                          {userProfile?.role || 'User'}
-                        </Badge>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Calendar className="h-4 w-4 text-gray-500" />
-                      <div>
-                        <p className="text-sm text-gray-500">Member Since</p>
-                        <p className="font-medium">
-                          {userProfile?.created_at 
-                            ? new Date(userProfile.created_at).toLocaleDateString()
-                            : 'N/A'
-                          }
-                        </p>
-                      </div>
+        <div className="space-y-8">
+          {/* Profile Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <User className="h-5 w-5" />
+                <span>Profile Information</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <Mail className="h-4 w-4 text-gray-500" />
+                    <div>
+                      <p className="text-sm text-gray-500">Email</p>
+                      <p className="font-medium">{user.email}</p>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Account Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Settings className="h-5 w-5" />
-                  <span>Account Actions</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Button 
-                    variant="outline" 
-                    className="justify-start"
-                    onClick={() => window.location.href = '/dashboard'}
-                  >
-                    <User className="h-4 w-4 mr-2" />
-                    View Dashboard
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="justify-start"
-                    onClick={() => window.location.href = '/seo'}
-                  >
-                    <Settings className="h-4 w-4 mr-2" />
-                    SEO Dashboard
-                  </Button>
-                  {userProfile?.role === 'admin' && (
-                    <Button 
-                      variant="outline" 
-                      className="justify-start"
-                      onClick={() => window.location.href = '/admin/dashboard'}
-                    >
-                      <Shield className="h-4 w-4 mr-2" />
-                      Admin Dashboard
-                    </Button>
+                  {userProfile?.full_name && (
+                    <div className="flex items-center space-x-3">
+                      <User className="h-4 w-4 text-gray-500" />
+                      <div>
+                        <p className="text-sm text-gray-500">Full Name</p>
+                        <p className="font-medium">{userProfile.full_name}</p>
+                      </div>
+                    </div>
                   )}
                 </div>
-                
-                <Separator className="my-6" />
-                
-                <Button 
-                  variant="destructive" 
-                  onClick={handleLogout}
-                  disabled={loadingAction === 'logout'}
-                  className="w-full"
-                >
-                  {loadingAction === 'logout' ? (
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                  ) : (
-                    <LogOut className="h-4 w-4 mr-2" />
-                  )}
-                  Sign Out
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Premium Features */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Key className="h-5 w-5" />
-                  <span>Premium Features</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 border rounded-lg">
-                    <h4 className="font-medium mb-2">SEO Dashboard</h4>
-                    <p className="text-sm text-gray-600 mb-3">AI-powered SEO automation platform</p>
-                    <Badge variant="default">Active</Badge>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <Shield className="h-4 w-4 text-gray-500" />
+                    <div>
+                      <p className="text-sm text-gray-500">Role</p>
+                      <Badge variant={userProfile?.role === 'admin' ? 'default' : 'secondary'}>
+                        {userProfile?.role || 'User'}
+                      </Badge>
+                    </div>
                   </div>
-                  <div className="p-4 border rounded-lg">
-                    <h4 className="font-medium mb-2">Resource Downloads</h4>
-                    <p className="text-sm text-gray-600 mb-3">Access to premium templates and tools</p>
-                    <Badge variant="default">Active</Badge>
-                  </div>
-                  <div className="p-4 border rounded-lg">
-                    <h4 className="font-medium mb-2">Course Access</h4>
-                    <p className="text-sm text-gray-600 mb-3">Exclusive AI automation courses</p>
-                    <Badge variant="default">Active</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        ) : (
-          // Authentication Forms
-          <Tabs defaultValue="login" className="max-w-md mx-auto">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Sign In</TabsTrigger>
-              <TabsTrigger value="signup">Sign Up</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="login">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <LogIn className="h-5 w-5" />
-                    <span>Sign In</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleLogin} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="login-email">Email</Label>
-                      <Input
-                        id="login-email"
-                        type="email"
-                        value={loginData.email}
-                        onChange={(e) => setLoginData(prev => ({ ...prev, email: e.target.value }))}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="login-password">Password</Label>
-                      <Input
-                        id="login-password"
-                        type="password"
-                        value={loginData.password}
-                        onChange={(e) => setLoginData(prev => ({ ...prev, password: e.target.value }))}
-                        required
-                      />
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full"
-                      disabled={loadingAction === 'login'}
-                    >
-                      {loadingAction === 'login' ? (
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                      ) : (
-                        <LogIn className="h-4 w-4 mr-2" />
-                      )}
-                      Sign In
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="signup">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <UserPlus className="h-5 w-5" />
-                    <span>Create Account</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSignup} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-fullname">Full Name</Label>
-                      <Input
-                        id="signup-fullname"
-                        type="text"
-                        value={signupData.fullName}
-                        onChange={(e) => setSignupData(prev => ({ ...prev, fullName: e.target.value }))}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-email">Email</Label>
-                      <Input
-                        id="signup-email"
-                        type="email"
-                        value={signupData.email}
-                        onChange={(e) => setSignupData(prev => ({ ...prev, email: e.target.value }))}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-password">Password</Label>
-                      <Input
-                        id="signup-password"
-                        type="password"
-                        value={signupData.password}
-                        onChange={(e) => setSignupData(prev => ({ ...prev, password: e.target.value }))}
-                        required
-                      />
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full"
-                      disabled={loadingAction === 'signup'}
-                    >
-                      {loadingAction === 'signup' ? (
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                      ) : (
-                        <UserPlus className="h-4 w-4 mr-2" />
-                      )}
-                      Create Account
-                    </Button>
-                  </form>
-                  
-                  <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                    <div className="flex items-center space-x-2 text-blue-800">
-                      <AlertCircle className="h-4 w-4" />
-                      <p className="text-xs">
-                        Creating an account gives you access to premium resources, SEO tools, and exclusive content.
+                  <div className="flex items-center space-x-3">
+                    <Calendar className="h-4 w-4 text-gray-500" />
+                    <div>
+                      <p className="text-sm text-gray-500">Member Since</p>
+                      <p className="font-medium">
+                        {userProfile?.created_at 
+                          ? new Date(userProfile.created_at).toLocaleDateString()
+                          : 'N/A'
+                        }
                       </p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Account Actions */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <Settings className="h-5 w-5" />
+                <span>Account Actions</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Button 
+                  variant="outline" 
+                  className="justify-start"
+                  onClick={() => window.location.href = '/dashboard'}
+                >
+                  <User className="h-4 w-4 mr-2" />
+                  View Dashboard
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="justify-start"
+                  onClick={() => window.location.href = '/seo'}
+                >
+                  <Settings className="h-4 w-4 mr-2" />
+                  SEO Dashboard
+                </Button>
+                {userProfile?.role === 'admin' && (
+                  <Button 
+                    variant="outline" 
+                    className="justify-start"
+                    onClick={() => window.location.href = '/admin/dashboard'}
+                  >
+                    <Shield className="h-4 w-4 mr-2" />
+                    Admin Dashboard
+                  </Button>
+                )}
+              </div>
+              
+              <Separator className="my-6" />
+              
+              <Button 
+                variant="destructive" 
+                onClick={handleLogout}
+                disabled={loadingAction === 'logout'}
+                className="w-full"
+              >
+                {loadingAction === 'logout' ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                ) : (
+                  <LogOut className="h-4 w-4 mr-2" />
+                )}
+                Sign Out
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Premium Features */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <Key className="h-5 w-5" />
+                <span>Premium Features</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="p-4 border rounded-lg">
+                  <h4 className="font-medium mb-2">SEO Dashboard</h4>
+                  <p className="text-sm text-gray-600 mb-3">AI-powered SEO automation platform</p>
+                  <Badge variant="default">Active</Badge>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h4 className="font-medium mb-2">Resource Downloads</h4>
+                  <p className="text-sm text-gray-600 mb-3">Access to premium templates and tools</p>
+                  <Badge variant="default">Active</Badge>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h4 className="font-medium mb-2">Course Access</h4>
+                  <p className="text-sm text-gray-600 mb-3">Exclusive AI automation courses</p>
+                  <Badge variant="default">Active</Badge>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
