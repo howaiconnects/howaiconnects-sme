@@ -15,21 +15,23 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
-        {/* App Platform Header */}
-        <header className="fixed top-0 left-0 right-0 h-12 flex items-center border-b bg-gradient-to-r from-blue-700 to-blue-600 backdrop-blur z-50">
-          <SidebarTrigger className="ml-2 text-white hover:bg-white/20" />
+        {/* App Platform Header - HowAIConnects Branded */}
+        <header className="fixed top-0 left-0 right-0 h-14 flex items-center border-b bg-gradient-to-r from-brand-primary to-brand-secondary shadow-md z-50">
+          <SidebarTrigger className="ml-3 text-white hover:bg-white/20 transition-colors" />
           <div className="flex-1 flex items-center justify-between px-4">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <img 
                 src="/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png" 
                 alt="HowAIConnects Logo" 
-                className="h-6 w-auto" 
+                className="h-7 w-auto" 
               />
-              <span className="font-semibold text-white">HowAIConnects SEO Platform</span>
+              <span className="font-semibold text-white text-lg">HowAIConnects SEO Platform</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               {user && (
-                <span className="text-sm text-white/80">{user.email}</span>
+                <div className="text-sm text-white/90 bg-white/10 px-3 py-1 rounded-full">
+                  {user.email}
+                </div>
               )}
               <UserNav />
             </div>
@@ -39,8 +41,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         {/* Sidebar */}
         <AppSidebar />
 
-        {/* Main Content */}
-        <main className="flex-1 pt-12 bg-gradient-to-br from-slate-50 to-blue-50/30">
+        {/* Main Content - Updated padding for new header height */}
+        <main className="flex-1 pt-14 bg-gradient-to-br from-brand-light to-blue-50/30 min-h-screen">
           <div className="container mx-auto px-4 py-6">
             {children || <Outlet />}
           </div>

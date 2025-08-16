@@ -15,22 +15,22 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
-        {/* Admin Header with Sidebar Trigger */}
-        <header className="fixed top-0 left-0 right-0 h-12 flex items-center border-b bg-destructive/5 backdrop-blur supports-[backdrop-filter]:bg-destructive/5 z-50">
-          <SidebarTrigger className="ml-2" />
+        {/* Admin Header - HowAIConnects Branded with Admin Theme */}
+        <header className="fixed top-0 left-0 right-0 h-14 flex items-center border-b bg-gradient-to-r from-red-600 to-red-700 shadow-md z-50">
+          <SidebarTrigger className="ml-3 text-white hover:bg-white/20 transition-colors" />
           <div className="flex-1 flex items-center justify-between px-4">
-            <div className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-destructive" />
-              <span className="font-semibold text-destructive">Admin Panel</span>
+            <div className="flex items-center gap-3">
+              <Shield className="h-6 w-6 text-white" />
+              <span className="font-semibold text-white text-lg">HowAIConnects Admin Panel</span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="px-2 py-1 text-xs bg-destructive/10 text-destructive rounded-full">
+              <span className="px-3 py-1 text-xs bg-white/20 text-white rounded-full font-medium">
                 Admin Access
               </span>
               {user && (
-                <span className="text-sm text-muted-foreground">
+                <div className="text-sm text-white/90 bg-white/10 px-3 py-1 rounded-full">
                   {userProfile?.full_name || user.email}
-                </span>
+                </div>
               )}
             </div>
           </div>
@@ -39,8 +39,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         {/* Sidebar */}
         <AppSidebar />
 
-        {/* Main Content */}
-        <main className="flex-1 pt-12 bg-background">
+        {/* Main Content - Updated padding for new header height */}
+        <main className="flex-1 pt-14 bg-gradient-to-br from-red-50 to-orange-50/30 min-h-screen">
           <div className="container mx-auto px-4 py-6">
             {children || <Outlet />}
           </div>
