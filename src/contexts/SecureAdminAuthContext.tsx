@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { verifyPassword } from '@/utils/security';
+import { supabase } from '@/integrations/supabase/client';
 import { SecureSession, loginRateLimiter } from '@/utils/security';
 
 interface AdminAuthContextType {
   isAuthenticated: boolean;
-  login: (password: string) => Promise<{ success: boolean; error?: string }>;
+  login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
   remainingLockoutTime: number;
 }
@@ -19,22 +19,19 @@ export const useAdminAuth = () => {
   return context;
 };
 
-// Secure authentication configuration - NO HARDCODED DEFAULTS
-const ADMIN_PASSWORD_HASH = import.meta.env.VITE_ADMIN_PASSWORD_HASH;
-
-if (!ADMIN_PASSWORD_HASH) {
-  console.error('CRITICAL SECURITY ERROR: VITE_ADMIN_PASSWORD_HASH environment variable is not set. Admin authentication is disabled.');
-}
-const AUTH_KEY = "secure_admin_session";
-
 export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [remainingLockoutTime, setRemainingLockoutTime] = useState<number>(0);
   
   useEffect(() => {
-    // Check if user is authenticated on mount using secure session
+    // Check if admin is authenticated using secure session
     const sessionValid = SecureSession.isSessionValid();
-    setIsAuthenticated(sessionValid);
+    const sessionData = SecureSession.getSession();
+    
+    // Verify it's an admin session
+    if (sessionValid && sessionData?.role === 'admin') {
+      setIsAuthenticated(true);
+    }
 
     // Update lockout time every second
     const interval = setInterval(() => {
@@ -46,7 +43,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     return () => clearInterval(interval);
   }, []);
   
-  const login = async (password: string): Promise<{ success: boolean; error?: string }> => {
+  const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     const userIP = 'admin'; // In a real app, you'd get the actual IP
     
     // Check rate limiting
@@ -59,30 +56,55 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
     
     try {
-      // Check if admin password hash is configured
-      if (!ADMIN_PASSWORD_HASH) {
+      // Use Supabase authentication for admin login
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      
+      if (error) {
         return {
           success: false,
-          error: 'Admin authentication is not properly configured. Please contact system administrator.'
+          error: 'Invalid credentials. Please try again.'
         };
       }
       
-      // Verify password against hash
-      const isValid = await verifyPassword(password, ADMIN_PASSWORD_HASH);
-      
-      if (isValid) {
-        // Create secure session
-        SecureSession.setSession({ role: 'admin', loginTime: Date.now() });
-        setIsAuthenticated(true);
-        return { success: true };
-      } else {
+      if (!data.user) {
         return {
           success: false,
-          error: 'Invalid password. Please try again.'
+          error: 'Authentication failed. Please try again.'
         };
       }
+      
+      // Check if user has admin role
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', data.user.id)
+        .single();
+      
+      if (!profile || profile.role !== 'admin') {
+        // Sign out the user since they're not an admin
+        await supabase.auth.signOut();
+        return {
+          success: false,
+          error: 'Access denied. Admin privileges required.'
+        };
+      }
+      
+      // Create secure admin session
+      SecureSession.setSession({ 
+        role: 'admin', 
+        loginTime: Date.now(),
+        userId: data.user.id,
+        email: data.user.email
+      });
+      
+      setIsAuthenticated(true);
+      return { success: true };
+      
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Admin login error:', error);
       return {
         success: false,
         error: 'An error occurred during login. Please try again.'
@@ -90,9 +112,21 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
   };
   
-  const logout = () => {
-    SecureSession.clearSession();
-    setIsAuthenticated(false);
+  const logout = async () => {
+    try {
+      // Clear secure session
+      SecureSession.clearSession();
+      
+      // Sign out from Supabase
+      await supabase.auth.signOut();
+      
+      setIsAuthenticated(false);
+    } catch (error) {
+      console.error('Admin logout error:', error);
+      // Still clear local state even if logout fails
+      SecureSession.clearSession();
+      setIsAuthenticated(false);
+    }
   };
   
   return (

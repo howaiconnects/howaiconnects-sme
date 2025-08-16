@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { useAdminAuth } from "@/contexts/AdminAuthContext";
+import { useAdminAuth } from "@/contexts/SecureAdminAuthContext";
 import { Button } from "@/components/ui/button";
 import { LogOut, Settings, Mail } from "lucide-react";
 

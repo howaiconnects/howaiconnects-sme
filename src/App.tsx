@@ -2,7 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
+import { AdminAuthProvider as SecureAdminAuthProvider } from "@/contexts/SecureAdminAuthContext";
 
 // Auth Components
 import ProtectedRoute from "@/components/ProtectedRoute";
@@ -53,7 +53,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import SEODashboard from "./pages/seo/SEODashboard";
 
 // Admin Pages
-import AdminLogin from "./pages/admin/AdminLogin";
+import SecureAdminLogin from "./pages/admin/SecureAdminLogin";
 import EmailIntegration from "./pages/admin/EmailIntegration";
 
 function App() {
@@ -152,14 +152,35 @@ function App() {
           </RoleBasedRoute>
         } />
 
-        {/* Legacy Admin Routes - Using old admin auth system */}
-        <Route path="/admin/login" element={<AdminLogin />} />
+        {/* Legacy Admin Routes - Redirect to secure login */}
+        <Route path="/admin/login" element={
+          <SecureAdminAuthProvider>
+            <SecureAdminLogin />
+          </SecureAdminAuthProvider>
+        } />
         <Route path="/admin/email-integration" element={
-          <AdminAuthProvider>
+          <SecureAdminAuthProvider>
             <AdminProtectedRoute>
               <EmailIntegration />
             </AdminProtectedRoute>
-          </AdminAuthProvider>
+          </SecureAdminAuthProvider>
+        } />
+
+        {/* Secure Admin Routes - New secure authentication system */}
+        <Route path="/admin/secure-login" element={
+          <SecureAdminAuthProvider>
+            <SecureAdminLogin />
+          </SecureAdminAuthProvider>
+        } />
+        
+        <Route path="/admin/secure/dashboard" element={
+          <SecureAdminAuthProvider>
+            <AdminProtectedRoute>
+              <AuthLayout>
+                <AdminDashboard />
+              </AuthLayout>
+            </AdminProtectedRoute>
+          </SecureAdminAuthProvider>
         } />
 
         {/* New Admin Routes - Using new role-based auth */}
