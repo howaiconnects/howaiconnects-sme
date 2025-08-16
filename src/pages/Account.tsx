@@ -21,11 +21,28 @@ import {
 } from 'lucide-react';
 
 const Account = () => {
-  const { user, userProfile, signIn, signOut, loading } = useAuth();
+  const { user, userProfile, signIn, signOut, loading, refreshProfile } = useAuth();
   const { toast } = useToast();
   
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
+
+  // Clear cache and refresh on mount
+  React.useEffect(() => {
+    // Clear browser cache
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        names.forEach(name => {
+          caches.delete(name);
+        });
+      });
+    }
+    
+    // Force refresh profile if user is logged in
+    if (user && !loading) {
+      refreshProfile();
+    }
+  }, [user, loading, refreshProfile]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
