@@ -1,13 +1,15 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { verifyPassword } from '@/utils/security';
-import { SecureSession, loginRateLimiter } from '@/utils/security';
+import { User, Session } from '@supabase/supabase-js';
+import { supabase } from '@/integrations/supabase/client';
 
 interface AuthContextType {
-  isAuthenticated: boolean;
-  login: (password: string) => Promise<{ success: boolean; error?: string }>;
-  logout: () => void;
-  remainingLockoutTime: number;
+  user: User | null;
+  session: Session | null;
+  signUp: (email: string, password: string, fullName?: string) => Promise<{ error: any }>;
+  signIn: (email: string, password: string) => Promise<{ error: any }>;
+  signOut: () => Promise<void>;
+  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,72 +22,66 @@ export const useAuth = () => {
   return context;
 };
 
-// Secure authentication configuration
-const ADMIN_PASSWORD_HASH = import.meta.env.VITE_ADMIN_PASSWORD_HASH || "$2a$12$K8gJQ4xQK9wQ1Q5Q5Q5Q5uK5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5QO"; // Default hash for "admin123"
-const AUTH_KEY = "secure_admin_session";
-
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [remainingLockoutTime, setRemainingLockoutTime] = useState<number>(0);
-  
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // Check if user is authenticated on mount using secure session
-    const sessionValid = SecureSession.isSessionValid();
-    setIsAuthenticated(sessionValid);
-
-    // Update lockout time every second
-    const interval = setInterval(() => {
-      const userIP = 'admin'; // In a real app, you'd get the actual IP
-      const remaining = loginRateLimiter.getRemainingTime(userIP);
-      setRemainingLockoutTime(remaining);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-  
-  const login = async (password: string): Promise<{ success: boolean; error?: string }> => {
-    const userIP = 'admin'; // In a real app, you'd get the actual IP
-    
-    // Check rate limiting
-    if (!loginRateLimiter.isAllowed(userIP)) {
-      const remainingTime = Math.ceil(loginRateLimiter.getRemainingTime(userIP) / 1000 / 60);
-      return {
-        success: false,
-        error: `Too many failed attempts. Please try again in ${remainingTime} minutes.`
-      };
-    }
-    
-    try {
-      // Verify password against hash
-      const isValid = await verifyPassword(password, ADMIN_PASSWORD_HASH);
-      
-      if (isValid) {
-        // Create secure session
-        SecureSession.setSession({ role: 'admin', loginTime: Date.now() });
-        setIsAuthenticated(true);
-        return { success: true };
-      } else {
-        return {
-          success: false,
-          error: 'Invalid password. Please try again.'
-        };
+    // Set up auth state listener FIRST
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+        setLoading(false);
       }
+    );
+
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const signUp = async (email: string, password: string, fullName?: string) => {
+    const redirectUrl = `${window.location.origin}/`;
+    
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: redirectUrl,
+        data: {
+          full_name: fullName
+        }
+      }
+    });
+    return { error };
+  };
+
+  const signIn = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    return { error };
+  };
+
+  const signOut = async () => {
+    try {
+      await supabase.auth.signOut({ scope: 'global' });
+      window.location.href = '/';
     } catch (error) {
-      console.error('Login error:', error);
-      return {
-        success: false,
-        error: 'An error occurred during login. Please try again.'
-      };
+      console.error('Sign out error:', error);
     }
   };
-  
-  const logout = () => {
-    SecureSession.clearSession();
-    setIsAuthenticated(false);
-  };
-  
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, remainingLockoutTime }}>
+    <AuthContext.Provider value={{ user, session, signUp, signIn, signOut, loading }}>
       {children}
     </AuthContext.Provider>
   );

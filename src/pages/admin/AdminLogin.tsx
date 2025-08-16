@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAdminAuth } from "@/contexts/AdminAuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,7 @@ import { sanitizeInput } from "@/utils/security";
 const AdminLogin = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { login, remainingLockoutTime } = useAuth();
+  const { login, remainingLockoutTime } = useAdminAuth();
   const navigate = useNavigate();
   
   const form = useForm<AdminLoginData>({

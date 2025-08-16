@@ -1,11 +1,11 @@
 
 import { Link } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAdminAuth } from "@/contexts/AdminAuthContext";
 import { Button } from "@/components/ui/button";
 import { LogOut, Settings, Mail } from "lucide-react";
 
 const AdminNav = () => {
-  const { logout } = useAuth();
+  const { logout } = useAdminAuth();
   
   return (
     <div className="bg-white border-b mb-6 py-3">

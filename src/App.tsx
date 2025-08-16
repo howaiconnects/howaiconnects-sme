@@ -1,6 +1,10 @@
 
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import AdminProtectedRoute from "@/components/admin/ProtectedRoute";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -36,9 +40,13 @@ import TermsOfService from "./pages/TermsOfService";
 import AdminLogin from "./pages/admin/AdminLogin";
 import EmailIntegration from "./pages/admin/EmailIntegration";
 
+// Auth Pages
+import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
+
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
@@ -84,15 +92,29 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         
+        {/* Auth Pages */}
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
+        
         {/* Admin Pages */}
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/email-integration" element={<EmailIntegration />} />
+        <Route path="/admin/email-integration" element={
+          <AdminAuthProvider>
+            <AdminProtectedRoute>
+              <EmailIntegration />
+            </AdminProtectedRoute>
+          </AdminAuthProvider>
+        } />
         
         {/* 404 Page */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster />
-    </>
+    </AuthProvider>
   );
 }
 
