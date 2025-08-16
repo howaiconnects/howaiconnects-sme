@@ -27,8 +27,21 @@ const Account = () => {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
 
+  // Debug logging
+  React.useEffect(() => {
+    console.log('🏠 Account Page - Auth State:', {
+      loading,
+      hasUser: !!user,
+      userId: user?.id,
+      hasProfile: !!userProfile,
+      profileRole: userProfile?.role
+    });
+  }, [loading, user, userProfile]);
+
   // Clear cache and refresh on mount
   React.useEffect(() => {
+    console.log('🧹 Account Page - Clearing cache and refreshing...');
+    
     // Clear browser cache
     if ('caches' in window) {
       caches.keys().then(names => {
@@ -40,9 +53,22 @@ const Account = () => {
     
     // Force refresh profile if user is logged in
     if (user && !loading) {
+      console.log('🔄 Refreshing user profile...');
       refreshProfile();
     }
   }, [user, loading, refreshProfile]);
+
+  // Add timeout fallback to prevent infinite loading
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (loading) {
+        console.log('⚠️ Account Page - Loading timeout reached, forcing reload...');
+        window.location.reload();
+      }
+    }, 10000); // 10 second timeout
+
+    return () => clearTimeout(timeout);
+  }, [loading]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -95,50 +95,78 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
-    console.log('AuthContext: Setting up auth state listener');
+    console.log('🔄 AuthContext: Setting up auth state listener');
     
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log('Auth state changed:', event, session?.user?.id || 'no user');
+      (event, session) => {
+        console.log('🔔 Auth state changed:', event, session?.user?.id || 'no user');
+        console.log('📊 Full session object:', session);
         
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          // Fetch user profile when user logs in
-          console.log('User found, fetching profile...');
-          const profile = await fetchUserProfile(session.user.id);
-          setUserProfile(profile);
+          console.log('👤 User found, fetching profile...');
+          // Use setTimeout to prevent deadlock
+          setTimeout(async () => {
+            try {
+              const profile = await fetchUserProfile(session.user.id);
+              console.log('📋 Profile fetched:', profile);
+              setUserProfile(profile);
+            } catch (error) {
+              console.error('❌ Error fetching profile:', error);
+              setUserProfile(null);
+            }
+          }, 0);
         } else {
-          console.log('No user, clearing profile');
+          console.log('🚫 No user, clearing profile');
           setUserProfile(null);
         }
         
-        console.log('Setting loading to false');
+        console.log('✅ Setting loading to false');
         setLoading(false);
       }
     );
 
     // THEN check for existing session
-    console.log('AuthContext: Checking for existing session');
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      console.log('Existing session check:', session?.user?.id || 'no user');
+    console.log('🔍 AuthContext: Checking for existing session');
+    supabase.auth.getSession().then(async ({ data: { session }, error }) => {
+      console.log('📋 Existing session check result:', session?.user?.id || 'no user');
+      console.log('⚠️ Session check error:', error);
+      
+      if (error) {
+        console.error('❌ Error getting session:', error);
+        setLoading(false);
+        return;
+      }
       
       setSession(session);
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        console.log('Existing user found, fetching profile...');
-        const profile = await fetchUserProfile(session.user.id);
-        setUserProfile(profile);
+        console.log('👤 Existing user found, fetching profile...');
+        try {
+          const profile = await fetchUserProfile(session.user.id);
+          console.log('📋 Initial profile fetched:', profile);
+          setUserProfile(profile);
+        } catch (error) {
+          console.error('❌ Error fetching initial profile:', error);
+          setUserProfile(null);
+        }
       }
       
-      console.log('Initial session check complete, setting loading to false');
+      console.log('✅ Initial session check complete, setting loading to false');
+      setLoading(false);
+    }).catch((error) => {
+      console.error('❌ Critical error during session check:', error);
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      console.log('🧹 Cleaning up auth subscription');
+      subscription.unsubscribe();
+    };
   }, []);
 
   const signUp = async (email: string, password: string, fullName?: string) => {
