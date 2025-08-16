@@ -180,7 +180,7 @@ const ContactSection = () => {
                     id="message"
                     rows={4}
                     className="mt-1"
-                    placeholder="How can we help you?"
+                    placeholder="Tell us about your platform needs..."
                     value={formData.message}
                     onChange={handleChange}
                     required

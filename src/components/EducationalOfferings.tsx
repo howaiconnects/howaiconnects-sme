@@ -13,53 +13,53 @@ import { Badge } from "@/components/ui/badge";
 const EducationalOfferings = () => {
   const courses = [
     {
-      title: "AI for SME Essentials",
-      description: "A comprehensive introduction to AI technologies and their applications for small businesses",
-      level: "Beginner",
-      duration: "4 weeks",
-      modules: 5,
-      price: "$297",
-      popular: true,
-      link: "/courses/ai-for-sme-essentials"
-    },
-    {
-      title: "Marketing Automation Masterclass",
-      description: "Learn how to implement AI-driven marketing automation for your small business",
-      level: "Intermediate",
+      title: "AI Platform Fundamentals",
+      description: "Master the core technologies behind advanced AI orchestration platforms and voice-activated systems",
+      level: "Foundation",
       duration: "6 weeks",
       modules: 8,
-      price: "$397",
-      popular: false,
-      link: "/courses/marketing-automation-masterclass"
+      price: "$497",
+      popular: true,
+      link: "/courses/ai-platform-fundamentals"
     },
     {
-      title: "AI Implementation Workshop",
-      description: "Hands-on workshop series with guided implementation of AI solutions for your business",
+      title: "Advanced Orchestration Engineering",
+      description: "Build production-ready AI systems with deep integrations and predictive automation capabilities",
       level: "Advanced",
       duration: "8 weeks",
-      modules: 10,
-      price: "$497",
+      modules: 12,
+      price: "$897",
       popular: false,
-      link: "/courses/ai-implementation-workshop"
+      link: "/courses/advanced-orchestration-engineering"
+    },
+    {
+      title: "Voice-Activated AI Systems",
+      description: "Architect and deploy intelligent voice interfaces that anticipate user needs and orchestrate complex workflows",
+      level: "Expert",
+      duration: "10 weeks",
+      modules: 15,
+      price: "$1,297",
+      popular: false,
+      link: "/courses/voice-activated-ai-systems"
     }
   ];
 
   const resources = [
     {
-      title: "AI Automation Templates",
-      description: "Ready-to-use templates for common small business automation needs",
-      count: 25,
-      link: "/resources/automation-templates"
+      title: "Platform Architecture Templates",
+      description: "Production-ready templates for building scalable AI orchestration systems",
+      count: 15,
+      link: "/resources/platform-templates"
     },
     {
-      title: "ROI Calculator",
-      description: "Calculate the potential return on investment for AI implementation in your business",
-      link: "/resources/tools/roi-calculator"
+      title: "Integration Complexity Calculator",
+      description: "Assess the technical complexity and resource requirements for platform integrations",
+      link: "/resources/tools/integration-calculator"
     },
     {
-      title: "AI Readiness Quiz",
-      description: "Find out if your business is ready to implement AI automation solutions",
-      link: "/resources/tools/ai-readiness-quiz"
+      title: "Technology Readiness Assessment",
+      description: "Evaluate your current infrastructure's readiness for advanced AI platform deployment",
+      link: "/resources/tools/technology-readiness-assessment"
     }
   ];
 
@@ -67,17 +67,17 @@ const EducationalOfferings = () => {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Educational Platform
+          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl gradient-text">
+            Platform Engineering Academy
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Learn how to implement and leverage AI in your business
+            Advanced training for developers building next-generation AI orchestration systems
           </p>
         </div>
 
         {/* Courses */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">Featured Courses</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">Featured Training Programs</h3>
           <div className="grid gap-8 lg:grid-cols-3">
             {courses.map((course, index) => (
               <Card key={index} className="relative shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -117,7 +117,7 @@ const EducationalOfferings = () => {
 
         {/* Resources */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">Free Resources</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">Developer Resources</h3>
           <div className="grid gap-8 lg:grid-cols-3">
             {resources.map((resource, index) => (
               <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -135,7 +135,7 @@ const EducationalOfferings = () => {
 
         <div className="mt-10 text-center">
           <Button className="bg-brand-primary hover:bg-brand-secondary">
-            Explore All Educational Resources
+            Explore Platform Academy
           </Button>
         </div>
       </div>

@@ -6,8 +6,8 @@ import { ArrowRight } from "lucide-react";
 const BlogPosts = () => {
   const posts = [
     {
-      title: "5 AI Tools Every Small Business Should Be Using in 2025",
-      excerpt: "Discover the most impactful and cost-effective AI tools that are transforming small business operations.",
+      title: "The Future of AI Orchestration: What We're Building",
+      excerpt: "Deep dive into our proprietary AI orchestration platform and the technology reshaping business automation.",
       category: "Tools & Resources",
       date: "May 10, 2025",
       readTime: "5 min read",

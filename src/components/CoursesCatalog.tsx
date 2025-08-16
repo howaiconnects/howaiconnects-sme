@@ -72,11 +72,11 @@ const CoursesCatalog = () => {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Our Course Catalog
+          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl gradient-text">
+            Platform Engineering Curriculum
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Practical AI education designed for business owners and managers
+            Advanced technical training for building next-generation AI orchestration platforms
           </p>
         </div>
 

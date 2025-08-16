@@ -196,11 +196,12 @@ const BookAssessment = () => {
     <div className="bg-white rounded-lg shadow-lg p-8">
       <div className="flex items-center gap-3 text-brand-primary mb-6">
         <CalendarCheck className="h-7 w-7" />
-        <h3 className="text-2xl font-bold">Book Your Free AI Readiness Assessment</h3>
+        <h3 className="text-2xl font-bold">Request Platform Demo</h3>
       </div>
       
       <p className="text-gray-600 mb-6">
-        Schedule a complimentary 30-minute call with one of our AI experts to discuss your business needs and explore how AI can help you achieve your goals.
+        Experience our revolutionary AI orchestration platform firsthand. 
+        Schedule a personalized demo with our engineering team to see the future of automation in action.
       </p>
       
       <Form {...form}>
@@ -216,7 +217,7 @@ const BookAssessment = () => {
             className="w-full bg-brand-primary hover:bg-brand-accent"
             disabled={bookingApi.loading}
           >
-            {bookingApi.loading ? "Booking..." : "Schedule Assessment Call"}
+            {bookingApi.loading ? "Scheduling..." : "Schedule Platform Demo"}
           </Button>
           
           {bookingApi.error && (

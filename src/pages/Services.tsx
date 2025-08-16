@@ -11,22 +11,22 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Helmet>
-        <title>AI Automation & Consultation Services | HowAIConnects</title>
-        <meta name="description" content="Transform your small business with AI automation services and expert consultation. Streamline marketing, workflow, and customer service operations." />
-        <meta name="keywords" content="AI automation services, AI consultation for SMEs, marketing automation, workflow automation, customer service automation" />
+        <title>AI Platform & Orchestration Services | HowAIConnects</title>
+        <meta name="description" content="Revolutionary AI orchestration platform with voice-activated intelligence, deep integrations, and predictive automation that anticipates your needs." />
+        <meta name="keywords" content="AI platform services, AI orchestration technology, voice-activated AI systems, advanced automation platform, AI engineering services" />
         <link rel="canonical" href="https://howaiconnects.com/services" />
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
               "@type": "Service",
-              "name": "AI Automation & Consultation Services",
+              "name": "AI Platform & Orchestration Services",
               "provider": {
                 "@type": "Organization",
                 "name": "HowAIConnects"
               },
-              "serviceType": "AI Automation & Consultation",
-              "description": "AI automation and consultation services tailored for small and medium-sized businesses.",
+              "serviceType": "AI Platform & Orchestration Technology",
+              "description": "Advanced AI orchestration platform with voice-activated intelligence and predictive automation capabilities.",
               "areaServed": {
                 "@type": "GeoCircle",
                 "geoMidpoint": {

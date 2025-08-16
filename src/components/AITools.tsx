@@ -6,25 +6,25 @@ import { Download } from "lucide-react";
 const AITools = () => {
   const tools = [
     {
-      title: "AI Readiness Assessment Tool",
-      description: "Evaluate how prepared your business is to implement AI automation technologies.",
-      downloadType: "Interactive spreadsheet",
-      fileSize: "245 KB",
-      link: "/resources/tools/ai-readiness-assessment"
+      title: "Platform Architecture Analyzer",
+      description: "Evaluate system architecture readiness for advanced AI orchestration and deep integration capabilities.",
+      downloadType: "Interactive assessment",
+      fileSize: "420 KB",
+      link: "/resources/tools/platform-architecture-analyzer"
     },
     {
-      title: "AI ROI Calculator",
-      description: "Calculate the potential return on investment for AI implementation in your business.",
-      downloadType: "Excel spreadsheet",
-      fileSize: "380 KB",
-      link: "/resources/tools/roi-calculator"
+      title: "Orchestration Complexity Calculator",
+      description: "Calculate technical complexity and resource requirements for implementing AI orchestration platforms.",
+      downloadType: "Engineering spreadsheet",
+      fileSize: "650 KB",
+      link: "/resources/tools/orchestration-complexity-calculator"
     },
     {
-      title: "AI Vendor Evaluation Checklist",
-      description: "A comprehensive checklist for evaluating AI solution providers before purchasing.",
-      downloadType: "PDF document",
-      fileSize: "125 KB",
-      link: "/resources/tools/vendor-evaluation-checklist"
+      title: "Integration Readiness Checklist",
+      description: "Comprehensive technical checklist for evaluating infrastructure readiness for AI platform deployment.",
+      downloadType: "Technical document",
+      fileSize: "285 KB",
+      link: "/resources/tools/integration-readiness-checklist"
     }
   ];
 
@@ -32,11 +32,11 @@ const AITools = () => {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900">
-            Free AI Tools
+          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl gradient-text">
+            Platform Development Tools
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-500">
-            Practical tools to help you plan and implement AI in your business
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+            Engineering tools and resources for building advanced AI orchestration systems
           </p>
         </div>
 

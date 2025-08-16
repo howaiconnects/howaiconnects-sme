@@ -7,24 +7,24 @@ import { Link } from "react-router-dom";
 const AIConsultationServices = () => {
   const services = [
     {
-      title: "AI Readiness Assessment",
-      description: "Evaluate your business processes and identify the highest-impact opportunities for AI implementation.",
+      title: "Platform Architecture Analysis",
+      description: "Deep-dive analysis of your technology infrastructure to identify AI orchestration opportunities and scalability requirements.",
       icon: <ClipboardCheck className="h-8 w-8 text-brand-primary" />,
-      items: ["Process evaluation", "Automation opportunity mapping", "ROI calculation", "Implementation roadmap"],
+      items: ["Infrastructure evaluation", "Orchestration opportunity mapping", "Scalability assessment", "Integration roadmap"],
       link: "/services/ai-consultation/ai-readiness-assessment"
     },
     {
-      title: "AI Strategy Development",
-      description: "Create a customized AI adoption strategy aligned with your business goals and available resources.",
+      title: "AI Orchestration Strategy",
+      description: "Design comprehensive AI platform strategies that anticipate future needs and create almost unlimited deep connections.",
       icon: <BarChart2 className="h-8 w-8 text-brand-primary" />,
-      items: ["Custom AI roadmap", "Technology selection guidance", "Budget & resource planning", "Implementation timeline"],
+      items: ["Custom AI platform roadmap", "Technology architecture design", "Resource optimization planning", "Implementation timeline"],
       link: "/services/ai-consultation/ai-strategy-development"
     },
     {
-      title: "Implementation Support",
-      description: "Get hands-on guidance throughout your AI implementation journey from our experienced consultants.",
+      title: "Platform Implementation Labs",
+      description: "Hands-on engineering support for building and deploying production-ready AI orchestration systems.",
       icon: <Headphones className="h-8 w-8 text-brand-primary" />,
-      items: ["Technical setup assistance", "Integration support", "Staff training", "Ongoing optimization"],
+      items: ["Technical architecture setup", "Platform integration support", "Team engineering training", "Performance optimization"],
       link: "/services/ai-consultation/implementation-support"
     }
   ];
@@ -33,11 +33,11 @@ const AIConsultationServices = () => {
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            AI Consultation Services
+          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl gradient-text">
+            AI Innovation Labs
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Expert guidance to help you implement the right AI solutions for your business
+            Advanced research and development services powering next-generation AI solutions
           </p>
         </div>
 

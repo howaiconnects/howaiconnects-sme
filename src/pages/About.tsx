@@ -13,9 +13,9 @@ const About = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Helmet>
-        <title>About HowAIConnects | AI Solutions for Small Businesses</title>
-        <meta name="description" content="HowAIConnects helps small and medium-sized businesses leverage AI technologies without requiring technical expertise. Learn about our mission and values." />
-        <meta name="keywords" content="AI for SMEs, about HowAIConnects, small business AI solutions, AI automation company" />
+        <title>About HowAIConnects | Building the Future of AI Orchestration</title>
+        <meta name="description" content="We're engineering the next generation of AI orchestration platforms. Learn about our mission to build technology that anticipates tomorrow's needs today." />
+        <meta name="keywords" content="AI platform company, AI orchestration technology, voice-activated AI, advanced automation engineering, AI startup" />
         <link rel="canonical" href="https://howaiconnects.com/about" />
         <script type="application/ld+json">
           {`
@@ -23,7 +23,7 @@ const About = () => {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "HowAIConnects",
-              "description": "AI automation and education for small and medium-sized businesses",
+              "description": "AI technology platform building advanced automation and orchestration solutions for the future of business",
               "url": "https://howaiconnects.com",
               "logo": "https://howaiconnects.com/logo.png",
               "contactPoint": {
@@ -37,7 +37,9 @@ const About = () => {
                 "addressLocality": "Mississauga",
                 "addressRegion": "ON",
                 "addressCountry": "CA"
-              }
+              },
+              "foundingDate": "2024",
+              "industry": "AI Technology Platform"
             }
           `}
         </script>
