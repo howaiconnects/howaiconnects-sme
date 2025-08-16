@@ -58,6 +58,9 @@ import AutomationDashboard from "./pages/AutomationDashboard";
 // Navigation Dashboard
 import NavigationDashboard from "./pages/NavigationDashboard";
 
+// Routing Audit Dashboard  
+import RoutingAuditDashboard from "./pages/RoutingAuditDashboard";
+
 // Admin Pages
 import SecureAdminLogin from "./pages/admin/SecureAdminLogin";
 import EmailIntegration from "./pages/admin/EmailIntegration";
@@ -87,6 +90,7 @@ function App() {
         <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
         <Route path="/resources/tools" element={<ToolsPage />} />
         <Route path="/resources/templates" element={<AutomationTemplatesPage />} />
+        <Route path="/resources/automation-templates" element={<AutomationTemplatesPage />} />
         <Route path="/resources/:category" element={<ResourcesPage />} />
         
         {/* Courses Pages - Public */}
@@ -144,6 +148,13 @@ function App() {
         <Route path="/navigation" element={
           <ProtectedRoute>
             <NavigationDashboard />
+          </ProtectedRoute>
+        } />
+        
+        {/* Routing Audit Dashboard - Require authentication */}
+        <Route path="/audit" element={
+          <ProtectedRoute>
+            <RoutingAuditDashboard />
           </ProtectedRoute>
         } />
 
