@@ -47,11 +47,21 @@ class LatitudeService {
   private apiKey: string;
   private baseUrl: string;
   private projectId: string;
+  private isCustomEndpoint: boolean;
 
-  constructor() {
+  constructor(customEndpoint?: string) {
     this.apiKey = latitudeConfig.apiKey;
-    this.baseUrl = latitudeConfig.baseUrl;
+    this.baseUrl = customEndpoint || latitudeConfig.baseUrl;
     this.projectId = latitudeConfig.projectId;
+    this.isCustomEndpoint = !!customEndpoint;
+  }
+
+  // Configure for Azure Container Apps deployment
+  static createAzureInstance(containerAppUrl: string, apiKey: string, projectId: string): LatitudeService {
+    const instance = new LatitudeService(containerAppUrl);
+    instance.apiKey = apiKey;
+    instance.projectId = projectId;
+    return instance;
   }
 
   private async makeRequest<T>(

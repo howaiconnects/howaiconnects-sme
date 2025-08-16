@@ -1,0 +1,96 @@
+# Azure Container Apps Configuration for Latitude.so
+# Deploy this using Azure CLI or ARM templates
+
+apiVersion: apps/v1alpha1
+kind: ContainerApp
+metadata:
+  name: latitude-stack
+  location: eastus2  # Change to your preferred region
+spec:
+  resourceGroup: howaiconnects-rg
+  environment: latitude-env
+  
+  # Ingress configuration
+  ingress:
+    external: true
+    targetPort: 3000
+    traffic:
+      - weight: 100
+        latestRevision: true
+    
+  # Template for the container app
+  template:
+    containers:
+      # Latitude Web UI
+      - name: latitude-web
+        image: ghcr.io/latitude-dev/latitude-llm:latest
+        env:
+          - name: NODE_ENV
+            value: "production"
+          - name: DATABASE_URL
+            secretRef: postgres-connection-string
+          - name: REDIS_URL
+            secretRef: redis-connection-string
+          - name: APP_DOMAIN
+            value: "https://latitude.yourdomain.com"
+          - name: APP_URL
+            value: "https://latitude.yourdomain.com"
+          - name: NEXTAUTH_SECRET
+            secretRef: auth-secret
+          - name: OPENAI_API_KEY
+            secretRef: openai-api-key
+          - name: AZURE_OPENAI_API_KEY
+            secretRef: azure-openai-key
+          - name: AZURE_OPENAI_ENDPOINT
+            secretRef: azure-openai-endpoint
+        resources:
+          cpu: "1.0"
+          memory: "2Gi"
+        
+      # Latitude API Gateway
+      - name: latitude-gateway
+        image: ghcr.io/latitude-dev/latitude-gateway:latest
+        env:
+          - name: NODE_ENV
+            value: "production"
+          - name: DATABASE_URL
+            secretRef: postgres-connection-string
+          - name: REDIS_URL
+            secretRef: redis-connection-string
+          - name: API_PORT
+            value: "8080"
+        resources:
+          cpu: "0.5"
+          memory: "1Gi"
+          
+      # Background Worker
+      - name: latitude-worker
+        image: ghcr.io/latitude-dev/latitude-worker:latest
+        env:
+          - name: NODE_ENV
+            value: "production"
+          - name: DATABASE_URL
+            secretRef: postgres-connection-string
+          - name: REDIS_URL
+            secretRef: redis-connection-string
+          - name: OPENAI_API_KEY
+            secretRef: openai-api-key
+        resources:
+          cpu: "0.5"
+          memory: "1Gi"
+    
+    # Scaling configuration
+    scale:
+      minReplicas: 0  # Scale to zero when not in use
+      maxReplicas: 10
+      rules:
+        - name: http-scaling
+          http:
+            metadata:
+              concurrentRequests: "10"
+    
+    # Revision configuration
+    revisionSuffix: "v1"
+
+---
+# Supporting Azure services configuration

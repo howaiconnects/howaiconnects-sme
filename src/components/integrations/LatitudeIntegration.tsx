@@ -240,6 +240,11 @@ export const LatitudeIntegration: React.FC = () => {
         <div>
           <h2 className="text-2xl font-bold">Latitude.so AI Integration</h2>
           <p className="text-muted-foreground">Native AI-powered content generation and optimization</p>
+          <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+            <p className="text-sm text-blue-700 dark:text-blue-300">
+              🚀 <strong>Azure Container Apps Ready:</strong> Deploy your own Latitude.so instance with serverless scaling. Check the <code>azure-deployment/</code> folder for complete setup instructions.
+            </p>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant={isConnected ? "default" : "destructive"}>
