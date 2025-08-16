@@ -1,6 +1,4 @@
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import { Helmet } from "react-helmet-async";
@@ -14,9 +12,7 @@ const DoneForYouAIAgency = () => {
         <meta name="description" content="Launch your own AI agency without any upfront costs. Our done-for-you service provides a complete, turnkey solution for starting your AI business." />
       </Helmet>
 
-      <Navbar />
-
-      <main className="pt-16 pb-24">
+      <main className="py-8">
         {/* Hero Section */}
         <section className="bg-brand-primary/10 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -157,8 +153,6 @@ const DoneForYouAIAgency = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

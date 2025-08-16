@@ -5,7 +5,7 @@
 
 @layer base {
   :root {
-    /* HowAIConnects Brand Theme */
+    /* HowAIConnects Brand Theme - Standardized Colors */
     --background: 0 0% 100%;
     --foreground: 210 50% 20%;
 
@@ -15,11 +15,17 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 50% 20%;
 
-    --primary: 210 60% 20%;        /* Dark blue brand */
+    --primary: 210 60% 20%;        /* Deep Navy brand */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 45% 35%;      /* Medium Blue */
+    --secondary-foreground: 210 40% 98%;
+
+    /* Brand Color Variables for Consistent Usage */
+    --brand-primary: 210 60% 20%;     /* Deep Navy */
+    --brand-secondary: 210 45% 35%;   /* Medium Blue */
+    --brand-accent: 152 55% 45%;      /* Accent Green */
+    --brand-light: 210 20% 98%;       /* Light Background */
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;

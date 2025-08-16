@@ -16,7 +16,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
         {/* Admin Header - HowAIConnects Branded with Admin Theme */}
-        <header className="fixed top-0 left-0 right-0 h-14 flex items-center border-b bg-gradient-to-r from-red-600 to-red-700 shadow-md z-50">
+        <header className="fixed top-0 left-0 right-0 h-14 flex items-center border-b bg-gradient-to-r from-destructive to-red-700 shadow-md z-50">
           <SidebarTrigger className="ml-3 text-white hover:bg-white/20 transition-colors" />
           <div className="flex-1 flex items-center justify-between px-4">
             <div className="flex items-center gap-3">
@@ -40,7 +40,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         <AppSidebar />
 
         {/* Main Content - Updated padding for new header height */}
-        <main className="flex-1 pt-14 bg-gradient-to-br from-red-50 to-orange-50/30 min-h-screen">
+        <main className="flex-1 pt-14 bg-gradient-to-br from-destructive/5 to-red-50/30 min-h-screen">
           <div className="container mx-auto px-4 py-6">
             {children || <Outlet />}
           </div>

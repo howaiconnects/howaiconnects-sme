@@ -16,7 +16,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
         {/* App Platform Header - HowAIConnects Branded */}
-        <header className="fixed top-0 left-0 right-0 h-14 flex items-center border-b bg-gradient-to-r from-brand-primary to-brand-secondary shadow-md z-50">
+        <header className="fixed top-0 left-0 right-0 h-14 flex items-center border-b bg-gradient-to-r from-primary to-secondary shadow-md z-50">
           <SidebarTrigger className="ml-3 text-white hover:bg-white/20 transition-colors" />
           <div className="flex-1 flex items-center justify-between px-4">
             <div className="flex items-center gap-3">
@@ -42,7 +42,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         <AppSidebar />
 
         {/* Main Content - Updated padding for new header height */}
-        <main className="flex-1 pt-14 bg-gradient-to-br from-brand-light to-blue-50/30 min-h-screen">
+        <main className="flex-1 pt-14 bg-gradient-to-br from-background to-muted min-h-screen">
           <div className="container mx-auto px-4 py-6">
             {children || <Outlet />}
           </div>
