@@ -4,7 +4,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Brain, Cpu, Zap, Settings, LogOut, User } from 'lucide-react';
+import { Brain, Cpu, Zap, Settings, LogOut, User, Database, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
@@ -105,23 +106,53 @@ const Dashboard = () => {
                 Jump into building your AI-powered workflows
               </CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <Button className="h-auto py-4 flex-col space-y-2">
-                <Brain className="h-6 w-6" />
-                <span>Create Workflow</span>
-              </Button>
-              <Button variant="outline" className="h-auto py-4 flex-col space-y-2">
-                <Cpu className="h-6 w-6" />
-                <span>Manage Integrations</span>
-              </Button>
-              <Button variant="outline" className="h-auto py-4 flex-col space-y-2">
-                <Zap className="h-6 w-6" />
-                <span>View Analytics</span>
-              </Button>
-              <Button variant="outline" className="h-auto py-4 flex-col space-y-2">
-                <Settings className="h-6 w-6" />
-                <span>Platform Settings</span>
-              </Button>
+            <CardContent className="space-y-4">
+              {/* Featured Action - Automation Dashboard */}
+              <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-blue-500 text-white">
+                        <Database className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold">Automation Dashboard</h3>
+                        <p className="text-sm text-muted-foreground">Manage Zapier, Airtable & AI integrations</p>
+                      </div>
+                    </div>
+                    <Button asChild>
+                      <Link to="/automation">
+                        <ArrowRight className="h-4 w-4 mr-2" />
+                        Open Dashboard
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              {/* Quick Actions Grid */}
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <Button className="h-auto py-4 flex-col space-y-2" asChild>
+                  <Link to="/seo">
+                    <Brain className="h-6 w-6" />
+                    <span>SEO Dashboard</span>
+                  </Link>
+                </Button>
+                <Button variant="outline" className="h-auto py-4 flex-col space-y-2" asChild>
+                  <Link to="/automation">
+                    <Database className="h-6 w-6" />
+                    <span>Automation Hub</span>
+                  </Link>
+                </Button>
+                <Button variant="outline" className="h-auto py-4 flex-col space-y-2">
+                  <Zap className="h-6 w-6" />
+                  <span>View Analytics</span>
+                </Button>
+                <Button variant="outline" className="h-auto py-4 flex-col space-y-2">
+                  <Settings className="h-6 w-6" />
+                  <span>Platform Settings</span>
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </main>

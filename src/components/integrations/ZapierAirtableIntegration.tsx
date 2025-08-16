@@ -120,45 +120,49 @@ const ZapierAirtableIntegration = () => {
     if (!webhookUrl) {
       toast({
         title: "Error",
-        description: "Please enter a webhook URL",
+        description: "Please enter your Zapier webhook URL",
         variant: "destructive",
       });
       return;
     }
 
     setIsConnecting(true);
+    console.log("Triggering Zapier webhook:", webhookUrl);
+
     try {
-      const response = await fetch('/api/supabase/functions/v1/zapier-webhook', {
-        method: 'POST',
+      const response = await fetch(webhookUrl, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
+        mode: "no-cors", // Add this to handle CORS
         body: JSON.stringify({
-          webhookUrl,
-          data: {
-            test: true,
+          timestamp: new Date().toISOString(),
+          triggered_from: window.location.origin,
+          test_data: {
             source: 'HowAIConnects Integration Test',
-            timestamp: new Date().toISOString(),
             name: 'John Doe',
             email: 'john@example.com',
-            message: 'Test integration between HowAIConnects and Airtable'
-          },
-          triggerType: 'integration_test'
+            company: 'Test Company Inc.',
+            message: 'This is a test integration between HowAIConnects and your automation workflow',
+            lead_score: 85,
+            utm_source: 'automation_dashboard',
+            form_type: 'integration_test'
+          }
         }),
       });
 
-      if (response.ok) {
-        toast({
-          title: "Success",
-          description: "Test webhook sent successfully! Check your Zap history.",
-        });
-      } else {
-        throw new Error('Failed to send test webhook');
-      }
+      // Since we're using no-cors, we won't get a proper response status
+      // Instead, we'll show a more informative message
+      toast({
+        title: "Request Sent",
+        description: "The request was sent to Zapier. Please check your Zap's history to confirm it was triggered.",
+      });
     } catch (error) {
+      console.error("Error triggering webhook:", error);
       toast({
         title: "Error",
-        description: "Failed to send test webhook. Please check your URL.",
+        description: "Failed to trigger the Zapier webhook. Please check the URL and try again.",
         variant: "destructive",
       });
     } finally {

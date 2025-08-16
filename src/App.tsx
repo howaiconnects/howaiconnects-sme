@@ -52,6 +52,9 @@ import AdminDashboard from "./pages/AdminDashboard";
 // SEO AI Platform
 import SEODashboard from "./pages/seo/SEODashboard";
 
+// Automation Dashboard
+import AutomationDashboard from "./pages/AutomationDashboard";
+
 // Admin Pages
 import SecureAdminLogin from "./pages/admin/SecureAdminLogin";
 import EmailIntegration from "./pages/admin/EmailIntegration";
@@ -124,6 +127,13 @@ function App() {
         <Route path="/seo" element={
           <ProtectedRoute>
             <SEODashboard />
+          </ProtectedRoute>
+        } />
+        
+        {/* Automation Dashboard - Require authentication */}
+        <Route path="/automation" element={
+          <ProtectedRoute>
+            <AutomationDashboard />
           </ProtectedRoute>
         } />
 
