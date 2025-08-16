@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import ZapierAirtableIntegration from '@/components/integrations/ZapierAirtableIntegration';
 import ZapierCLI from '@/components/zapier/ZapierCLI';
+import { LatitudeIntegration } from '@/components/integrations/LatitudeIntegration';
 import { 
   Search, 
   FileText, 
@@ -241,12 +242,16 @@ const SEODashboard = () => {
               <TabsList>
                 <TabsTrigger value="integration">Zapier + Airtable</TabsTrigger>
                 <TabsTrigger value="cli">Zapier CLI</TabsTrigger>
+                <TabsTrigger value="latitude">Latitude.so AI</TabsTrigger>
               </TabsList>
               <TabsContent value="integration">
                 <ZapierAirtableIntegration />
               </TabsContent>
               <TabsContent value="cli">
                 <ZapierCLI />
+              </TabsContent>
+              <TabsContent value="latitude">
+                <LatitudeIntegration />
               </TabsContent>
             </Tabs>
           </TabsContent>
@@ -263,14 +268,7 @@ const SEODashboard = () => {
           </TabsContent>
 
           <TabsContent value="ai-models">
-            <Card>
-              <CardHeader>
-                <CardTitle>AI Model Management</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Azure AI Foundry and Latitude.so integration coming soon...</p>
-              </CardContent>
-            </Card>
+            <LatitudeIntegration />
           </TabsContent>
         </Tabs>
       </div>
