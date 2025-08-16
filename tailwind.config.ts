@@ -64,14 +64,12 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				// Brand colors - these should be used consistently
-				brand: {
-					primary: "#1E3A50",    // Dark blue - main brand color
-					secondary: "#4D7A97",  // Medium blue - hover state
-					accent: "#35A162",     // Green - accent color
-					lightAccent: "#7CCD9D", // Light green
-					dark: "#1A1F2C",       // Dark slate
-					light: "#F8FAFC",      // Light background
-				}
+				'brand-primary': "#1E3A50",    // Dark blue - main brand color
+				'brand-secondary': "#4D7A97",  // Medium blue - hover state
+				'brand-accent': "#35A162",     // Green - accent color
+				'brand-light-accent': "#7CCD9D", // Light green
+				'brand-dark': "#1A1F2C",       // Dark slate
+				'brand-light': "#F8FAFC",      // Light background
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
