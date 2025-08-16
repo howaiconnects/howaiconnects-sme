@@ -43,6 +43,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Function to fetch user profile
   const fetchUserProfile = async (userId: string) => {
     try {
+      console.log('Fetching user profile for ID:', userId);
+      
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -51,9 +53,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (error) {
         console.error('Error fetching user profile:', error);
+        
+        // If profile doesn't exist, create one
+        if (error.code === 'PGRST116') {
+          console.log('Profile not found, creating new profile...');
+          const { data: newProfile, error: createError } = await supabase
+            .from('profiles')
+            .insert({
+              id: userId,
+              email: null,
+              full_name: null,
+              role: 'user'
+            })
+            .select()
+            .single();
+          
+          if (createError) {
+            console.error('Error creating user profile:', createError);
+            return null;
+          }
+          
+          console.log('Created new profile:', newProfile);
+          return newProfile;
+        }
         return null;
       }
 
+      console.log('Fetched user profile:', data);
       return data;
     } catch (error) {
       console.error('Error fetching user profile:', error);
@@ -69,34 +95,46 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
+    console.log('AuthContext: Setting up auth state listener');
+    
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('Auth state changed:', event, session?.user?.id || 'no user');
+        
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
           // Fetch user profile when user logs in
+          console.log('User found, fetching profile...');
           const profile = await fetchUserProfile(session.user.id);
           setUserProfile(profile);
         } else {
+          console.log('No user, clearing profile');
           setUserProfile(null);
         }
         
+        console.log('Setting loading to false');
         setLoading(false);
       }
     );
 
     // THEN check for existing session
+    console.log('AuthContext: Checking for existing session');
     supabase.auth.getSession().then(async ({ data: { session } }) => {
+      console.log('Existing session check:', session?.user?.id || 'no user');
+      
       setSession(session);
       setUser(session?.user ?? null);
       
       if (session?.user) {
+        console.log('Existing user found, fetching profile...');
         const profile = await fetchUserProfile(session.user.id);
         setUserProfile(profile);
       }
       
+      console.log('Initial session check complete, setting loading to false');
       setLoading(false);
     });
 
