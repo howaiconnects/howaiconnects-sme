@@ -22,6 +22,10 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -280,41 +284,41 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <div className="py-2 border-b border-gray-100">
               <h3 className="text-xs font-semibold text-gray-500 px-3 py-1">FEATURED SERVICES</h3>
-              <Link to="/web-app-development" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              <Link to="/web-app-development" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
                 Web App Development
               </Link>
-              <Link to="/done-for-you-ai-agency" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              <Link to="/done-for-you-ai-agency" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
                 Done-for-You AI Agency
               </Link>
             </div>
             <div className="py-2 border-b border-gray-100">
               <h3 className="text-xs font-semibold text-gray-500 px-3 py-1">WEB APPS</h3>
-              <Link to="/web-apps/path-to-canada" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              <Link to="/web-apps/path-to-canada" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
                 PathtoCanada.ca
               </Link>
-              <Link to="/web-apps/ai-data-gem" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              <Link to="/web-apps/ai-data-gem" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
                 AIDataGem.com
               </Link>
             </div>
             <div className="py-2 border-b border-gray-100">
               <h3 className="text-xs font-semibold text-gray-500 px-3 py-1">AI SERVICES</h3>
-              <Link to="/services" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              <Link to="/services" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
                 All Services
               </Link>
             </div>
-            <Link to="/resources" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+            <Link to="/resources" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               Resources
             </Link>
-            <Link to="/about" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+            <Link to="/about" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               About
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+            <Link to="/contact" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               Contact
             </Link>
-            <Link to="/account" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+            <Link to="/account" onClick={closeMenu} className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               {user ? 'Account' : 'Sign In'}
             </Link>
-            <Link to="/services/ai-consultation/ai-readiness-assessment" className="block mt-3">
+            <Link to="/services/ai-consultation/ai-readiness-assessment" onClick={closeMenu} className="block mt-3">
               <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white w-full" size="sm">
                 Get Assessment <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
