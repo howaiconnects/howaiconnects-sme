@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from '@/hooks/use-toast';
 import { Shield, Users, Crown, UserCheck } from 'lucide-react';
 
 interface UserProfile {
@@ -49,11 +49,11 @@ const UserRoleManager: React.FC = () => {
     setUpdatingRoles(prev => new Set([...prev, userId]));
     
     try {
-      // Call admin function to update role and log action
-      const { error } = await supabase.rpc('admin_update_user_role', {
-        target_user_id: userId,
-        new_role: newRole
-      });
+      // Update user role directly in profiles table
+      const { error } = await supabase
+        .from('profiles')
+        .update({ role: newRole })
+        .eq('id', userId);
 
       if (error) throw error;
 
