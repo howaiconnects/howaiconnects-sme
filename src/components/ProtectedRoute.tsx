@@ -15,7 +15,16 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 }) => {
   const { user, userProfile, loading } = useAuth();
 
+  // Debug logging for authentication issues
+  console.log('ProtectedRoute Debug:', {
+    loading,
+    user: user ? { id: user.id, email: user.email } : null,
+    userProfile,
+    currentPath: window.location.pathname
+  });
+
   if (loading) {
+    console.log('ProtectedRoute: Still loading authentication state');
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -24,6 +33,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   }
 
   if (!user) {
+    console.log('ProtectedRoute: No user found, redirecting to /auth');
     return <Navigate to="/auth" replace />;
   }
 
