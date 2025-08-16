@@ -2,18 +2,20 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
-interface ProtectedRouteProps {
+interface RoleBasedRouteProps {
   children: React.ReactNode;
-  requiresRole?: string[];
+  allowedRoles: string[];
   redirectTo?: string;
+  fallbackComponent?: React.ReactNode;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ 
+const RoleBasedRoute: React.FC<RoleBasedRouteProps> = ({ 
   children, 
-  requiresRole,
-  redirectTo = '/dashboard'
+  allowedRoles, 
+  redirectTo = '/dashboard',
+  fallbackComponent 
 }) => {
-  const { user, userProfile, loading } = useAuth();
+  const { user, loading, userProfile } = useAuth();
 
   if (loading) {
     return (
@@ -27,15 +29,17 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     return <Navigate to="/auth" replace />;
   }
 
-  // Check role-based access if roles are specified
-  if (requiresRole && requiresRole.length > 0) {
-    const userRole = userProfile?.role || 'user';
-    if (!requiresRole.includes(userRole)) {
-      return <Navigate to={redirectTo} replace />;
+  const userRole = userProfile?.role || 'user';
+  const hasPermission = allowedRoles.includes(userRole);
+
+  if (!hasPermission) {
+    if (fallbackComponent) {
+      return <>{fallbackComponent}</>;
     }
+    return <Navigate to={redirectTo} replace />;
   }
 
   return <>{children}</>;
 };
 
-export default ProtectedRoute;
+export default RoleBasedRoute;
