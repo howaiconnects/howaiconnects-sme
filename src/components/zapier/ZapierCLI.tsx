@@ -179,16 +179,79 @@ module.exports = App;`;
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Terminal className="h-5 w-5" />
-            Zapier CLI Management
+            Zapier CLI Installation & Setup
           </CardTitle>
           <CardDescription>
-            Build and deploy your custom Zapier app integration using the Zapier CLI.
+            Install and configure the Zapier CLI for building your custom app integration.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">Step 1: Install Zapier CLI Globally</h3>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium">Install CLI globally</span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => copyToClipboard('npm install -g zapier-platform-cli')}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
+                <code className="block bg-muted p-2 rounded text-sm">
+                  npm install -g zapier-platform-cli
+                </code>
+                <p className="text-sm text-muted-foreground">
+                  This installs the Zapier CLI globally so you can use it from any directory.
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium">Test installation</span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => copyToClipboard('zapier --version')}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
+                <code className="block bg-muted p-2 rounded text-sm">
+                  zapier --version
+                </code>
+                <p className="text-sm text-muted-foreground">
+                  Should output: zapier-platform-cli/X.Y.Z and node/vX.Y.Z
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">Step 2: Authenticate with Zapier</h3>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium">Login to Zapier</span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => copyToClipboard('zapier login')}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
+                <code className="block bg-muted p-2 rounded text-sm">
+                  zapier login
+                </code>
+                <p className="text-sm text-muted-foreground">
+                  This will prompt for your Zapier account credentials and create a .zapierrc file.
+                </p>
+              </div>
+            </div>
+
             <div>
-              <Label htmlFor="app-name">App Name</Label>
+              <Label htmlFor="app-name">App Name for Your Integration</Label>
               <Input
                 id="app-name"
                 value={appName}
@@ -197,9 +260,22 @@ module.exports = App;`;
               />
             </div>
             
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary">Node.js Available</Badge>
-              <Badge variant="secondary">Zapier CLI Installed</Badge>
+            <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
+              <h4 className="font-medium mb-2">Requirements Checklist:</h4>
+              <div className="space-y-1 text-sm">
+                <div className="flex items-center gap-2">
+                  <Badge variant="secondary">✓</Badge>
+                  <span>Node.js Available</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline">?</Badge>
+                  <span>Zapier CLI Installed Globally</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline">?</Badge>
+                  <span>Zapier Account Authentication</span>
+                </div>
+              </div>
             </div>
           </div>
         </CardContent>
