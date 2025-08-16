@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import ZapierIntegration from '@/components/seo/ZapierIntegration';
+import ZapierCLI from '@/components/zapier/ZapierCLI';
 import { 
   Search, 
   FileText, 
@@ -235,45 +236,19 @@ const SEODashboard = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="automation">
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Zap className="h-5 w-5" />
-                    <span>Zapier Integration</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ZapierIntegration />
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardHeader>
-                  <CardTitle>Other Automation Platforms</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="p-4 border rounded-lg">
-                      <h4 className="font-medium mb-2">Make.com</h4>
-                      <p className="text-sm text-gray-600 mb-3">Visual automation platform with advanced logic</p>
-                      <Badge variant="outline">Coming Soon</Badge>
-                    </div>
-                    <div className="p-4 border rounded-lg">
-                      <h4 className="font-medium mb-2">n8n</h4>
-                      <p className="text-sm text-gray-600 mb-3">Open-source workflow automation</p>
-                      <Badge variant="outline">Coming Soon</Badge>
-                    </div>
-                    <div className="p-4 border rounded-lg">
-                      <h4 className="font-medium mb-2">Pipedream</h4>
-                      <p className="text-sm text-gray-600 mb-3">Developer-first automation platform</p>
-                      <Badge variant="outline">Coming Soon</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+          <TabsContent value="automation" className="space-y-6">
+            <Tabs defaultValue="zapier" className="w-full">
+              <TabsList>
+                <TabsTrigger value="zapier">Zapier Integration</TabsTrigger>
+                <TabsTrigger value="cli">Zapier CLI</TabsTrigger>
+              </TabsList>
+              <TabsContent value="zapier">
+                <ZapierIntegration />
+              </TabsContent>
+              <TabsContent value="cli">
+                <ZapierCLI />
+              </TabsContent>
+            </Tabs>
           </TabsContent>
 
           <TabsContent value="data">
