@@ -49,11 +49,12 @@ const UserRoleManager: React.FC = () => {
     setUpdatingRoles(prev => new Set([...prev, userId]));
     
     try {
-      // Update user role directly in profiles table
+      // Use the admin_update_user_role function for secure role updates
       const { error } = await supabase
-        .from('profiles')
-        .update({ role: newRole })
-        .eq('id', userId);
+        .rpc('admin_update_user_role', {
+          target_user_id: userId,
+          new_role: newRole
+        });
 
       if (error) throw error;
 
