@@ -130,9 +130,9 @@ const AutomationDashboard = () => {
           </div>
           <div className="flex gap-2">
             <Button variant="outline" asChild>
-              <Link to="/seo">
+              <Link to="/app">
                 <BarChart3 className="h-4 w-4 mr-2" />
-                SEO Dashboard
+                App Dashboard
               </Link>
             </Button>
             <Button variant="outline" asChild>

@@ -20,7 +20,7 @@ import {
   Globe
 } from 'lucide-react';
 
-const SEODashboard = () => {
+const AppDashboard = () => {
   const aiAgentStatus = [
     { name: 'Keyword Research Agent', status: 'active', lastRun: '2 mins ago' },
     { name: 'Content Generation Agent', status: 'idle', lastRun: '15 mins ago' },
@@ -276,4 +276,4 @@ const SEODashboard = () => {
   );
 };
 
-export default SEODashboard;
+export default AppDashboard;

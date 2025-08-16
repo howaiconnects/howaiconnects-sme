@@ -46,7 +46,7 @@ const Dashboard = () => {
       title: "Build Automation",
       description: "Create new AI workflow",
       icon: <Zap className="h-5 w-5" />,
-      url: "/seo/automation",
+      url: "/app/automation",
       priority: "high",
       badge: "Most Used"
     },
@@ -54,7 +54,7 @@ const Dashboard = () => {
       title: "View Analytics", 
       description: "Monitor performance",
       icon: <BarChart3 className="h-5 w-5" />,
-      url: "/seo",
+      url: "/app",
       priority: "high"
     },
     {
@@ -79,9 +79,9 @@ const Dashboard = () => {
       title: "Core Workflows",
       description: "Main platform features",
       items: [
-        { name: "AI Automation Hub", url: "/seo/automation", icon: <Zap className="h-4 w-4" /> },
-        { name: "Analytics Dashboard", url: "/seo", icon: <BarChart3 className="h-4 w-4" /> },
-        { name: "Navigation Center", url: "/seo/navigation", icon: <Menu className="h-4 w-4" /> }
+        { name: "AI Automation Hub", url: "/app/automation", icon: <Zap className="h-4 w-4" /> },
+        { name: "Analytics Dashboard", url: "/app", icon: <BarChart3 className="h-4 w-4" /> },
+        { name: "Navigation Center", url: "/app/navigation", icon: <Menu className="h-4 w-4" /> }
       ]
     },
     {
@@ -99,7 +99,7 @@ const Dashboard = () => {
       items: [
         { name: "Resource Library", url: "/resources", icon: <FileText className="h-4 w-4" /> },
         { name: "Training Courses", url: "/courses", icon: <Brain className="h-4 w-4" /> },
-        { name: "System Audit", url: "/seo/audit", icon: <CheckCircle className="h-4 w-4" /> }
+        { name: "System Audit", url: "/app/audit", icon: <CheckCircle className="h-4 w-4" /> }
       ]
     }
   ];

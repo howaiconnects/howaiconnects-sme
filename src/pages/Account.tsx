@@ -297,7 +297,7 @@ const Account = () => {
                 <Button 
                   variant="outline" 
                   className="justify-start"
-                  onClick={() => window.location.href = '/seo'}
+                  onClick={() => window.location.href = '/app'}
                 >
                   <Settings className="h-4 w-4 mr-2" />
                   SEO Dashboard

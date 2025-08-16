@@ -169,7 +169,7 @@ export const AirtableIntegration: React.FC = () => {
       await airtableService.logActivity({
         action: 'Manual Test',
         details: 'Test activity logged from dashboard',
-        page: '/seo/automation'
+        page: '/app/automation'
       });
 
       toast({

@@ -54,8 +54,8 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 
-// SEO AI Platform
-import SEODashboard from "./pages/seo/SEODashboard";
+// App Platform
+import AppDashboard from "./pages/app/AppDashboard";
 
 // Automation Dashboard
 import AutomationDashboard from "./pages/AutomationDashboard";
@@ -128,22 +128,23 @@ function App() {
           </PublicRoute>
         } />
 
-        {/* SEO Platform Routes - All web app features under /seo/* */}
+        {/* App Platform Routes - All web app features under /app/* */}
         <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-          <Route path="/seo" element={<SEODashboard />} />
+          <Route path="/app" element={<AppDashboard />} />
+          <Route path="/app/dashboard" element={<Dashboard />} />
+          <Route path="/app/automation" element={<AutomationDashboard />} />
+          <Route path="/app/navigation" element={<NavigationDashboard />} />
+          <Route path="/app/audit" element={<RoutingAuditDashboard />} />
+          <Route path="/app/resources/downloads/:id" element={<ResourceDownloadPage />} />
+          <Route path="/app/resources/templates/:id" element={<TemplateDetail />} />
+          
+          {/* Legacy redirects for backward compatibility */}
+          <Route path="/seo" element={<AppDashboard />} />
           <Route path="/seo/dashboard" element={<Dashboard />} />
           <Route path="/seo/automation" element={<AutomationDashboard />} />
           <Route path="/seo/navigation" element={<NavigationDashboard />} />
           <Route path="/seo/audit" element={<RoutingAuditDashboard />} />
-          <Route path="/seo/resources/downloads/:id" element={<ResourceDownloadPage />} />
-          <Route path="/seo/resources/templates/:id" element={<TemplateDetail />} />
-          
-          {/* Legacy redirects for backward compatibility */}
-          <Route path="/app/dashboard" element={<Dashboard />} />
-          <Route path="/app/seo" element={<SEODashboard />} />
-          <Route path="/app/automation" element={<AutomationDashboard />} />
-          <Route path="/app/navigation" element={<NavigationDashboard />} />
-          <Route path="/app/audit" element={<RoutingAuditDashboard />} />
+          <Route path="/app/seo" element={<AppDashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/automation" element={<AutomationDashboard />} />
           <Route path="/navigation" element={<NavigationDashboard />} />

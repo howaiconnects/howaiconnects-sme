@@ -151,9 +151,9 @@ export const navigationConfig = {
   ],
   app: [
     { name: "Dashboard", href: "/dashboard", icon: "BarChart3" },
-    { name: "Analytics", href: "/seo", icon: "TrendingUp" },
-    { name: "Automation", href: "/seo/automation", icon: "Zap" },
-    { name: "Navigation", href: "/seo/navigation", icon: "Menu" },
+    { name: "Analytics", href: "/app", icon: "TrendingUp" },
+    { name: "Automation", href: "/app/automation", icon: "Zap" },
+    { name: "Navigation", href: "/app/navigation", icon: "Menu" },
     { name: "Settings", href: "/account", icon: "Settings" }
   ],
   admin: [
