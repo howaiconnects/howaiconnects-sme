@@ -42,13 +42,13 @@ const Hero = () => {
               <h1 
                 className={`text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl transition-all duration-700 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               >
-                <span className="block">The Future of AI</span>
-                <span className="block gradient-text">Starts Here</span>
+                <span className="block">We're Building What</span>
+                <span className="block gradient-text">You're Dreaming About — Today</span>
               </h1>
               <p 
                 className={`mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0 transition-all duration-700 delay-300 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               >
-                We're pioneering the next generation of AI-powered web applications and intelligent automation solutions. From concept to deployment, we build advanced AI systems that transform how businesses operate in the digital future.
+                Seamlessly integrating AI into everyday life with advanced automation, deep integrations, and intuitive design. We build AI orchestration platforms that anticipate what you'll need tomorrow.
               </p>
               <div 
                 className={`mt-8 sm:mt-10 sm:flex sm:justify-center lg:justify-start gap-4 transition-all duration-700 delay-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
@@ -60,7 +60,7 @@ const Hero = () => {
                       variant="accent"
                       className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
-                      Start Your AI Journey <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
+                      Explore Our Platform <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
                     </Button>
                   </Link>
                 </div>
@@ -70,7 +70,7 @@ const Hero = () => {
                       variant="outline" 
                       className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
-                      View Our Solutions <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      Try Demo <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </Link>
                 </div>

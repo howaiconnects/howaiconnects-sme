@@ -45,12 +45,12 @@ const VisionSection = () => {
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-xl text-gray-200 mb-8 leading-relaxed">
-              We're not just building software — we're architecting the neural pathways of tomorrow's business ecosystem. 
-              Our AI orchestration platform doesn't just automate; it anticipates, learns, and evolves.
+              We're architecting the neural pathways of tomorrow's business ecosystem. 
+              Our AI orchestration platform doesn't just automate; it anticipates, learns, and evolves with almost unlimited deep connections.
             </p>
             <p className="text-lg text-gray-300 mb-12">
-              Almost unlimited deep connections. Voice-activated intelligence. Predictive automation that thinks three steps ahead.
-              This isn't consultation — this is the future, delivered today.
+              Voice-activated intelligence. Predictive automation that thinks three steps ahead. Products designed to anticipate what you'll need tomorrow.
+              This isn't software — this is the future, delivered today.
             </p>
           </div>
         </div>
@@ -90,14 +90,14 @@ const VisionSection = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
+              <Link to="/app">
                 <Button size="lg" className="bg-brand-accent hover:bg-brand-accent/90 text-white">
-                  Join the Revolution <ArrowRight className="ml-2 h-5 w-5" />
+                  Explore Platform <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/about">
                 <Button size="lg" variant="outline" className="text-white border-white/30 hover:bg-white/10">
-                  Our Story
+                  Our Vision
                 </Button>
               </Link>
             </div>

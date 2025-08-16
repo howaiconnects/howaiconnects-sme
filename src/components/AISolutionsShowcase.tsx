@@ -25,8 +25,8 @@ const AISolutionsShowcase = () => {
   const aiSolutions = [
     {
       icon: <Brain className="h-8 w-8 text-blue-600" />,
-      title: "Intelligent Web Applications",
-      description: "Custom AI-powered web apps with advanced machine learning capabilities, real-time data processing, and adaptive user interfaces.",
+      title: "AI Orchestration Platform",
+      description: "Web applications, not websites. AI orchestration platforms that seamlessly integrate intelligence into everyday workflows with production-ready scalability.",
       features: ["Machine Learning Integration", "Real-time AI Processing", "Adaptive Interfaces", "Predictive Analytics"],
       badge: "Advanced AI",
       link: "/web-app-development",
@@ -34,8 +34,8 @@ const AISolutionsShowcase = () => {
     },
     {
       icon: <Bot className="h-8 w-8 text-purple-600" />,
-      title: "AI Automation Platforms",
-      description: "Sophisticated automation systems that learn, adapt, and optimize business processes using cutting-edge AI algorithms.",
+      title: "Voice-Activated Intelligence",
+      description: "Advanced AI systems with voice activation and contextual understanding that anticipate needs and automate complex workflows at scale.",
       features: ["Self-Learning Systems", "Process Optimization", "Intelligent Workflows", "24/7 Monitoring"],
       badge: "Enterprise AI",
       link: "/done-for-you-ai-agency",
@@ -43,8 +43,8 @@ const AISolutionsShowcase = () => {
     },
     {
       icon: <Database className="h-8 w-8 text-green-600" />,
-      title: "AI Data Platforms",
-      description: "Advanced data processing and analytics platforms powered by AI, providing deep insights and predictive capabilities.",
+      title: "Predictive AI Systems",
+      description: "Advanced analytics and predictive modeling that thinks three steps ahead, delivering insights before you need them.",
       features: ["Big Data Processing", "AI Analytics", "Predictive Modeling", "Real-time Insights"],
       badge: "Data AI",
       link: "/web-apps/ai-data-gem",
@@ -52,8 +52,8 @@ const AISolutionsShowcase = () => {
     },
     {
       icon: <Globe className="h-8 w-8 text-orange-600" />,
-      title: "AI Integration Services",
-      description: "Seamless integration of AI capabilities into existing systems, creating intelligent ecosystems that enhance business operations.",
+      title: "Deep Integration Networks",
+      description: "Almost unlimited deep connections between systems, creating intelligent ecosystems that adapt and evolve with your business.",
       features: ["API Integration", "Legacy System AI", "Cloud AI Services", "Custom AI Models"],
       badge: "Integration AI",
       link: "/services",
@@ -94,11 +94,11 @@ const AISolutionsShowcase = () => {
             <span className="text-purple-600 font-medium">AI Solutions</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-800 bg-clip-text text-transparent">
-            Advanced AI Web Applications
+            AI Products That Anticipate Tomorrow
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We create custom AI-powered solutions that transform how businesses operate, 
-            combining cutting-edge technology with intuitive design.
+            We're building AI orchestration technology that doesn't just solve today's problems — 
+            it anticipates what you'll need next and builds the infrastructure to get you there.
           </p>
         </div>
 
@@ -152,10 +152,10 @@ const AISolutionsShowcase = () => {
           <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-12 border">
             <div className="text-center mb-12">
               <h3 className="text-3xl font-bold mb-4 text-foreground">
-                Why Choose Our AI Solutions?
+                Our Proprietary AI Technology Stack
               </h3>
               <p className="text-muted-foreground text-lg">
-                We deliver enterprise-grade AI technology with startup agility
+                Built on Next.js, Supabase backbone, and cutting-edge AI orchestration
               </p>
             </div>
 
@@ -174,13 +174,13 @@ const AISolutionsShowcase = () => {
             </div>
 
             <div className="text-center">
-              <Button asChild size="lg" className="group">
-                <Link to="/contact">
-                  <Brain className="h-5 w-5 mr-2 group-hover:rotate-12 transition-transform" />
-                  Start Your AI Project
-                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
+                <Button asChild size="lg" className="group">
+                  <Link to="/app">
+                    <Brain className="h-5 w-5 mr-2 group-hover:rotate-12 transition-transform" />
+                    Join Waitlist
+                    <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
             </div>
           </div>
         </div>
