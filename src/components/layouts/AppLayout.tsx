@@ -25,7 +25,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                 alt="HowAIConnects Logo" 
                 className="h-6 w-auto" 
               />
-              <span className="font-semibold text-white">HowAIConnects App</span>
+              <span className="font-semibold text-white">HowAIConnects SEO Platform</span>
             </div>
             <div className="flex items-center gap-2">
               {user && (

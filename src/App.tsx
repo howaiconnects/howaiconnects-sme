@@ -128,19 +128,23 @@ function App() {
           </PublicRoute>
         } />
 
-        {/* App Platform Routes - All use AppLayout under /app/* */}
+        {/* SEO Platform Routes - All web app features under /seo/* */}
         <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          <Route path="/seo" element={<SEODashboard />} />
+          <Route path="/seo/dashboard" element={<Dashboard />} />
+          <Route path="/seo/automation" element={<AutomationDashboard />} />
+          <Route path="/seo/navigation" element={<NavigationDashboard />} />
+          <Route path="/seo/audit" element={<RoutingAuditDashboard />} />
+          <Route path="/seo/resources/downloads/:id" element={<ResourceDownloadPage />} />
+          <Route path="/seo/resources/templates/:id" element={<TemplateDetail />} />
+          
+          {/* Legacy redirects for backward compatibility */}
           <Route path="/app/dashboard" element={<Dashboard />} />
           <Route path="/app/seo" element={<SEODashboard />} />
           <Route path="/app/automation" element={<AutomationDashboard />} />
           <Route path="/app/navigation" element={<NavigationDashboard />} />
           <Route path="/app/audit" element={<RoutingAuditDashboard />} />
-          <Route path="/app/resources/downloads/:id" element={<ResourceDownloadPage />} />
-          <Route path="/app/resources/templates/:id" element={<TemplateDetail />} />
-          
-          {/* Legacy redirects for backward compatibility */}
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/seo" element={<SEODashboard />} />
           <Route path="/automation" element={<AutomationDashboard />} />
           <Route path="/navigation" element={<NavigationDashboard />} />
           <Route path="/audit" element={<RoutingAuditDashboard />} />

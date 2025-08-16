@@ -58,37 +58,37 @@ export function AppSidebar() {
   const getNavCls = (isActive: boolean) =>
     isActive ? "bg-primary text-primary-foreground font-medium" : "hover:bg-muted/50";
 
-  // Main navigation sections
+  // Main navigation sections - All under /seo/*
   const navSections: NavSection[] = [
     {
-      title: "Core Dashboards",
+      title: "SEO Platform",
       items: [
         {
-          title: "Main Dashboard",
-          url: "/app/dashboard", 
+          title: "SEO Dashboard",
+          url: "/seo", 
+          icon: BarChart3,
+          badge: "Main"
+        },
+        {
+          title: "User Dashboard",
+          url: "/seo/dashboard",
           icon: Home
         },
         {
-          title: "SEO Dashboard",
-          url: "/app/seo",
-          icon: BarChart3,
-          badge: "Premium"
-        },
-        {
           title: "Automation Hub", 
-          url: "/app/automation",
+          url: "/seo/automation",
           icon: Zap,
           badge: "New"
         },
         {
           title: "Navigation Center",
-          url: "/app/navigation",
+          url: "/seo/navigation",
           icon: Menu,
           badge: "360°"
         },
         {
           title: "Routing Audit",
-          url: "/app/audit",
+          url: "/seo/audit",
           icon: Shield,
           badge: "System"
         }
