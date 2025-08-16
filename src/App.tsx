@@ -15,6 +15,7 @@ import AdminProtectedRoute from "@/components/admin/ProtectedRoute";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
 import MarketingAutomation from "./pages/services/ai-automation-solutions/MarketingAutomation";
@@ -63,6 +64,7 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/account" element={<Account />} />
         <Route path="/services" element={<Services />} />
         
         {/* Service Detail Pages - Public */}

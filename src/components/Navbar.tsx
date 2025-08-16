@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, User } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,9 +12,11 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useAuth();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -234,11 +236,20 @@ const Navbar = () => {
               </NavigationMenuList>
             </NavigationMenu>
             
-            <Link to="/services/ai-consultation/ai-readiness-assessment">
-              <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white ml-4" size="sm">
-                Get Assessment <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+            <div className="flex items-center space-x-2 ml-4">
+              <Link to="/account">
+                <Button variant="outline" size="sm" className="flex items-center">
+                  <User className="h-4 w-4 mr-2" />
+                  {user ? 'Account' : 'Sign In'}
+                </Button>
+              </Link>
+              
+              <Link to="/services/ai-consultation/ai-readiness-assessment">
+                <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white" size="sm">
+                  Get Assessment <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -299,6 +310,9 @@ const Navbar = () => {
             </Link>
             <Link to="/contact" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
               Contact
+            </Link>
+            <Link to="/account" className="text-gray-700 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+              {user ? 'Account' : 'Sign In'}
             </Link>
             <Link to="/services/ai-consultation/ai-readiness-assessment" className="block mt-3">
               <Button className="bg-brand-accent hover:bg-brand-lightAccent text-white w-full" size="sm">
