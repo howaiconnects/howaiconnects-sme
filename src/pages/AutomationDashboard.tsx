@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import ZapierAirtableIntegration from "@/components/integrations/ZapierAirtableIntegration";
 import { LatitudeIntegration } from "@/components/integrations/LatitudeIntegration";
+import { AirtableIntegration } from "@/components/integrations/AirtableIntegration";
 import { Link } from "react-router-dom";
 
 const AutomationDashboard = () => {
@@ -193,10 +194,10 @@ const AutomationDashboard = () => {
         <Tabs defaultValue="overview" className="w-full">
           <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="airtable">Airtable</TabsTrigger>
             <TabsTrigger value="zapier-airtable">Zapier + Airtable</TabsTrigger>
             <TabsTrigger value="latitude-ai">Latitude.so AI</TabsTrigger>
             <TabsTrigger value="activity">Activity Log</TabsTrigger>
-            <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -268,6 +269,10 @@ const AutomationDashboard = () => {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+
+          <TabsContent value="airtable">
+            <AirtableIntegration />
           </TabsContent>
 
           <TabsContent value="zapier-airtable">
