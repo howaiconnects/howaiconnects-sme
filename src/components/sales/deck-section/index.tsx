@@ -1,4 +1,4 @@
 
-import DeckSection from './DeckSection.tsx';
+import DeckSection from './DeckSection';
 
 export default DeckSection;
