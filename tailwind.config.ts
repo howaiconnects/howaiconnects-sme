@@ -63,13 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// HowAIConnects Brand Colors - HSL format for proper Tailwind support
-				'brand-primary': 'hsl(210 60% 20%)',      // Deep Navy
-				'brand-secondary': 'hsl(210 45% 35%)',    // Medium Blue  
-				'brand-accent': 'hsl(152 55% 45%)',       // Accent Green
-				'brand-light-accent': 'hsl(152 40% 60%)', // Light Green
-				'brand-dark': 'hsl(220 30% 15%)',         // Dark Slate
-				'brand-light': 'hsl(210 20% 98%)',        // Light Background
+				// HowAIConnects Brand Colors - Updated to match color palette
+				'brand-primary': 'hsl(203 38% 20%)',      // Deep Navy #163243
+				'brand-secondary': 'hsl(199 58% 41%)',    // Light Blue #2f7ca3  
+				'brand-accent': 'hsl(180 100% 30%)',      // Blue-Green Gradient Accent
+				'brand-light-accent': 'hsl(180 70% 50%)', // Light Blue-Green
+				'brand-dark': 'hsl(0 0% 0%)',             // Pure Black #000000
+				'brand-light': 'hsl(0 0% 100%)',          // Pure White #ffffff
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

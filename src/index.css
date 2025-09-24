@@ -5,27 +5,28 @@
 
 @layer base {
   :root {
-    /* HowAIConnects Brand Theme - Standardized Colors */
+    /* HowAIConnects Brand Theme - Updated Color Palette */
     --background: 0 0% 100%;
-    --foreground: 210 50% 20%;
+    --foreground: 203 38% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 50% 20%;
+    --card-foreground: 203 38% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 50% 20%;
+    --popover-foreground: 203 38% 20%;
 
-    --primary: 210 60% 20%;        /* Deep Navy brand */
-    --primary-foreground: 210 40% 98%;
+    --primary: 203 38% 20%;        /* Deep Navy #163243 */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 45% 35%;      /* Medium Blue */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 199 58% 41%;      /* Light Blue #2f7ca3 */
+    --secondary-foreground: 0 0% 100%;
 
-    /* Brand Color Variables for Consistent Usage */
-    --brand-primary: 210 60% 20%;     /* Deep Navy */
-    --brand-secondary: 210 45% 35%;   /* Medium Blue */
-    --brand-accent: 152 55% 45%;      /* Accent Green */
-    --brand-light: 210 20% 98%;       /* Light Background */
+    /* Brand Color Variables from Color Palette */
+    --brand-primary: 203 38% 20%;     /* Deep Navy #163243 */
+    --brand-secondary: 199 58% 41%;   /* Light Blue #2f7ca3 */
+    --brand-accent: 180 100% 30%;     /* Blue-Green Gradient Accent */
+    --brand-light: 0 0% 100%;         /* Pure White #ffffff */
+    --brand-dark: 0 0% 0%;            /* Pure Black #000000 */
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;

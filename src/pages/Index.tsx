@@ -2,7 +2,8 @@
 import React from 'react';
 import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
-import AIStartupMission from "@/components/AIStartupMission";
+import AIStartupPlatform from "@/components/AIStartupPlatform";
+import AIStartupVision from "@/components/AIStartupVision";
 import AISolutionsShowcase from "@/components/AISolutionsShowcase";
 import SuccessStories from "@/components/SuccessStories";
 import ContactSection from "@/components/ContactSection";
@@ -46,7 +47,8 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <FeaturedServices />
-        <AIStartupMission />
+        <AIStartupPlatform />
+        <AIStartupVision />
         <AISolutionsShowcase />
         <SuccessStories />
         <ContactSection />

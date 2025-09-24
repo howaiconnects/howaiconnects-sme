@@ -7,20 +7,20 @@ import { Link } from "react-router-dom";
 const FeaturedServices = () => {
   const featuredServices = [
     {
-      title: "Web App Development",
-      description: "Custom web applications designed and built for small and medium businesses, from concept to launch.",
-      items: ["Custom business tools", "User-centric design", "Scalable architecture", "End-to-end service"],
+      title: "DealStream Platform",
+      description: "AI-powered real estate intelligence platform uncovering distressed and off-market listings with intelligent matching to hedge funds.",
+      items: ["Advanced web scraping", "AI-powered matching", "Real-time market intel", "Automated deal flow"],
       icon: <Code className="h-8 w-8 text-white" />,
-      link: "/web-app-development",
+      link: "/projects/dealstream",
       bgClass: "bg-gradient-to-br from-brand-primary to-brand-secondary"
     },
     {
-      title: "Done-for-You AI Agency",
-      description: "Launch your own AI agency with zero upfront cost through our unique business model and turnkey solutions.",
-      items: ["No upfront costs", "Vendor integrations", "Business guidance", "Revenue-ready foundation"],
+      title: "HowAIConnects Platform",
+      description: "Unified AI framework powering all our solutions with enterprise authentication, multi-agent orchestration, and intelligent automation.",
+      items: ["Multi-agent orchestration", "Enterprise security", "Real-time data sync", "Modular architecture"],
       icon: <Rocket className="h-8 w-8 text-white" />,
-      link: "/done-for-you-ai-agency",
-      bgClass: "bg-gradient-to-br from-brand-accent to-brand-lightAccent"
+      link: "/projects/howaiconnects-platform",
+      bgClass: "bg-gradient-to-br from-brand-accent to-brand-secondary"
     }
   ];
 
@@ -29,10 +29,10 @@ const FeaturedServices = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl gradient-text">
-            Flagship Products
+            AI-Powered Applications
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Cutting-edge AI solutions that revolutionize operations and accelerate growth
+            Custom AI-designed applications that solve real business problems, not just automate tasks
           </p>
         </div>
 

@@ -42,13 +42,13 @@ const Hero = () => {
               <h1 
                 className={`text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl transition-all duration-700 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               >
-                <span className="block">We're Building What</span>
-                <span className="block gradient-text">You're Dreaming About — Today</span>
+                <span className="block">We Build AI-Designed</span>
+                <span className="block gradient-text">Full-Stack Applications — Today</span>
               </h1>
               <p 
                 className={`mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0 transition-all duration-700 delay-300 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               >
-                Seamlessly integrating AI into everyday life with advanced automation, deep integrations, and intuitive design. We build AI orchestration platforms that anticipate what you'll need tomorrow.
+                We build AI-designed and AI-powered full-stack applications tailored to each business. These aren't just AI wrappers—they're deeply integrated web apps that handle everything from repetitive workflows to autonomous business decision-making.
               </p>
               <div 
                 className={`mt-8 sm:mt-10 sm:flex sm:justify-center lg:justify-start gap-4 transition-all duration-700 delay-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
@@ -60,17 +60,17 @@ const Hero = () => {
                       variant="accent"
                       className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
-                      Explore Our Platform <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
+                      Explore Our Projects <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
                     </Button>
                   </Link>
                 </div>
                 <div className="w-full sm:w-auto">
-                  <Link to="/web-app-development" className="block">
+                  <Link to="/projects/howaiconnects-platform" className="block">
                      <Button 
                       variant="outline" 
                       className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
-                      Try Demo <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      View Live Demo <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </Link>
                 </div>
@@ -84,8 +84,8 @@ const Hero = () => {
           <div className={`absolute inset-0 bg-gradient-to-r from-brand-primary/30 to-brand-accent/30 mix-blend-multiply z-10 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}></div>
           <img
             className={`h-full w-full object-cover transition-all duration-1000 ease-in-out ${isVisible ? 'scale-100 opacity-100' : 'scale-110 opacity-70'}`}
-            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
-            alt="AI neural network visualization"
+            src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+            alt="AI brain neural network and technology visualization"
           />
         </div>
       </div>

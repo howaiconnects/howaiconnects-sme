@@ -7,25 +7,25 @@ import { Link } from "react-router-dom";
 const AutomationTemplates = () => {
   const templates = [
     {
-      title: "Customer Support Chatbot",
-      description: "A ready-to-use template for creating a basic customer support chatbot for your website.",
-      platform: "For Dialogflow",
-      difficulty: "Beginner",
-      link: "/resources/automation-templates/customer-support-chatbot"
+      title: "AI-Powered Real Estate Intelligence",
+      description: "Advanced AI system for uncovering distressed property listings with intelligent matching algorithms.",
+      platform: "DealStream Platform",
+      difficulty: "Enterprise",
+      link: "/projects/dealstream"
     },
     {
-      title: "Email Marketing Sequence",
-      description: "An AI-powered email marketing sequence template that personalizes content for each recipient.",
-      platform: "For MailChimp & Make.com",
-      difficulty: "Intermediate",
-      link: "/resources/automation-templates/email-marketing-sequence"
+      title: "Enterprise Email Data Conversion",
+      description: "AI-enhanced email data migration with intelligent parsing and error recovery systems.",
+      platform: "OST2PST Platform", 
+      difficulty: "Enterprise",
+      link: "/projects/ost2pst"
     },
     {
-      title: "Document Processing Workflow",
-      description: "Automate the extraction of data from invoices, receipts, and other business documents.",
-      platform: "For Make.com & OpenAI",
+      title: "Multi-Agent AI Orchestration",
+      description: "Unified AI framework with enterprise authentication and intelligent agent coordination.",
+      platform: "HowAIConnects Platform",
       difficulty: "Advanced",
-      link: "/resources/automation-templates/document-processing-workflow"
+      link: "/projects/howaiconnects-platform"
     }
   ];
 
@@ -70,8 +70,8 @@ const AutomationTemplates = () => {
         </div>
         
         <div className="text-center mt-8">
-          <Link to="/resources/automation-templates">
-            <Button variant="outline" size="lg">Browse All Templates</Button>
+          <Link to="/projects">
+            <Button variant="outline" size="lg">View All Projects</Button>
           </Link>
         </div>
       </div>
