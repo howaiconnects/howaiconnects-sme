@@ -1,4 +1,3 @@
-
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -24,12 +23,21 @@ import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
 import EarlyAccess from "./pages/EarlyAccess";
+
+// Project Pages
+import DealStream from "./pages/projects/DealStream";
+import OST2PST from "./pages/projects/OST2PST";
+import HowAIConnectsPlatform from "./pages/projects/HowAIConnectsPlatform";
+
+// Service Pages
 import MarketingAutomation from "./pages/services/ai-automation-solutions/MarketingAutomation";
 import WorkflowAutomation from "./pages/services/ai-automation-solutions/WorkflowAutomation";
 import CustomerServiceAutomation from "./pages/services/ai-automation-solutions/CustomerServiceAutomation";
 import AIReadinessAssessment from "./pages/services/ai-consultation/AIReadinessAssessment";
 import AIStrategyDevelopment from "./pages/services/ai-consultation/AIStrategyDevelopment";
 import ImplementationSupport from "./pages/services/ai-consultation/ImplementationSupport";
+
+// Resource Pages
 import Resources from "./pages/Resources";
 import Blog from "./pages/resources/Blog";
 import CaseStudiesPage from "./pages/resources/CaseStudiesPage";
@@ -38,15 +46,23 @@ import AutomationTemplatesPage from "./pages/resources/AutomationTemplatesPage";
 import ResourcesPage from "./pages/resources/ResourcesPage";
 import ResourceDownloadPage from "./pages/resources/downloads/ResourceDownloadPage";
 import TemplateDetail from "./pages/resources/templates/TemplateDetail";
+
+// Course Pages
 import Courses from "./pages/Courses";
 import CourseDetail from "./pages/courses/CourseDetail";
+
+// Business Pages
 import DoneForYouAIAgency from "./pages/DoneForYouAIAgency";
 import WebAppDevelopment from "./pages/WebAppDevelopment";
 import PathtoCanadaPage from "./pages/PathtoCanadaPage";
 import AIDataGemPage from "./pages/AIDataGemPage";
+
+// Marketing Pages
 import AdLandingPage from "./pages/AdLandingPage";
 import SalesDeck from "./pages/SalesDeck";
 import SalesDeckPresentation from "./pages/SalesDeckPresentation";
+
+// Legal Pages
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 
@@ -83,6 +99,11 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/services" element={<Services />} />
           <Route path="/early-access" element={<EarlyAccess />} />
+          
+          {/* Project Showcase Pages - Public */}
+          <Route path="/projects/dealstream" element={<DealStream />} />
+          <Route path="/projects/ost2pst" element={<OST2PST />} />
+          <Route path="/projects/howaiconnects-platform" element={<HowAIConnectsPlatform />} />
           
           {/* Service Detail Pages - Public */}
           <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />

@@ -91,54 +91,46 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-700 hover:text-brand-accent">AI Services</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-brand-accent">AI Solutions</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                       <li className="col-span-2">
                         <NavigationMenuLink asChild>
                           <Link to="/services" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">All Services</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">View all our AI automation and consultation services</p>
+                            <div className="text-sm font-medium leading-none">All Solutions</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">View our complete AI-powered solution portfolio</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink asChild>
                           <Link to="/services/ai-automation-solutions/marketing-automation" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">Marketing Automation</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Automate your marketing processes with AI</p>
+                            <div className="text-sm font-medium leading-none">Marketing Intelligence</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">AI-powered marketing systems</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink asChild>
-                          <Link to="/services/ai-automation-solutions/workflow-automation" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">Workflow Automation</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Streamline your business processes with AI</p>
+                          <Link to="/services/ai-automation-solutions/customer-service-automation" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">Customer Intelligence</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">AI-driven customer experience</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink asChild>
-                          <Link to="/services/ai-consultation/ai-readiness-assessment" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">AI Readiness Assessment</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Evaluate your business for AI implementation</p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                       <li>
-                        <NavigationMenuLink asChild>
-                          <Link to="/services/ai-consultation/ai-strategy-development" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">AI Strategy Development</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Create a custom AI adoption roadmap</p>
+                          <Link to="/early-access" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">Early Access</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Join our early adopter program</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink asChild>
-                          <Link to="/services/ai-consultation/implementation-support" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">Implementation Support</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Ongoing support for AI deployment</p>
+                          <Link to="/projects/howaiconnects-platform" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">Platform Architecture</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Explore our AI infrastructure</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>
@@ -152,17 +144,33 @@ const Navbar = () => {
                     <ul className="grid gap-3 p-4 w-[400px]">
                       <li>
                         <NavigationMenuLink asChild>
-                          <Link to="/web-apps/path-to-canada" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">PathtoCanada.ca</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Guide for the Canadian immigration process</p>
+                          <Link to="/projects/howaiconnects-platform" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">HowAIConnects Platform</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Unified AI framework for enterprise solutions</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink asChild>
-                          <Link to="/web-apps/ai-data-gem" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">AIDataGem.com</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">AI-powered data analysis and insights</p>
+                          <Link to="/projects/dealstream" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">DealStream</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Real estate wholesaling intelligence platform</p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link to="/projects/ost2pst" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">OST2PST.com</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">AI-powered enterprise email converter</p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link to="/web-apps/path-to-canada" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none">AI Immigration Assistant</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Intelligent guide for Canadian immigration</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>

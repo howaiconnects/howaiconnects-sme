@@ -180,44 +180,66 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 mb-20">
-            <Card className="border-0 shadow-lg">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-4">
-                  <Target className="h-8 w-8 text-blue-600" />
-                  <CardTitle className="text-2xl">Our Mission</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  To democratize advanced artificial intelligence by creating custom AI-powered web applications 
-                  and intelligent automation solutions that transform how businesses operate, making cutting-edge 
-                  AI technology accessible to organizations of all sizes.
+        {/* Vision & Mission Section */}
+        <section className="py-20 bg-muted/30">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8">Our Vision & Mission</h2>
+            </div>
+            
+            <div className="grid lg:grid-cols-2 gap-12 mb-16">
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-brand-primary/10">
+                <h3 className="text-2xl font-bold mb-6 text-brand-primary">Our Vision</h3>
+                <p className="text-lg text-muted-foreground mb-6">
+                  To become the go-to infrastructure layer that helps SMBs plug into the future of work by 
+                  simplifying, customizing, and scaling AI adoption.
                 </p>
-              </CardContent>
-            </Card>
+                <p className="text-muted-foreground">
+                  We envision a world where every small business has access to intelligent, AI-powered 
+                  systems that feel like having a digital COO—always-on, scalable, and deeply integrated 
+                  into their unique business logic.
+                </p>
+              </div>
+              
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-brand-accent/10">
+                <h3 className="text-2xl font-bold mb-6 text-brand-accent">Our Mission</h3>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Empower every small business with personalized AI systems that feel like having a 
+                  digital cofounder—always thinking, building, and solving business challenges 24/7.
+                </p>
+                <p className="text-muted-foreground">
+                  We build AI-designed and AI-powered full-stack applications tailored to each business's 
+                  specific workflows, from automating repetitive tasks to enabling autonomous business 
+                  decision-making.
+                </p>
+              </div>
+            </div>
 
-            <Card className="border-0 shadow-lg">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-4">
-                  <Globe className="h-8 w-8 text-purple-600" />
-                  <CardTitle className="text-2xl">Our Vision</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  To be the world's leading AI startup that pioneers the future of intelligent web applications, 
-                  creating a world where AI seamlessly integrates into every aspect of business operations, 
-                  driving unprecedented innovation and efficiency.
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-gradient-to-br from-brand-primary/10 to-brand-primary/5 p-6 rounded-xl">
+                <h3 className="text-xl font-semibold mb-4 text-brand-primary">Innovation First</h3>
+                <p className="text-muted-foreground">
+                  Building the future before it arrives with AI-first architecture and cutting-edge 
+                  technology integrations.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+              <div className="bg-gradient-to-br from-brand-accent/10 to-brand-accent/5 p-6 rounded-xl">
+                <h3 className="text-xl font-semibold mb-4 text-brand-accent">Tailored Solutions</h3>
+                <p className="text-muted-foreground">
+                  Every system is purpose-built, AI-designed, and deeply integrated with how your 
+                  business actually operates.
+                </p>
+              </div>
+              <div className="bg-gradient-to-br from-brand-secondary/10 to-brand-secondary/5 p-6 rounded-xl">
+                <h3 className="text-xl font-semibold mb-4 text-brand-secondary">Strategic Partnership</h3>
+                <p className="text-muted-foreground">
+                  We don't just build tools—we become your AI infrastructure partner, scaling with 
+                  your ambitions.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Company Values */}
       <section className="py-20 bg-gradient-to-br from-muted/30 to-background">

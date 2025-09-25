@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Main Pages -->
@@ -23,21 +22,33 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Featured Web Apps -->
+  <!-- Our Web Apps -->
+  <url>
+    <loc>https://howaiconnects.com/projects/howaiconnects-platform</loc>
+    <lastmod>2025-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://howaiconnects.com/projects/dealstream</loc>
+    <lastmod>2025-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://howaiconnects.com/projects/ost2pst</loc>
+    <lastmod>2025-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://howaiconnects.com/web-apps/path-to-canada</loc>
     <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://howaiconnects.com/web-apps/ai-data-gem</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
   
-  <!-- Services -->
+  <!-- AI Solutions -->
   <url>
     <loc>https://howaiconnects.com/services</loc>
     <lastmod>2025-05-17</lastmod>
@@ -45,17 +56,27 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://howaiconnects.com/courses</loc>
+    <loc>https://howaiconnects.com/services/ai-automation-solutions/marketing-automation</loc>
     <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://howaiconnects.com/resources</loc>
+    <loc>https://howaiconnects.com/services/ai-automation-solutions/customer-service-automation</loc>
+    <lastmod>2025-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Early Access -->
+  <url>
+    <loc>https://howaiconnects.com/early-access</loc>
     <lastmod>2025-05-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
+  
+  <!-- Core Pages -->
   <url>
     <loc>https://howaiconnects.com/about</loc>
     <lastmod>2025-05-17</lastmod>
@@ -68,43 +89,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Services Pages -->
   <url>
-    <loc>https://howaiconnects.com/services/ai-automation-solutions/marketing-automation</loc>
+    <loc>https://howaiconnects.com/courses</loc>
     <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://howaiconnects.com/services/ai-automation-solutions/workflow-automation</loc>
+    <loc>https://howaiconnects.com/resources</loc>
     <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://howaiconnects.com/services/ai-automation-solutions/customer-service-automation</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://howaiconnects.com/services/ai-consultation/ai-readiness-assessment</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://howaiconnects.com/services/ai-consultation/ai-strategy-development</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://howaiconnects.com/services/ai-consultation/implementation-support</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <!-- Resources Pages -->
@@ -122,18 +117,6 @@
   </url>
   <url>
     <loc>https://howaiconnects.com/resources/tools</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://howaiconnects.com/resources/automation-templates</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://howaiconnects.com/resources/templates</loc>
     <lastmod>2025-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

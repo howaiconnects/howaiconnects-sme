@@ -62,8 +62,8 @@ const Footer = () => {
               <h2 className="text-2xl font-bold text-white">HowAIConnects</h2>
             </Link>
             <p className="text-gray-300 mb-6 max-w-md">
-              Empowering SMEs with accessible AI automation and consulting services
-              to improve efficiency, reduce costs, and scale operations.
+              Building AI-designed and AI-powered full-stack applications that transform 
+              how SMBs operate, scale, and compete in the digital age.
             </p>
             
             <div className="flex space-x-4">
@@ -99,27 +99,25 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Featured Services */}
+          {/* Our Web Apps */}
           <div>
-            <h3 className="text-white font-semibold mb-4 text-lg">Featured Services</h3>
+            <h3 className="text-white font-semibold mb-4 text-lg">Our Web Apps</h3>
             <ul className="space-y-2">
-              <li><Link to="/web-app-development" className="text-gray-300 hover:text-brand-lightAccent">Web App Development</Link></li>
-              <li><Link to="/done-for-you-ai-agency" className="text-gray-300 hover:text-brand-lightAccent">Done-for-You AI Agency</Link></li>
-              <li><Link to="/web-apps/path-to-canada" className="text-gray-300 hover:text-brand-lightAccent">PathtoCanada.ca</Link></li>
-              <li><Link to="/web-apps/ai-data-gem" className="text-gray-300 hover:text-brand-lightAccent">AIDataGem.com</Link></li>
+              <li><Link to="/projects/howaiconnects-platform" className="text-gray-300 hover:text-brand-lightAccent">HowAIConnects Platform</Link></li>
+              <li><Link to="/projects/dealstream" className="text-gray-300 hover:text-brand-lightAccent">DealStream</Link></li>
+              <li><Link to="/projects/ost2pst" className="text-gray-300 hover:text-brand-lightAccent">OST2PST.com</Link></li>
+              <li><Link to="/web-apps/path-to-canada" className="text-gray-300 hover:text-brand-lightAccent">AI Immigration Assistant</Link></li>
             </ul>
           </div>
           
-          {/* AI Services */}
+          {/* AI Solutions */}
           <div>
-            <h3 className="text-white font-semibold mb-4 text-lg">AI Services</h3>
+            <h3 className="text-white font-semibold mb-4 text-lg">AI Solutions</h3>
             <ul className="space-y-2">
-              <li><Link to="/services/ai-automation-solutions/marketing-automation" className="text-gray-300 hover:text-brand-lightAccent">Marketing Automation</Link></li>
-              <li><Link to="/services/ai-automation-solutions/workflow-automation" className="text-gray-300 hover:text-brand-lightAccent">Workflow Automation</Link></li>
-              <li><Link to="/services/ai-automation-solutions/customer-service-automation" className="text-gray-300 hover:text-brand-lightAccent">Customer Service Automation</Link></li>
-              <li><Link to="/services/ai-consultation/ai-readiness-assessment" className="text-gray-300 hover:text-brand-lightAccent">AI Readiness Assessment</Link></li>
-              <li><Link to="/services/ai-consultation/ai-strategy-development" className="text-gray-300 hover:text-brand-lightAccent">AI Strategy Development</Link></li>
-              <li><Link to="/services/ai-consultation/implementation-support" className="text-gray-300 hover:text-brand-lightAccent">Implementation Support</Link></li>
+              <li><Link to="/services/ai-automation-solutions/marketing-automation" className="text-gray-300 hover:text-brand-lightAccent">Marketing Intelligence</Link></li>
+              <li><Link to="/services/ai-automation-solutions/customer-service-automation" className="text-gray-300 hover:text-brand-lightAccent">Customer Intelligence</Link></li>
+              <li><Link to="/early-access" className="text-gray-300 hover:text-brand-lightAccent">Early Access Program</Link></li>
+              <li><Link to="/web-app-development" className="text-gray-300 hover:text-brand-lightAccent">Custom AI Applications</Link></li>
             </ul>
           </div>
           
