@@ -23,6 +23,7 @@ import Contact from "./pages/Contact";
 import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
+import EarlyAccess from "./pages/EarlyAccess";
 import MarketingAutomation from "./pages/services/ai-automation-solutions/MarketingAutomation";
 import WorkflowAutomation from "./pages/services/ai-automation-solutions/WorkflowAutomation";
 import CustomerServiceAutomation from "./pages/services/ai-automation-solutions/CustomerServiceAutomation";
@@ -81,6 +82,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/account" element={<Account />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/early-access" element={<EarlyAccess />} />
           
           {/* Service Detail Pages - Public */}
           <Route path="/services/ai-automation-solutions/marketing-automation" element={<MarketingAutomation />} />

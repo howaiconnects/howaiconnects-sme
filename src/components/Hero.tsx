@@ -55,12 +55,12 @@ const Hero = () => {
               >
                 <div className="relative group w-full sm:w-auto mb-4 sm:mb-0">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-accent to-brand-lightAccent rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-                  <Link to="/contact" className="relative block">
+                  <Link to="/early-access" className="relative block">
                      <Button 
                       variant="accent"
                       className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
-                      Explore Our Projects <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
+                      Join Early Access <Sparkles className="ml-2 h-5 w-5 animate-pulse" />
                     </Button>
                   </Link>
                 </div>
@@ -70,7 +70,7 @@ const Hero = () => {
                       variant="outline" 
                       className="w-full flex items-center justify-center px-8 py-6 text-base font-medium rounded-md md:text-lg"
                     >
-                      View Live Demo <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      View Our Platform <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </Link>
                 </div>

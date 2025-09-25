@@ -47,32 +47,20 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: "Alex Chen",
-      role: "Founder & Chief AI Officer",
-      bio: "Former AI researcher with 10+ years in machine learning and neural networks. Led AI initiatives at top tech companies before founding HowAIConnects.",
+      name: "Adham Eldeeb",
+      role: "Founder & CEO",
+      bio: "Startup founder and technical leader with over a decade of experience in software engineering, sales, and customer service leadership. Driving growth and excellence in aviation and industrial sectors while pioneering AI-powered solutions.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      expertise: ["Machine Learning", "AI Strategy", "Neural Networks"]
+      expertise: ["AI Strategy", "Technical Leadership", "Business Development"],
+      linkedin: "https://ca.linkedin.com/in/adham-eldeeb"
     },
     {
-      name: "Sarah Johnson",
-      role: "CTO & Head of Engineering", 
-      bio: "Full-stack engineer specializing in AI integration and scalable web applications. Expert in building enterprise-grade AI platforms.",
+      name: "Reham Sultan",
+      role: "Customer Service Director", 
+      bio: "Experienced customer service leader with expertise in compliance, risk management, and operational excellence. Brings strong background in financial services and customer experience optimization.",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b587?w=400&h=400&fit=crop&crop=face",
-      expertise: ["AI Integration", "Web Development", "System Architecture"]
-    },
-    {
-      name: "Marcus Rodriguez",
-      role: "Head of AI Research",
-      bio: "PhD in Computer Science with focus on AI automation and intelligent systems. Published researcher in AI optimization algorithms.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face", 
-      expertise: ["AI Research", "Automation", "Algorithm Design"]
-    },
-    {
-      name: "Lisa Wong",
-      role: "Head of Product & UX",
-      bio: "Design expert focused on making AI interfaces intuitive and accessible. Former design lead at leading AI companies.",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
-      expertise: ["AI UX Design", "Product Strategy", "User Research"]
+      expertise: ["Customer Experience", "Operations", "Compliance"],
+      linkedin: "https://www.linkedin.com/in/reham~sultan/"
     }
   ];
 
@@ -144,9 +132,29 @@ const About = () => {
               The AI Startup Building Tomorrow
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-              We're a team of AI visionaries, engineers, and innovators dedicated to creating 
-              the next generation of intelligent web applications and automation solutions.
+              Founded by experienced technology leaders, we're pioneering AI-designed and AI-powered 
+              full-stack applications that transform how businesses operate and scale.
             </p>
+            <div className="mb-8">
+              <Button 
+                asChild 
+                variant="outline" 
+                className="group hover:bg-brand-accent hover:text-white"
+              >
+                <a 
+                  href="https://linkedin.com/company/howaiconnects" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.328c0 .734.582 1.332 1.328 1.332h15.34c.734 0 1.332-.598 1.332-1.332C19 1.581 18.402 1 17.668 1z" clipRule="evenodd"/>
+                  </svg>
+                  Follow HowAIConnects on LinkedIn
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </Button>
+            </div>
             <Button asChild size="lg" className="group">
               <Link to="/contact">
                 <Rocket className="h-5 w-5 mr-2 group-hover:-translate-y-1 transition-transform" />
@@ -252,38 +260,64 @@ const About = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-              Meet Our AI Experts
+              Meet Our Leadership Team
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              World-class AI researchers, engineers, and innovators leading the future of technology
+              Experienced founders and leaders driving innovation in AI-powered business solutions
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {teamMembers.map((member, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <CardContent className="p-6 text-center">
-                  <div className="relative mb-6">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-24 h-24 rounded-full mx-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                      <Star className="h-4 w-4 text-white" />
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-6">
+                    <div className="relative">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-24 h-24 rounded-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-brand-accent to-brand-primary rounded-full flex items-center justify-center">
+                        <Star className="h-4 w-4 text-white" />
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-foreground">{member.name}</h3>
-                  <p className="text-primary font-medium mb-3">{member.role}</p>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {member.bio}
-                  </p>
-                  <div className="flex flex-wrap gap-1 justify-center">
-                    {member.expertise.map((skill, skillIndex) => (
-                      <Badge key={skillIndex} variant="secondary" className="text-xs">
-                        {skill}
-                      </Badge>
-                    ))}
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <h3 className="text-xl font-bold text-foreground">{member.name}</h3>
+                        {member.linkedin && (
+                          <Button 
+                            asChild 
+                            variant="outline" 
+                            size="sm" 
+                            className="text-xs hover:bg-brand-accent hover:text-white"
+                          >
+                            <a 
+                              href={member.linkedin} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1"
+                            >
+                              <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd"/>
+                              </svg>
+                              LinkedIn
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                      <p className="text-brand-accent font-medium mb-3">{member.role}</p>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                        {member.bio}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {member.expertise.map((skill, skillIndex) => (
+                          <Badge key={skillIndex} variant="secondary" className="text-xs bg-brand-light/10 text-brand-dark border-brand-accent/20">
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
