@@ -231,6 +231,56 @@ export const pageSEOConfigs = {
     }
   },
   
+  'early-access': {
+    title: "Early Access Program | HowAIConnects AI Platform",
+    description: "Join our exclusive early access program. Be among the first to experience next-generation AI automation with lifetime benefits and custom features.",
+    keywords: ["early access AI", "AI platform preview", "exclusive AI features", "AI automation early adopter"],
+    schema: {
+      "@type": "WebPage",
+      "name": "Early Access Program"
+    }
+  },
+  
+  'projects-howaiconnects-platform': {
+    title: "HowAIConnects AI Platform | Enterprise Intelligence Framework",
+    description: "Explore our flagship AI platform - a unified framework for enterprise automation, intelligent workflows, and scalable business transformation.",
+    keywords: ["AI platform", "enterprise AI framework", "business intelligence", "AI automation platform"],
+    schema: {
+      "@type": "Product",
+      "name": "HowAIConnects Platform"
+    }
+  },
+  
+  'projects-dealstream': {
+    title: "DealStream | Real Estate Wholesaling Intelligence Platform",
+    description: "AI-powered real estate wholesaling platform connecting property owners with investors through intelligent matching and automated communications.",
+    keywords: ["real estate AI", "property wholesaling", "real estate automation", "property investment platform"],
+    schema: {
+      "@type": "Product",
+      "name": "DealStream Platform"
+    }
+  },
+  
+  'projects-ost2pst': {
+    title: "OST2PST.com | AI-Powered Email Conversion Tool",
+    description: "Enterprise-grade email file converter with AI optimization. Convert OST to PST files securely with advanced batch processing capabilities.",
+    keywords: ["OST to PST converter", "email file conversion", "enterprise email tools", "AI email processing"],
+    schema: {
+      "@type": "SoftwareApplication",
+      "name": "OST2PST Converter"
+    }
+  },
+  
+  'web-apps-path-to-canada': {
+    title: "AI Immigration Assistant | Canadian Immigration Intelligence",
+    description: "Intelligent guide for Canadian immigration processes. AI-powered assessment, document preparation, and step-by-step immigration assistance.",
+    keywords: ["Canadian immigration AI", "immigration assistant", "AI immigration guide", "path to Canada"],
+    schema: {
+      "@type": "WebApplication",
+      "name": "AI Immigration Assistant"
+    }
+  },
+
   'done-for-you-ai-agency': {
     title: "Done-For-You AI Agency Services | Complete AI Implementation",
     description: "Complete AI agency services with done-for-you implementation. From strategy to deployment, we handle your entire AI transformation journey.",

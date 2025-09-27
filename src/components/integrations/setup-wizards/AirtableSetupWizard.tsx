@@ -21,6 +21,7 @@ import {
   Shield,
   Zap
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { airtableService } from '@/services/airtableService';
 
 interface SetupStep {
@@ -626,10 +627,10 @@ export const AirtableSetupWizard: React.FC = () => {
                   <h3 className="font-semibold mb-2">Quick Links</h3>
                   <div className="space-y-2">
                     <Button variant="outline" size="sm" className="w-full justify-start" asChild>
-                      <a href="/app/automation" target="_blank">
+                      <Link to="/app/automation">
                         <Database className="h-4 w-4 mr-2" />
                         View Integration Dashboard
-                      </a>
+                      </Link>
                     </Button>
                     <Button variant="outline" size="sm" className="w-full justify-start" asChild>
                       <a href={`https://airtable.com/${baseId}`} target="_blank" rel="noopener noreferrer">

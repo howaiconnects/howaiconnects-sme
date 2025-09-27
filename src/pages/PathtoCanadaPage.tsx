@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const PathtoCanadaPage = () => {
   return (
@@ -148,11 +149,11 @@ const PathtoCanadaPage = () => {
                   Visit Path to Canada
                 </Button>
               </a>
-              <a href="/contact">
+              <Link to="/contact">
                 <Button size="lg" className="bg-brand-accent hover:bg-brand-lightAccent text-white w-full sm:w-auto">
                   Discuss Your Project <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

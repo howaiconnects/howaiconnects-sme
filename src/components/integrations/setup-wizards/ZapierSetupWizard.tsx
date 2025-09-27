@@ -21,6 +21,7 @@ import {
   Pause,
   Settings
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface SetupStep {
   id: string;
@@ -705,10 +706,10 @@ export const ZapierSetupWizard: React.FC = () => {
                       </a>
                     </Button>
                     <Button variant="outline" size="sm" className="w-full justify-start" asChild>
-                      <a href="/app/automation" target="_blank">
+                      <Link to="/app/automation">
                         <Settings className="h-4 w-4 mr-2" />
                         Automation Dashboard
-                      </a>
+                      </Link>
                     </Button>
                     <Button variant="outline" size="sm" className="w-full justify-start" asChild>
                       <a href="https://zapier.com/app/history" target="_blank" rel="noopener noreferrer">

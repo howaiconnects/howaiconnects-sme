@@ -83,6 +83,9 @@ import NavigationDashboard from "./pages/NavigationDashboard";
 // Routing Audit Dashboard  
 import RoutingAuditDashboard from "./pages/RoutingAuditDashboard";
 
+// Internal Linking Audit
+import InternalLinkingAudit from "./components/InternalLinkingAudit";
+
 // Admin Pages
 import SecureAdminLogin from "./pages/admin/SecureAdminLogin";
 import EmailIntegration from "./pages/admin/EmailIntegration";
@@ -158,6 +161,7 @@ function App() {
           <Route path="/app/automation" element={<AutomationDashboard />} />
           <Route path="/app/navigation" element={<NavigationDashboard />} />
           <Route path="/app/audit" element={<RoutingAuditDashboard />} />
+          <Route path="/app/linking-audit" element={<InternalLinkingAudit />} />
           <Route path="/app/resources/downloads/:id" element={<ResourceDownloadPage />} />
           <Route path="/app/resources/templates/:id" element={<TemplateDetail />} />
           
