@@ -35,9 +35,9 @@ const Navbar = () => {
               <img 
                 src="/src/assets/logo-light.png" 
                 alt="HowAIConnects Logo" 
-                className="h-8 w-auto mr-2" 
+                className="h-12 w-auto mr-3" 
               />
-              <span className="text-brand-primary font-bold text-xl">HowAIConnects</span>
+              <span className="text-brand-primary font-bold text-2xl">HowAIConnects</span>
             </Link>
           </div>
 
