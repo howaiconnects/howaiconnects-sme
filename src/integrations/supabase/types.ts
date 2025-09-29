@@ -41,6 +41,33 @@ export type Database = {
         }
         Relationships: []
       }
+      early_access_interest: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -48,6 +75,14 @@ export type Database = {
           email: string | null
           full_name: string | null
           id: string
+          linkedin_company: string | null
+          linkedin_headline: string | null
+          linkedin_id: string | null
+          linkedin_position: string | null
+          linkedin_profile_url: string | null
+          linkedin_summary: string | null
+          provider: string | null
+          provider_id: string | null
           role: string
           updated_at: string
         }
@@ -57,6 +92,14 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id: string
+          linkedin_company?: string | null
+          linkedin_headline?: string | null
+          linkedin_id?: string | null
+          linkedin_position?: string | null
+          linkedin_profile_url?: string | null
+          linkedin_summary?: string | null
+          provider?: string | null
+          provider_id?: string | null
           role?: string
           updated_at?: string
         }
@@ -66,6 +109,14 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id?: string
+          linkedin_company?: string | null
+          linkedin_headline?: string | null
+          linkedin_id?: string | null
+          linkedin_position?: string | null
+          linkedin_profile_url?: string | null
+          linkedin_summary?: string | null
+          provider?: string | null
+          provider_id?: string | null
           role?: string
           updated_at?: string
         }

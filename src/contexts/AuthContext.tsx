@@ -11,6 +11,14 @@ interface UserProfile {
   role: string;
   created_at: string;
   updated_at: string;
+  linkedin_id?: string | null;
+  linkedin_profile_url?: string | null;
+  linkedin_headline?: string | null;
+  linkedin_summary?: string | null;
+  linkedin_company?: string | null;
+  linkedin_position?: string | null;
+  provider?: string | null;
+  provider_id?: string | null;
 }
 
 interface AuthContextType {
@@ -19,6 +27,7 @@ interface AuthContextType {
   userProfile: UserProfile | null;
   signUp: (email: string, password: string, fullName?: string) => Promise<{ error: any }>;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
+  signInWithLinkedIn: () => Promise<{ error: any }>;
   signOut: () => Promise<void>;
   loading: boolean;
   refreshProfile: () => Promise<void>;
@@ -193,6 +202,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return { error };
   };
 
+  const signInWithLinkedIn = async () => {
+    const redirectUrl = `${window.location.origin}/auth/callback`;
+    
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'linkedin_oidc',
+      options: {
+        redirectTo: redirectUrl,
+        scopes: 'profile email'
+      }
+    });
+    
+    return { error };
+  };
+
   const signOut = async () => {
     try {
       await supabase.auth.signOut({ scope: 'global' });
@@ -209,6 +232,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       userProfile, 
       signUp, 
       signIn, 
+      signInWithLinkedIn,
       signOut, 
       loading, 
       refreshProfile 

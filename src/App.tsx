@@ -68,6 +68,7 @@ import TermsOfService from "./pages/TermsOfService";
 
 // Auth Pages
 import Auth from "./pages/Auth";
+import AuthCallback from "./pages/auth/Callback";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 
@@ -153,6 +154,7 @@ function App() {
             <Auth />
           </PublicRoute>
         } />
+        <Route path="/auth/callback" element={<AuthCallback />} />
 
         {/* App Platform Routes - All web app features under /app/* */}
         <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>

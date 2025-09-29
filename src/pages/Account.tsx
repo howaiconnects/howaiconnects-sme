@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import LinkedInProfile from '@/components/LinkedInProfile';
 import { 
   User, 
   LogOut, 
@@ -275,6 +276,9 @@ const Account = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* LinkedIn Profile Integration */}
+          <LinkedInProfile />
 
           {/* Account Actions */}
           <Card>
