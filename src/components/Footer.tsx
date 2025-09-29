@@ -55,7 +55,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center mb-4">
               <img 
-                src="/lovable-uploads/af6b0bd3-79bb-44ac-af7d-134a7e6d842a.png" 
+                src="/src/assets/logo-dark.png" 
                 alt="HowAIConnects Logo" 
                 className="h-10 w-auto mr-2"
               />

@@ -33,7 +33,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img 
-                src="/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png" 
+                src="/src/assets/logo-light.png" 
                 alt="HowAIConnects Logo" 
                 className="h-8 w-auto mr-2" 
               />

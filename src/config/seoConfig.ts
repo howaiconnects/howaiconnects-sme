@@ -185,7 +185,7 @@ export const pageConfig = {
       "@type": "Organization",
       "name": "HowAIConnects",
       "url": "https://howaiconnects.com",
-      "logo": "https://howaiconnects.com/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png",
+      "logo": "https://howaiconnects.com/src/assets/logo-light.png",
       "sameAs": [
         "https://linkedin.com/company/howaiconnects",
         "https://twitter.com/howaiconnects"

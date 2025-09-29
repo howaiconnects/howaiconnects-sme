@@ -9,7 +9,7 @@ export const appConfig = {
   tagline: "AI-Powered Business Automation Platform",
   description: "Transform your business with intelligent AI automation solutions, custom web applications, and data-driven insights.",
   url: "https://howaiconnects.com",
-  logo: "/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png",
+  logo: "/src/assets/logo-light.png",
   version: "2.0.0",
   support: {
     email: "support@howaiconnects.com",
@@ -41,7 +41,7 @@ export const seoConfig = {
     description: appConfig.description,
     images: [
       {
-        url: `${appConfig.url}/lovable-uploads/37aaff7e-a1cb-4b50-b3a6-29614da5fd71.png`,
+        url: `${appConfig.url}/src/assets/logo-light.png`,
         width: 1200,
         height: 630,
         alt: "HowAIConnects AI Platform"
