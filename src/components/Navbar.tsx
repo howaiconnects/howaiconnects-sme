@@ -35,7 +35,7 @@ const Navbar = () => {
               <img 
                 src="/src/assets/logo-light.png" 
                 alt="HowAIConnects Logo" 
-                className="h-12 w-auto" 
+                className="h-16 w-auto" 
               />
             </Link>
           </div>
