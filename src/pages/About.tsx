@@ -20,6 +20,8 @@ import {
   TrendingUp
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import adhamProfile from "@/assets/adham-profile.jpg";
+import rehamProfile from "@/assets/reham-profile.jpg";
 
 const About = () => {
   const companyValues = [
@@ -50,7 +52,7 @@ const About = () => {
       name: "Adham Eldeeb",
       role: "Founder & CEO",
       bio: "Startup founder and technical leader with over a decade of experience in software engineering, sales, and customer service leadership. Driving growth and excellence in aviation and industrial sectors while pioneering AI-powered solutions.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      image: adhamProfile,
       expertise: ["AI Strategy", "Technical Leadership", "Business Development"],
       linkedin: "https://ca.linkedin.com/in/adham-eldeeb",
       linkedinBadge: `<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="adham-eldeeb" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://ca.linkedin.com/in/adham-eldeeb?trk=profile-badge">Adham Eldeeb</a></div>`
@@ -59,7 +61,7 @@ const About = () => {
       name: "Reham Sultan",
       role: "Customer Service Director", 
       bio: "Experienced customer service leader with expertise in compliance, risk management, and operational excellence. Brings strong background in financial services and customer experience optimization.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b587?w=400&h=400&fit=crop&crop=face",
+      image: rehamProfile,
       expertise: ["Customer Experience", "Operations", "Compliance"],
       linkedin: "https://www.linkedin.com/in/reham~sultan/",
       linkedinBadge: `<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="reham~sultan" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://ca.linkedin.com/in/reham%7Esultan?trk=profile-badge">Reham S.</a></div>`
@@ -336,7 +338,7 @@ const About = () => {
                         <img
                           src={member.image}
                           alt={member.name}
-                          className="relative w-32 h-32 rounded-full object-cover border-4 border-background group-hover:scale-105 transition-transform duration-300"
+                          className="relative w-32 h-32 rounded-full object-cover border-4 border-background group-hover:scale-105 transition-all duration-300 filter contrast-110 saturate-110 brightness-105 sepia-[0.15] hover:filter hover:contrast-125 hover:saturate-125 hover:brightness-110"
                         />
                         <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center shadow-lg">
                           <Star className="h-5 w-5 text-white" />
