@@ -1,5 +1,7 @@
-[providers]
-nodejs = "18"
+providers = ["nodejs"]
+
+[variables]
+NODE_VERSION = "18"
 
 [phases.build]
 cmds = ["npm ci", "npm run build"]
