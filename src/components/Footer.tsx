@@ -1,3 +1,4 @@
+import logoDark from "@/assets/logo-dark.png";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -55,7 +56,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center mb-4">
               <img 
-                src="/src/assets/logo-dark.png" 
+                src={logoDark} 
                 alt="HowAIConnects Logo" 
                 className="h-10 w-auto mr-2"
               />

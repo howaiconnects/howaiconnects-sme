@@ -1,4 +1,5 @@
 
+import logoLight from "@/assets/logo-light.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -33,7 +34,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img 
-                src="/src/assets/logo-light.png" 
+                src={logoLight} 
                 alt="HowAIConnects Logo" 
                 className="h-16 w-auto" 
               />
