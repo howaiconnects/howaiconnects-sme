@@ -52,7 +52,8 @@ const About = () => {
       bio: "Startup founder and technical leader with over a decade of experience in software engineering, sales, and customer service leadership. Driving growth and excellence in aviation and industrial sectors while pioneering AI-powered solutions.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
       expertise: ["AI Strategy", "Technical Leadership", "Business Development"],
-      linkedin: "https://ca.linkedin.com/in/adham-eldeeb"
+      linkedin: "https://ca.linkedin.com/in/adham-eldeeb",
+      linkedinBadge: `<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="adham-eldeeb" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://ca.linkedin.com/in/adham-eldeeb?trk=profile-badge">Adham Eldeeb</a></div>`
     },
     {
       name: "Reham Sultan",
@@ -60,7 +61,8 @@ const About = () => {
       bio: "Experienced customer service leader with expertise in compliance, risk management, and operational excellence. Brings strong background in financial services and customer experience optimization.",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b587?w=400&h=400&fit=crop&crop=face",
       expertise: ["Customer Experience", "Operations", "Compliance"],
-      linkedin: "https://www.linkedin.com/in/reham~sultan/"
+      linkedin: "https://www.linkedin.com/in/reham~sultan/",
+      linkedinBadge: `<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="reham~sultan" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://ca.linkedin.com/in/reham%7Esultan?trk=profile-badge">Reham S.</a></div>`
     }
   ];
 
@@ -100,6 +102,7 @@ const About = () => {
         <title>About HowAIConnects | AI Startup Building Tomorrow's Technology</title>
         <meta name="description" content="Learn about HowAIConnects, the AI startup pioneering advanced AI-powered web applications and intelligent automation solutions. Meet our team of AI experts and innovators." />
         <meta name="keywords" content="AI startup team, artificial intelligence company, AI experts, machine learning specialists, AI innovation, technology leadership" />
+        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
         <script type="application/ld+json">
           {`
             {
@@ -360,25 +363,11 @@ const About = () => {
                         ))}
                       </div>
                       
-                      {member.linkedin && (
-                        <Button 
-                          asChild 
-                          size="lg"
-                          className="group/btn bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary transition-all duration-300"
-                        >
-                          <a 
-                            href={member.linkedin} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2"
-                          >
-                            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd"/>
-                            </svg>
-                            Connect on LinkedIn
-                            <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                          </a>
-                        </Button>
+                      {member.linkedinBadge && (
+                        <div 
+                          className="linkedin-badge-container"
+                          dangerouslySetInnerHTML={{ __html: member.linkedinBadge }}
+                        />
                       )}
                     </div>
                   </CardContent>

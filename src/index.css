@@ -33,6 +33,26 @@
   animation: gradient-x 3s linear infinite;
 }
 
+/* LinkedIn Badge Styling */
+.linkedin-badge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkedin-badge-container .badge-base {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.linkedin-badge-container:hover .badge-base {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+}
+
 @layer base {
   :root {
     /* HowAIConnects Brand Theme - Updated Color Palette */
