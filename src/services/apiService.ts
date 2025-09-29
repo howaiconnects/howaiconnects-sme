@@ -36,7 +36,7 @@ class ApiService {
 
   constructor() {
     // This will use your environment variable or fall back to a placeholder
-    this.baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
+    this.baseUrl = import.meta.env.VITE_API_BASE_URL || 'https://api.howaiconnects.com/api';
   }
 
   private async makeRequest<T>(

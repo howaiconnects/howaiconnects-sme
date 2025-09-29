@@ -7,7 +7,7 @@
 export const apiConfig = {
   // Base URLs for different environments
   baseUrls: {
-    development: 'http://localhost:8000/api',
+    development: 'https://localhost:8000/api',
     staging: 'https://staging-api.howaiconnects.com/api',
     production: 'https://api.howaiconnects.com/api',
   },
