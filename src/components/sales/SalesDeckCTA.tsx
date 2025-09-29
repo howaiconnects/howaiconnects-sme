@@ -68,7 +68,7 @@ const SalesDeckCTA = () => {
         {/* Contact information for print version */}
         <div className="hidden print:block text-center mt-8 border-t border-white/20 pt-6">
           <h3 className="text-xl font-bold mb-2">Contact Us</h3>
-          <p>Email: connect@howaiconnects.com | Phone: (555) 123-4567 | Website: www.howaiconnects.com</p>
+          <p>Email: connect@howaiconnects.com | Phone: (416) 898-4516 | Website: www.howaiconnects.com</p>
         </div>
       </div>
     </section>

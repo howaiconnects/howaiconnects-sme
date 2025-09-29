@@ -112,7 +112,7 @@ const About = () => {
               "industry": "Artificial Intelligence",
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+1-647-123-4567",
+                "telephone": "+1-416-898-4516",
                 "contactType": "customer service"
               }
             }

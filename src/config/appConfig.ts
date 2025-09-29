@@ -13,7 +13,7 @@ export const appConfig = {
   version: "2.0.0",
   support: {
     email: "support@howaiconnects.com",
-    phone: "+1 (647) 123-4567"
+    phone: "+1 (416) 898-4516"
   }
 };
 
@@ -67,7 +67,7 @@ export const businessConfig = {
   },
   contact: {
     email: "hello@howaiconnects.com",
-    phone: "+1 (647) 123-4567",
+    phone: "+1 (416) 898-4516",
     address: {
       street: "123 Business Ave",
       city: "Toronto",
