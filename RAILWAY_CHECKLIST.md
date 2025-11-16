@@ -7,6 +7,7 @@
 
 ## Deployment Configuration
 - [x] `railway.toml` configuration file created
+- [x] `nixpacks.toml` configuration file created and validated
 - [x] `package.json` scripts updated for Railway
 - [x] Build and preview commands tested locally
 - [ ] Environment variables set in Railway dashboard
@@ -67,6 +68,16 @@
 - Railway documentation: https://docs.railway.app
 - Project README.md
 - RAILWAY_DEPLOYMENT_GUIDE.md
+
+### Common Issues
+- **Nixpacks build failed**: Ensure `nixpacks.toml` uses correct syntax:
+  ```toml
+  providers = ["nodejs"]
+  
+  [variables]
+  NODE_VERSION = "18"
+  ```
+  Not: `[providers]` with nested keys
 
 ## Support Contacts
 - Railway Community Discord
