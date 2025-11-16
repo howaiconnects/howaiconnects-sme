@@ -41,6 +41,42 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          form_type: string | null
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          source: string | null
+          submitted_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          form_type?: string | null
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          source?: string | null
+          submitted_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          form_type?: string | null
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          source?: string | null
+          submitted_at?: string
+        }
+        Relationships: []
+      }
       early_access_interest: {
         Row: {
           company: string | null

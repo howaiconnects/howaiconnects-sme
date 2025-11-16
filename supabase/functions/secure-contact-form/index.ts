@@ -123,7 +123,24 @@ serve(async (req) => {
 
     console.log('Processing contact form submission:', { email: sanitizedData.email, name: sanitizedData.name })
 
-    // Send to external webhook if configured
+    // Store in database
+    const { error: dbError } = await supabase
+      .from('contact_submissions')
+      .insert({
+        ...sanitizedData,
+        form_type: 'contact',
+        source: 'website',
+        submitted_at: new Date().toISOString()
+      })
+
+    if (dbError) {
+      console.error('Failed to store in database:', dbError)
+      throw new Error('Failed to store contact submission')
+    }
+
+    console.log('Successfully stored contact submission in database')
+
+    // Send to Zapier webhook if configured
     const zapierWebhook = Deno.env.get('ZAPIER_API_KEY')
     if (zapierWebhook) {
       try {
@@ -135,19 +152,49 @@ serve(async (req) => {
           body: JSON.stringify({
             ...sanitizedData,
             formType: 'contact',
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            source: 'website'
           })
         })
         console.log('Successfully sent to Zapier webhook')
       } catch (error) {
         console.error('Failed to send to Zapier:', error)
+        // Don't fail the request if webhook fails
       }
     }
 
-    // Store in database (if you have a contact_submissions table)
-    // const { error: dbError } = await supabase
-    //   .from('contact_submissions')
-    //   .insert(sanitizedData)
+    // Send to Airtable if configured
+    const airtableApiKey = Deno.env.get('AIRTABLE_API_KEY')
+    const airtableBaseId = Deno.env.get('AIRTABLE_BASE_ID')
+    
+    if (airtableApiKey && airtableBaseId) {
+      try {
+        await fetch(`https://api.airtable.com/v0/${airtableBaseId}/Leads`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${airtableApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            records: [{
+              fields: {
+                'Name': sanitizedData.name,
+                'Email': sanitizedData.email,
+                'Phone': sanitizedData.phone || '',
+                'Message': sanitizedData.message,
+                'Source': 'Website Contact Form',
+                'Status': 'New',
+                'Date Submitted': new Date().toISOString()
+              }
+            }]
+          })
+        })
+        console.log('Successfully sent to Airtable')
+      } catch (error) {
+        console.error('Failed to send to Airtable:', error)
+        // Don't fail the request if Airtable fails
+      }
+    }
 
     return new Response(
       JSON.stringify({ 
